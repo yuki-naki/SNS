@@ -10,14 +10,10 @@ create table user_t(
 	grouping varchar2(1)
 )
 
-
-
 create table group_t(
 	group_id varchar2(12) primary key,
 	group_name varchar2(100)
 )
-
-
 
 create table groupmember_t(
 	group_id varchar2(12),
@@ -26,24 +22,20 @@ create table groupmember_t(
 	foreign key (user_id) references user_t(user_id)
 )
 
+create table department_t(
+	Department_id varchar2(12) primary key,
+	Department_name varchar2(30) not null
+)	
 
 create table belong_department_t(
 	user_id varchar2(12) references user_t(user_id),
 	department_id varchar2(12) references department_t(department_id)
 )
 
-
-create table department_t(
-	Department_id varchar2(12) primary key,
-	Department_name varchar2(30) not null
-)	
-
-
 create table follow_t(
 	follower_user_id varchar2(12) references user_t(user_id),
 	followed_user_id varchar2(12) references user_t(user_id)
 )
-
 
 create table contribution_t(
 	contribution_id varchar2(12) primary key,
@@ -51,7 +43,6 @@ create table contribution_t(
 	contribution_date date,
 	user_id varchar2(12) references user_t(user_id)
 )
-
 
 create table chat_t(
 	user_id varchar2(12) references user_t(user_id),
