@@ -29,5 +29,45 @@
 		    </ul>
 	  </div>
 	</nav>
+
+
+	<div class="container textarea-container">
+    	<div class="row">
+    		<div class="col-lg-2"></div>
+	        <div class="col-lg-8">
+	            <div class="panel panel-info">
+	                <div class="panel-body">
+	                    <textarea placeholder="Write your comment here!"></textarea>
+	                    <form class="form-inline">
+	                        <div class="btn-group">
+	                        	<button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-picture"></span></button>
+	                            <button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-facetime-video"></span></button>
+	                        </div>
+	                        <button class="btn btn-primary pull-right" type="button">Submit</button>
+	                    </form>
+	                </div>
+	            </div>
+	        </div>
+	        <div class="col-lg-2"></div>
+    	</div>
+	</div>
+
+
+	<div class="container">
+    	<div class="row">
+    		<div class="col-lg-2"></div>
+        	<div class="col-lg-8">
+          		<h2>Post Title</h2>
+		        <!-- Date/Time -->
+		        <p>Posted on January 1, 2017 at 12:00 PM</p>
+		        <!-- Preview Image -->
+		        <p><img class="img-fluid rounded" src="http://placehold.it/900x300" alt=""></p>
+		        <!-- Post Content -->
+		        <p id="text">Text</p>
+		        <hr>
+			</div>
+			<div class="col-lg-2"></div>
+		</div>
+	</div>
 </body>
 </html>
