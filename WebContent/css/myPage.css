@@ -1,0 +1,16 @@
+body{
+	height:100%;
+}
+#profile{
+	color:#666666;
+	background-color:#eeeeee;
+	height:100%;
+}
+#icon{
+	width:120px;
+	height:120px;
+	border: 2px #555555 solid;
+}
+#comment{
+	resize: none;
+}
