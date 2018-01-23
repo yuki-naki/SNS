@@ -96,10 +96,10 @@ body {
 
 .heading-name-meta {
   font-weight: 700;
-  font-size: 100%;
+  font-size: 180%;
   padding: 5px;
   padding-bottom: 0;
-  text-align: left;
+  text-align: right;
   text-overflow: ellipsis;
   white-space: nowrap;
   color: #000;
@@ -184,6 +184,10 @@ body {
 .sideBar-avatar {
   text-align: center;
   padding: 0 !important;
+}
+
+.messageBody-avater{
+
 }
 
 .avatar-icon img {

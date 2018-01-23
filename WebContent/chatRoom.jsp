@@ -457,13 +457,13 @@
 
     <div class="col-sm-8 conversation">
       <div class="row heading">
-        <div class="col-sm-2 col-md-1 col-xs-3 heading-avatar">
+        <!-- <div class="col-sm-2 col-md-1 col-xs-3 heading-avatar">
           <div class="heading-avatar-icon">
             <img src="https://bootdey.com/img/Content/avatar/avatar6.png">
           </div>
-        </div>
+        </div> -->
         <div class="col-sm-8 col-xs-7 heading-name">
-          <a class="heading-name-meta">John Doe
+          <a class="heading-name-meta">グループ名
           </a>
           <span class="heading-online">Online</span>
         </div>
@@ -473,19 +473,45 @@
       </div>
 
       <div class="row message" id="conversation">
-        <div class="row message-previous">
+
+
+        <!-- <div class="row message-previous">
           <div class="col-sm-12 previous">
             <a onclick="previous(this)" id="ankitjain28" name="20">
             Show Previous Message!
             </a>
           </div>
-        </div>
+        </div> -->
+
 
         <div class="row message-body">
+        <div class="col-sm-2 col-xs-2 messageBody-avatar">
+              <div class="avatar-icon">
+                <img src="https://bootdey.com/img/Content/avatar/avatar5.png">
+              </div>
+            </div>
           <div class="col-sm-12 message-main-receiver">
             <div class="receiver">
               <div class="message-text">
                Hi, what are you doing?!
+              </div>
+              <span class="message-time pull-right">
+                Sun
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="row message-body">
+        <div class="col-sm-2 col-xs-2 messageBody-avatar">
+              <div class="avatar-icon">
+                <img src="https://bootdey.com/img/Content/avatar/avatar5.png">
+              </div>
+            </div>
+          <div class="col-sm-12 message-main-sender">
+            <div class="sender">
+              <div class="message-text">
+                I am doing nothing man!
               </div>
               <span class="message-time pull-right">
                 Sun
@@ -506,7 +532,38 @@
             </div>
           </div>
         </div>
+
+        <div class="row message-body">
+          <div class="col-sm-12 message-main-sender">
+            <div class="sender">
+              <div class="message-text">
+                I am doing nothing man!
+              </div>
+              <span class="message-time pull-right">
+                Sun
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="row message-body">
+          <div class="col-sm-12 message-main-sender">
+            <div class="sender">
+              <div class="message-text">
+                I am doing nothing man!
+              </div>
+              <span class="message-time pull-right">
+                Sun
+              </span>
+            </div>
+          </div>
+        </div>
+
+
       </div>
+
+
+
 
       <div class="row reply">
         <div class="col-sm-1 col-xs-1 reply-emojis">
