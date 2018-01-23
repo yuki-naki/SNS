@@ -5,10 +5,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="tinymce/css/tinymce.css">
 <link rel="stylesheet" href="css/topPage.css">
 <script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<script src="tinymce/tinymce.min.js"></script>
+
 <title>Top Page</title>
 </head>
 <body>
@@ -37,14 +40,12 @@
 	        <div class="col-lg-8">
 	            <div class="panel panel-info">
 	                <div class="panel-body">
-	                    <textarea placeholder="Write your comment here!"></textarea>
-	                    <form class="form-inline">
-	                        <div class="btn-group">
-	                        	<button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-picture"></span></button>
-	                            <button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-facetime-video"></span></button>
-	                        </div>
-	                        <button class="btn btn-primary pull-right" type="button">Submit</button>
-	                    </form>
+	                    <form id="form" method="post" action="AddServlet" enctype="multipart/form-data">
+	                        <textarea id="content" name="textarea" class="form-group"></textarea>
+	                        <textarea id="content2" name="textarea2" class="hidden"></textarea>
+	                        <%-- <input id="upload" type="file" name="file" class="" />--%>
+	                        <button id="btn" class="btn btn-primary pull-right" type="submit">Submit</button>
+                    	</form>
 	                </div>
 	            </div>
 	        </div>
@@ -69,5 +70,7 @@
 			<div class="col-lg-2"></div>
 		</div>
 	</div>
+
+	<script src="js/topPage.js"></script>
 </body>
 </html>
