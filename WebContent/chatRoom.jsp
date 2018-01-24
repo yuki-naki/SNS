@@ -18,7 +18,200 @@
 <body>
 	<div class="container app">
   <div class="row app-one">
-    <div class="col-sm-4 side">
+
+
+    <div class="col-sm-8 conversation">
+      <div class="row heading">
+        <!-- <div class="col-sm-2 col-md-1 col-xs-3 heading-avatar">
+          <div class="heading-avatar-icon">
+            <img src="https://bootdey.com/img/Content/avatar/avatar6.png">
+          </div>
+        </div> -->
+        <div class="col-sm-8 col-xs-7 heading-name">
+          <a class="heading-name-meta">groupname
+          </a>
+          <span class="heading-online">Online</span>
+        </div>
+        <div class="col-sm-1 col-xs-1  heading-dot pull-right">
+          <i class="fa fa-ellipsis-v fa-2x  pull-right" aria-hidden="true"></i>
+        </div>
+      </div>
+
+      <div class="row message" id="conversation">
+
+
+        <!-- <div class="row message-previous">
+          <div class="col-sm-12 previous">
+            <a onclick="previous(this)" id="ankitjain28" name="20">
+            Show Previous Message!
+            </a>
+          </div>
+        </div> -->
+
+
+        <div class="row message-body">
+        <div class="col-sm-2 col-xs-2 messageBody-avatar">
+             <div class="avatar-icon">
+                <img src="https://bootdey.com/img/Content/avatar/avatar2.png">
+             </div>
+        </div>
+          <div class="col-sm-12 message-main-receiver">
+          <div class="row receiver-name">はまで太郎</div>
+            <div class="receiver">
+              <div class="message-text">
+               Hi, what are you doing?!
+              </div>
+              <span class="message-time pull-right">
+                Sun
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="row message-body">
+          <div class="col-sm-12 message-main-sender">
+            <div class="sender">
+              <div class="message-text">
+                I am doing nothing man!
+              </div>
+              <span class="message-time pull-right">
+                Sun
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="row message-body">
+          <div class="col-sm-12 message-main-sender">
+            <div class="sender">
+              <div class="message-text">
+                I am doing nothing man!
+              </div>
+              <span class="message-time pull-right">
+                Sun
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="row message-body">
+          <div class="col-sm-12 message-main-sender">
+            <div class="sender">
+              <div class="message-text">
+                I am doing nothing man!
+              </div>
+              <span class="message-time pull-right">
+                Sun
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="row message-body">
+          <div class="col-sm-12 message-main-sender">
+            <div class="sender">
+              <div class="message-text">
+                I am doing nothing man!
+              </div>
+              <span class="message-time pull-right">
+                Sun
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="row message-body">
+          <div class="col-sm-12 message-main-sender">
+            <div class="sender">
+              <div class="message-text">
+                I am doing nothing man!
+              </div>
+              <span class="message-time pull-right">
+                Sun
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="row message-body">
+          <div class="col-sm-12 message-main-sender">
+            <div class="sender">
+              <div class="message-text">
+                The first step in awakening our senses is to rediscover the ability to
+				observe that we had as children. To do so we need to stop anticipating what
+				we are going to see and feel before it happens. Such anticipation blocks our
+				ability to feel.
+				For example, one chilly night I was on a mountain hike with some students.
+				I told them that we were going to have to cross a mountain stream. They began
+				to grumble about how cold it would be. We reached the stream and they
+				reluctantly plunged ahead. They were almost up to their knees in the water when
+				they realized that I had led them into a hot spring. Later they all said that
+				they had felt cold water at first.
+				We also need to notice (4)signs which can help us see more. Once I was on
+				a hike, following about six meters behind my Indian friend named Stalking Wolf.
+				As we passed under a huge pine tree. he turned around and said, "Don't disturb
+				it." Surprised, I looked everywhere. Was there a deer, a fox, or something else
+				that I had missed seeing? Finally I looked into the branches of the tree and
+				saw a beautiful owl not three meters from us.
+				I was amazed that Stalking Wolf had known it was there without looking up.
+				When I asked him how he had known the owl was there, he replied, "Go ask the
+				mice." By looking down he had seen the tracks of the mice that had run away
+				from their dreaded enemy, the owl.
+				(b)The next time you take a walk, no matter where it is, open up your eyes.
+				Be aware of all the sights, sounds and sensations. You will be surprised at
+				the many beautiful and interesting things you have been missing
+              </div>
+              <span class="message-time pull-right">
+                Sun
+              </span>
+            </div>
+          </div>
+        </div>
+
+		<div class="row message-body">
+        <div class="col-sm-2 col-xs-2 messageBody-avatar">
+             <div class="avatar-icon">
+                <img src="https://bootdey.com/img/Content/avatar/avatar2.png">
+             </div>
+        </div>
+          <div class="col-sm-12 message-main-receiver">
+          <div class="row receiver-name">はまで太郎</div>
+            <div class="receiver">
+              <div class="message-text">
+               (a)it takes practice and requires breaking some bad habits. And "relearn" is
+				the correct word. Most of us observed much more as children than we do as
+				adults. A child's day is filled with newness and wonder. The desire to explore,
+				to have an adventure, gave us all a natural ability to be aware of the world
+				around us. But as adults we are slow to be stimulated by new ideas and new
+				situations. We fail to see the wonder of the things around us.
+              </div>
+              <span class="message-time pull-right">
+                Sun
+              </span>
+            </div>
+          </div>
+        </div>
+
+
+
+      </div>
+
+
+
+
+      <div class="row reply">
+        <div class="col-sm-9 col-xs-9 reply-main">
+          <textarea class="form-control" rows="1" id="comment"></textarea>
+        </div>
+        <div class="col-sm-1 col-xs-1 reply-uploading" >
+          <i class="glyphicon glyphicon-picture" aria-hidden="true"></i>
+        </div>
+        <div class="col-sm-1 col-xs-1 reply-send">
+          <i class="fa fa-send fa-2x" aria-hidden="true"></i>
+        </div>
+      </div>
+    </div>
+        <div class="col-sm-4 side">
       <div class="side-one">
         <div class="row heading">
           <div class="col-sm-3 col-xs-3 heading-avatar">
@@ -451,132 +644,6 @@
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-sm-8 conversation">
-      <div class="row heading">
-        <!-- <div class="col-sm-2 col-md-1 col-xs-3 heading-avatar">
-          <div class="heading-avatar-icon">
-            <img src="https://bootdey.com/img/Content/avatar/avatar6.png">
-          </div>
-        </div> -->
-        <div class="col-sm-8 col-xs-7 heading-name">
-          <a class="heading-name-meta">グループ名
-          </a>
-          <span class="heading-online">Online</span>
-        </div>
-        <div class="col-sm-1 col-xs-1  heading-dot pull-right">
-          <i class="fa fa-ellipsis-v fa-2x  pull-right" aria-hidden="true"></i>
-        </div>
-      </div>
-
-      <div class="row message" id="conversation">
-
-
-        <!-- <div class="row message-previous">
-          <div class="col-sm-12 previous">
-            <a onclick="previous(this)" id="ankitjain28" name="20">
-            Show Previous Message!
-            </a>
-          </div>
-        </div> -->
-
-
-        <div class="row message-body">
-        <div class="col-sm-2 col-xs-2 messageBody-avatar">
-              <div class="avatar-icon">
-                <img src="https://bootdey.com/img/Content/avatar/avatar5.png">
-              </div>
-            </div>
-          <div class="col-sm-12 message-main-receiver">
-            <div class="receiver">
-              <div class="message-text">
-               Hi, what are you doing?!
-              </div>
-              <span class="message-time pull-right">
-                Sun
-              </span>
-            </div>
-          </div>
-        </div>
-
-        <div class="row message-body">
-        <div class="col-sm-2 col-xs-2 messageBody-avatar">
-              <div class="avatar-icon">
-                <img src="https://bootdey.com/img/Content/avatar/avatar5.png">
-              </div>
-            </div>
-          <div class="col-sm-12 message-main-sender">
-            <div class="sender">
-              <div class="message-text">
-                I am doing nothing man!
-              </div>
-              <span class="message-time pull-right">
-                Sun
-              </span>
-            </div>
-          </div>
-        </div>
-
-        <div class="row message-body">
-          <div class="col-sm-12 message-main-sender">
-            <div class="sender">
-              <div class="message-text">
-                I am doing nothing man!
-              </div>
-              <span class="message-time pull-right">
-                Sun
-              </span>
-            </div>
-          </div>
-        </div>
-
-        <div class="row message-body">
-          <div class="col-sm-12 message-main-sender">
-            <div class="sender">
-              <div class="message-text">
-                I am doing nothing man!
-              </div>
-              <span class="message-time pull-right">
-                Sun
-              </span>
-            </div>
-          </div>
-        </div>
-
-        <div class="row message-body">
-          <div class="col-sm-12 message-main-sender">
-            <div class="sender">
-              <div class="message-text">
-                I am doing nothing man!
-              </div>
-              <span class="message-time pull-right">
-                Sun
-              </span>
-            </div>
-          </div>
-        </div>
-
-
-      </div>
-
-
-
-
-      <div class="row reply">
-        <div class="col-sm-1 col-xs-1 reply-emojis">
-          <i class="fa fa-smile-o fa-2x"></i>
-        </div>
-        <div class="col-sm-9 col-xs-9 reply-main">
-          <textarea class="form-control" rows="1" id="comment"></textarea>
-        </div>
-        <div class="col-sm-1 col-xs-1 reply-recording">
-          <i class="fa fa-microphone fa-2x" aria-hidden="true"></i>
-        </div>
-        <div class="col-sm-1 col-xs-1 reply-send">
-          <i class="fa fa-send fa-2x" aria-hidden="true"></i>
         </div>
       </div>
     </div>
