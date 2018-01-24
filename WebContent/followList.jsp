@@ -24,14 +24,12 @@
 		</div>
 	</div>
 	<nav class="navbar navbar-default">
-  		<div class="container-fluid">
 		    <ul class="nav navbar-nav">
-		      <li id="top-li" class="active"><a href="#">Top</a></li>
-		      <li><a href="#">MyPage</a></li>
+		      <li id="top-li"><a href="#">Top</a></li>
+		      <li class="active"><a href="#">MyPage</a></li>
 		      <li><a href="#">Chat</a></li>
 		      <li><a href="#">Follow</a></li>
 		    </ul>
-	  </div>
 	</nav>
 
 	<div class="container-fluid text-center">
@@ -60,7 +58,7 @@
 						   <div class="input-group">
 						     <input type="text" class="form-control" placeholder="Search" name="search">
 						     <div class="input-group-btn">
-						       <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+						       <button class="btn btn-default" type="submit" style="height:34px;"><i class="glyphicon glyphicon-search"></i></button>
 						     </div>
 						   </div>
 						</form>
@@ -136,7 +134,7 @@
 			    	<table class="table-condensed" style="margin:20px 0px;">
 			    	<tr>
 						<td class="col-lg-1"><img src="img/image.jpg" id="icon" class="img-circle" alt="anoni"></td>
-						<td>１２３４５６...</td>
+						<td>AL AVAYAJI ALEXANDRE</td>
 					</tr>
 					<tr>
 						<td colspan="2"><button type="button" class="btn btn-danger">解除</button></td>
