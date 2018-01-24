@@ -5,11 +5,20 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="css/topPage.css">
 <link rel="stylesheet" href="css/myPage.css">
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
+<script>
+	$(function(){
+		$("#config").click(function(){
+			$('#comment').attr('readonly',false);
+			$('#config').attr("disabled",true);
+
+		});
+	});
+</script>
 <title>MyProfile</title>
 </head>
 <body>
@@ -30,38 +39,31 @@
 	</nav>
 	<div class="container-fluid text-center">
 		<div class="row justify-content-center">
-			<div class="col-sm-6 col-sm-offset-3" id="profile">
-				<form method="post" action="*******">
-
+			<div class="col-sm-8 col-sm-offset-2" id="profile">
+				<form method="post" action="IconTestServlet">
 						<div class="col">
 							<h1>MyProfile</h1>
 						</div>
-
-
-						<div class="col-sm-3 col-sm-offset-1 content-center">
-							<img class="img-circle" src="img/man.png" id="icon">
+						<div class="col-sm-3 col-sm-offset-1 content-center" id="iconwrap">
+							<img name="icon" class="img-circle" src="https://bootdey.com/img/Content/avatar/avatar1.png" id="icon">
 						</div>
 						<div class="col-sm-5 col-sm-offset-2">
 							<h3>名前:#####</h3>
 							<h3>学年:##年</h3>
 							<h3>学科:#######科</h3>
 						</div>
-
-
 						<div class="col-sm-12">
 							<h3>自己紹介文</h3>
-								<textarea class="form-control" rows="8" id="comment"></textarea>
+								<textarea name="comment" class="form-control" rows="8" id="comment" readonly>わたしはジョンスミスです</textarea>
 						</div>
-
-
 						<div class="col-sm-12 text-right">
+							<button type="button" class="btn btn-success btn-md" id="config">編集</button>
 							<input type="submit" class="btn btn-success btn-md" value="保存">
 						</div>
-
+						<input type="file" id="upload">
 				</form>
 			</div>
 		</div>
 	</div>
-
 </body>
 </html>
