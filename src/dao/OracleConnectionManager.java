@@ -31,7 +31,7 @@ public class OracleConnectionManager
 			{
 				Class.forName("oracle.jdbc.driver.OracleDriver");
 				cn = DriverManager.getConnection
-						("jdbc:oracle:thin:@localhost:1521:orcl", "scott", "tiger");
+						("jdbc:oracle:thin:@localhost:1521:orcl", "info", "pro");
 			}
 			catch(ClassNotFoundException e)
 			{
