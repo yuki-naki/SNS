@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
@@ -75,17 +76,11 @@ public class AddServlet extends HttpServlet {
 	            System.out.println(fieldname+" "+filename);
 	            InputStream fileContent = part.getInputStream();
 	            Calendar calendar = Calendar.getInstance(new Locale("ja", "JAPAN"));
-	    	    int year = calendar.get(Calendar.YEAR);
-	    	    int month = calendar.get(Calendar.MONTH)+1;
-	    	    int day = calendar.get(Calendar.DAY_OF_MONTH);
-	    	    int hour = calendar.get(Calendar.HOUR_OF_DAY);
-	    	    int min = calendar.get(Calendar.MINUTE);
-	    	    int sec = calendar.get(Calendar.SECOND);
-	    	    int milli = calendar.get(Calendar.MILLISECOND);
-	    	    String updatedFileName = ""+year+month+day+hour+min+sec+milli+".jpg";
+	            SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSSS");
+	            String updatedFileName =  sdf.format(calendar.getTime())+".jpg";
 	            try {
 
-	                OutputStream os = new FileOutputStream("D:/Lessons/JE22/workspace2/SNS/WebContent/WEB-INF/uploaded/"+updatedFileName);
+	                OutputStream os = new FileOutputStream("C:/workspace/SNS/WebContent/WEB-INF/uploaded/"+updatedFileName);
 
 	                byte[] buffer = new byte[1024];
 	                int bytesRead;

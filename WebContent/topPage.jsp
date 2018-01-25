@@ -43,7 +43,6 @@
 	                    <form id="form" method="post" action="AddServlet" enctype="multipart/form-data">
 	                        <textarea id="content" name="textarea" class="form-group"></textarea>
 	                        <textarea id="content2" name="textarea2" class="hidden"></textarea>
-	                        <%-- <input id="upload" type="file" name="file" class="" />--%>
 	                        <button id="btn" class="btn btn-primary pull-right" type="submit">Submit</button>
                     	</form>
 	                </div>
@@ -58,6 +57,7 @@
     	<div class="row">
     		<div class="col-lg-2"></div>
         	<div class="col-lg-8">
+        		<hr>
           		<h2>Post Title</h2>
 		        <!-- Date/Time -->
 		        <p>Posted on January 1, 2017 at 12:00 PM</p>
@@ -65,7 +65,6 @@
 		        <p><img class="img-fluid rounded" src="http://placehold.it/900x300" alt=""></p>
 		        <!-- Post Content -->
 		        <p id="text">Text</p>
-		        <hr>
 			</div>
 			<div class="col-lg-2"></div>
 		</div>
