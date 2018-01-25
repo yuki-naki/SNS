@@ -26,4 +26,6 @@ public abstract class AbstractDaoFactory
 	}
 
 	public abstract RemoveFollowDao getRemoveFollowDao();
+	public abstract LoginDao getLoginDao();
+	public abstract FollowDao getFollowDao();
 }
