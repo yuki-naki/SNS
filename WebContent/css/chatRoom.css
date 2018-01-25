@@ -9,10 +9,10 @@ html, body, div, span {
   box-sizing: border-box;
 }
 
-body {
-  background: url("http://shurl.esy.es/y") no-repeat fixed center;
-  background-size: cover;
+.col-sm-9 {
+    width: 80%;
 }
+
 
 .fa-2x {
   font-size: 1.5em;
@@ -21,7 +21,7 @@ body {
 .app {
   position: relative;
   overflow: hidden;
-  top: 19px;
+  top: 3px;
   height: calc(100% - 38px);
   margin: auto;
   padding: 0;
@@ -30,7 +30,7 @@ body {
 
 .app-one {
   background-color: #f7f7f7;
-  height: 100%;
+  height: 91%;
   overflow: hidden;
   margin: 0;
   padding: 0;
@@ -352,7 +352,7 @@ body {
 
 .message-main-sender {
   padding: 12px 0px !important;
-  margin-left: 23.3% !important;
+  margin-left: 38% !important;
   max-width: 60%;
 }
 
