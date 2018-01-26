@@ -90,12 +90,12 @@
           </div>
         </div>
 
-        <div class="row message-body" id="div2">
-          <div class="col-sm-12 message-main-sender" id="div2">
-            <div class="sender" id="div2">
-              <div class="message-text" id="div2">
+        <div class="row message-body">
+          <div class="col-sm-12 message-main-sender">
+            <div class="sender">
+              <p class="message-text">
                 I am doing nothing man!
-              </div>
+              </p>
               <span class="message-time pull-right">
                 Sun
               </span>
