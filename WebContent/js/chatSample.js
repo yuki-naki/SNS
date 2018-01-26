@@ -1,35 +1,75 @@
-var webSocket = new WebSocket("ws://localhost:8080/SNS/ws");
-var messages = document.getElementById("textarea");
+"use strict";
 
-webSocket.onopen = function(message){processOpen(message);};
-webSocket.onmessage = function(message){processMessage(message);};
-webSocket.onclose = function(message){processClose(message);};
-webSocket.onerror = function(message){processError(message);};
+var Chat = {};
 
-function processOpen(message){
-	messages.value = "Connected to the server\n"
-}
+Chat.socket = null;
 
-function processMessage(message){
-	messages.value += "Received from the server: "+message.data+"\n"
-}
+Chat.connect = (function(host) {
+    if ('WebSocket' in window) {
+        Chat.socket = new WebSocket(host);
+    } else if ('MozWebSocket' in window) {
+        Chat.socket = new MozWebSocket(host);
+    } else {
+        Console.log('Error: WebSocket is not supported by this browser.');
+        return;
+    }
 
-function send(){
-	if(messageinput != "close"){
- 	webSocket.send(messageinput.value);
- 	messages.value += "Send to server => "+messageinput.value+"\n";
- 	messageinput.value = "";
-	}
-	else{
-		webSocket.close();
-	}
-}
+    Chat.socket.onopen = function () {
+        Console.log('Info: WebSocket connection opened.');
+        document.getElementById('chat').onkeydown = function(event) {
+            if (event.keyCode == 13) {
+                Chat.sendMessage();
+            }
+        };
+    };
 
-function processClose(message){
-	webSocket.send("client disconnected");
-	messages.value += "Connexion closed\n"
-}
+    Chat.socket.onclose = function () {
+        document.getElementById('chat').onkeydown = null;
+        Console.log('Info: WebSocket closed.');
+    };
 
-function processError(message){
-	messages.value += "Error\n"
-}
+    Chat.socket.onmessage = function (message) {
+        Console.log(message.data);
+    };
+});
+
+Chat.initialize = function() {
+    if (window.location.protocol == 'http:') {
+        Chat.connect('ws://' + window.location.host + '/SNS/ws');
+    } else {
+        Chat.connect('wss://' + window.location.host + '/SNS/ws');
+    }
+};
+
+Chat.sendMessage = (function() {
+    var message = document.getElementById('chat').value;
+    if (message != '') {
+        Chat.socket.send(message);
+        document.getElementById('chat').value = '';
+    }
+});
+
+var Console = {};
+
+Console.log = (function(message) {
+    var console = document.getElementById('console');
+    var p = document.createElement('p');
+    p.style.wordWrap = 'break-word';
+    p.innerHTML = message;
+    console.appendChild(p);
+    while (console.childNodes.length > 25) {
+        console.removeChild(console.firstChild);
+    }
+    console.scrollTop = console.scrollHeight;
+});
+
+Chat.initialize();
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    // Remove elements with "noscript" class - <noscript> is not allowed in XHTML
+    var noscripts = document.getElementsByClassName("noscript");
+    for (var i = 0; i < noscripts.length; i++) {
+        noscripts[i].parentNode.removeChild(noscripts[i]);
+    }
+}, false);

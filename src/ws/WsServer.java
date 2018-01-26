@@ -26,15 +26,13 @@ public class WsServer {
         nickname = GUEST_PREFIX + connectionIds.getAndIncrement();
     }
 
-
     @OnOpen
-    public void start(Session session) {
+    public void start(Session session){
         this.session = session;
         connections.add(this);
         String message = String.format("* %s %s", nickname, "has joined.");
         broadcast(message);
     }
-
 
     @OnClose
     public void end() {
@@ -43,7 +41,6 @@ public class WsServer {
                 nickname, "has disconnected.");
         broadcast(message);
     }
-
 
     @OnMessage
     public void incoming(String message) {
@@ -57,18 +54,17 @@ public class WsServer {
     	broadcast(t.getMessage());
     }
 
-
     private static void broadcast(String msg) {
-        for (WsServer client : connections) {
+        for(WsServer client : connections){
             try {
-                synchronized (client) {
+                synchronized(client) {
                     client.session.getBasicRemote().sendText(msg);
                 }
-            } catch (IOException e) {
+            } catch(IOException e) {
                 connections.remove(client);
                 try {
                     client.session.close();
-                } catch (IOException e1) {
+                } catch(IOException e1){
                     // Ignore
                 }
                 String message = String.format("* %s %s",client.nickname, "has been disconnected.");
