@@ -7,15 +7,15 @@
     	<title>chat page</title>
     	<meta charset="utf-8">
     	<meta charset="viewport" content="width=device, initial-scale=1">
-    	<link rel="stylesheet" href="css/bootstrap.min.css">
+    	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     	<link rel="stylesheet" href="css/index.css">
 
     	<link rel="stylesheet" href="css/topPage.css">
 
     	<link rel="stylesheet" href="css/chat.css">
 
-    	<script src="js/jquery.min.js"></script>
-    	<script src="js/bootstrap.min.js"></script>
+    	<script src="js/vendor/jquery.min.js"></script>
+    	<script src="js/vendor/bootstrap.min.js"></script>
     </head>
     <body>
     <div class="container-fluid">
