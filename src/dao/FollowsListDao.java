@@ -4,24 +4,37 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
-public class LoginDao {
-	public String login(String loginId, String password){
+import bean.User;
+
+public class FollowsListDao {
+
+	public List getFollowsList(String userId){
 		PreparedStatement st = null;
 		ResultSet rs = null;
-		String userId = null;
 
-		try{
+		ArrayList followUsers = new ArrayList();
+
+		try
+		{
 			Connection cn = null;
 			cn = OracleConnectionManager.getInstance().getConnection();
-
-			String sql = "SELECT user_id FROM user_t WHERE user_login_id = " + loginId + "AND user_password = " + password;
+			String sql = "SELECT followed_user_id FROM follow_t WHERE follower_user_id = " + userId;
 
 			st = cn.prepareStatement(sql);
 
 			rs = st.executeQuery();
 
-			userId = rs.getString(1);
+			while(rs.next())
+			{
+				User user = new User();
+
+				user.setUserId(rs.getString(1));
+
+				followUsers.add(user);
+			}
 
 			cn.commit();
 		}
@@ -47,7 +60,6 @@ public class LoginDao {
 				e.printStackTrace();
 			}
 		}
-
-		return userId;
+		return followUsers;
 	}
 }

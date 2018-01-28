@@ -31,21 +31,22 @@ public class WsServer {
         this.session = session;
         connections.add(this);
         String message = String.format("* %s %s", nickname, "has joined.");
-        broadcast(message);
+        System.out.println(message);
+        //broadcast(message);
     }
 
     @OnClose
     public void end() {
         connections.remove(this);
-        String message = String.format("* %s %s",
-                nickname, "has disconnected.");
+        String message = String.format("* %s %s", nickname, "has disconnected.");
         broadcast(message);
     }
 
     @OnMessage
-    public void incoming(String message) {
+    public void incoming(String message, Session session) {
         // Never trust the client
         String filteredMessage = String.format("%s: %s", nickname, message.toString());
+        System.out.println(filteredMessage);
         broadcast(filteredMessage);
     }
 

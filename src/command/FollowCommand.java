@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import context.RequestContext;
 import context.ResponseContext;
 import dao.AbstractDaoFactory;
+import dao.FollowDao;
 
 public class FollowCommand extends AbstractCommand{
 	public ResponseContext execute(ResponseContext responseContext){

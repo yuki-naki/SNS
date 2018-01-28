@@ -1,3 +1,5 @@
+var id;
+
 $(function(){
     $(".heading-compose").click(function() {
       $(".side-two").css({
@@ -29,7 +31,7 @@ Chat.connect = (function(host) {
     }
 
     Chat.socket.onopen = function () {
-        Console.log('Info: WebSocket connection opened.');
+       // Console.log('Info: WebSocket connection opened.');
         document.getElementById('comment').onkeydown = function(event) {
             if (event.keyCode == 13) {
                 Chat.sendMessage();
@@ -39,10 +41,10 @@ Chat.connect = (function(host) {
 
     Chat.socket.onclose = function () {
         document.getElementById('comment').onkeydown = null;
-        Console.log('Info: WebSocket closed.');
+        //Console.log('Info: WebSocket closed.');
     };
 
-    Chat.socket.onmessage = function (message) {
+    Chat.socket.onmessage = function(message) {
         Console.log(message.data);
     };
 });
@@ -57,7 +59,7 @@ Chat.initialize = function() {
 
 Chat.sendMessage = (function() {
     var message = document.getElementById('comment').value;
-    if (message != '') {
+    if (message.trim() != "" && message != null) {
         Chat.socket.send(message);
         document.getElementById('comment').value = '';
     }
@@ -82,10 +84,14 @@ Console.log = (function(message) {
     var div_main_sender = document.createElement('div');
     div_main_sender.className  = 'col-sm-12 message-main-sender';
     div_main_sender.appendChild(div_sender);
-
+    var div_main_message = document.createElement('div');
+    div_main_message.className  = 'row message-body';
+    div_main_message.appendChild(div_main_sender);
+    console.appendChild(div_main_message);
+    /*
     while (console.childNodes.length > 25) {
         console.removeChild(console.firstChild);
-    }
+    }*/
     console.scrollTop = console.scrollHeight;
 });
 

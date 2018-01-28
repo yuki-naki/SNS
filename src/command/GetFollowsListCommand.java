@@ -2,15 +2,16 @@ package command;
 
 import context.ResponseContext;
 import dao.AbstractDaoFactory;
+import dao.FollowsListDao;
 
-public class GetFollowListCommand extends AbstractCommand{
+public class GetFollowsListCommand extends AbstractCommand{
 	public ResponseContext execute(ResponseContext responseContext){
 		//dao取得
 		AbstractDaoFactory factory = AbstractDaoFactory.getFactory();
-		GetFollowListDao getFollowListDao = factory.getGetFollowListDao();
+		FollowsListDao followsListDao = factory.getFollowsListDao();
 
 		responseContext.setTarget("followList");
-		responseContext.setResult((Object)getFollowListDao.getFollowList());
+		responseContext.setResult((Object)followsListDao.getFollowsList("user_id"));
 		return responseContext;
 	}
 }

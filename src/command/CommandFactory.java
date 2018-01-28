@@ -13,7 +13,7 @@ public abstract class CommandFactory {
 		Properties prop = new Properties();
 
 		try {
-			prop.load(new FileInputStream("D:/Lessons/JE22/workspace2/J2EE-4/src/commands.properties"));
+			prop.load(new FileInputStream("C:/workspace/SNS/src/commands.properties"));
 			String name = prop.getProperty(rc.getCommandPath());
 			Class c = Class.forName(name);
 			command = (AbstractCommand) c.newInstance();

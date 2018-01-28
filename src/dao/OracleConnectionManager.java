@@ -4,99 +4,74 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class OracleConnectionManager
-{
+public class OracleConnectionManager{
+
 	private static OracleConnectionManager oraconn = null;
 	private Connection cn = null;
 
-	private OracleConnectionManager()
-	{
-	}
+	private OracleConnectionManager(){}
 
-	public static OracleConnectionManager getInstance()
-	{
-		if(oraconn == null)
-		{
+	public static OracleConnectionManager getInstance(){
+		if(oraconn == null){
 			oraconn = new OracleConnectionManager();
 		}
-
 		return oraconn;
 	}
 
 	public Connection getConnection()
 	{
-		if(cn == null)
-		{
-			try
-			{
+		if(cn == null){
+			try{
 				Class.forName("oracle.jdbc.driver.OracleDriver");
-				cn = DriverManager.getConnection
-						("jdbc:oracle:thin:@localhost:1521:orcl", "info", "pro");
+				cn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl", "info", "pro");
 			}
-			catch(ClassNotFoundException e)
-			{
+			catch(ClassNotFoundException e){
 				e.printStackTrace();
 			}
-			catch(SQLException e)
-			{
+			catch(SQLException e){
 				e.printStackTrace();
 			}
 		}
-
 		return cn;
 	}
 
-	public void closeConnection()
-	{
-		try
-		{
-			if(cn != null)
-			{
+	public void closeConnection(){
+		try{
+			if(cn != null){
 				cn.close();
 			}
 		}
-		catch(SQLException e)
-		{
+		catch(SQLException e){
 			e.printStackTrace();
 		}
 	}
 
-	public void beginTransaction()
-	{
-		if(cn == null)
-		{
+	public void beginTransaction(){
+		if(cn == null){
 			getConnection();
 		}
-		try
-		{
+		try{
 			cn.setAutoCommit(false);
 		}
-		catch(SQLException e)
-		{
+		catch(SQLException e){
 			e.printStackTrace();
 		}
 	}
 
-	public void commit()
-	{
-		try
-		{
+	public void commit(){
+		try{
 			cn.commit();
 		}
-		catch(SQLException e)
-		{
+		catch(SQLException e){
 			e.printStackTrace();
 		}
 	}
 
-	public void rollback()
-	{
-		try
-		{
+	public void rollback(){
+		try{
 			cn.rollback();
 		}
-		catch(SQLException e)
-		{
+		catch(SQLException e){
 			e.printStackTrace();
 		}
 	}

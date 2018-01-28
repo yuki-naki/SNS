@@ -1,0 +1,82 @@
+DROP TABLE chat_t;
+DROP TABLE follow_t;
+DROP TABLE belong_department_t;
+DROP TABLE groupmember_t;
+DROP TABLE user_t;
+DROP SEQUENCE user_seq;
+DROP TABLE group_t;
+DROP TABLE department_t;
+DROP TABLE notification_t;
+DROP SEQUENCE notification_seq;
+
+CREATE TABLE user_t (
+	user_id NUMBER(5),
+	login_id VARCHAR2(20) UNIQUE NOT NULL,
+	password VARCHAR2(20) NOT NULL,
+	is_admin NUMBER(1) NOT NULL CONSTRAINT check_is_admin CHECK (is_admin IN (0,1)),
+	username VARCHAR2(30) NOT NULL,
+	user_icon BLOB,
+	user_introduction VARCHAR2(500),
+	student_id VARCHAR2(20),
+	admission_year VARCHAR2(4),
+	grouping VARCHAR2(1),
+	CONSTRAINT user_id_pk PRIMARY KEY(user_id)
+);
+
+CREATE SEQUENCE user_seq;
+
+CREATE TABLE group_t(
+	group_id NUMBER(5),
+	group_name VARCHAR2(30),
+	CONSTRAINT group_id_pk PRIMARY KEY(group_id)
+);
+
+CREATE TABLE groupmember_t(
+	group_id NUMBER(5),
+	user_id NUMBER(5),
+	CONSTRAINT groupmember_unique UNIQUE(group_id, user_id),
+	CONSTRAINT group_id_fk FOREIGN KEY (group_id) REFERENCES group_t(group_id),
+	CONSTRAINT group_user_id_fk FOREIGN KEY (user_id) REFERENCES user_t(user_id)
+);
+
+CREATE TABLE department_t(
+	department_id NUMBER(2),
+	department_name VARCHAR2(30) NOT NULL,
+	CONSTRAINT department_id_pk PRIMARY KEY(department_id)
+);
+
+CREATE TABLE belong_department_t(
+	user_id NUMBER(5),
+	department_id NUMBER(2),
+	CONSTRAINT user_id_fk FOREIGN KEY (user_id) REFERENCES user_t(user_id),
+	CONSTRAINT department_id_fk FOREIGN KEY (department_id) REFERENCES department_t(department_id)
+);
+
+CREATE TABLE follow_t(
+	follower_user_id NUMBER(5),
+	followed_user_id NUMBER(5),
+	CONSTRAINT follower_user_id_fk FOREIGN KEY (follower_user_id) REFERENCES user_t(user_id),
+	CONSTRAINT followed_user_id_fk FOREIGN KEY (followed_user_id) REFERENCES user_t(user_id)
+);
+
+CREATE TABLE notification_t(
+	notification_id NUMBER(5) UNIQUE NOT NULL,
+	notification_content VARCHAR2(4000) NOT NULL,
+	notification_date DATE DEFAULT SYSDATE NOT NULL
+);
+
+CREATE SEQUENCE notification_seq;
+
+CREATE TABLE chat_t(
+	chat_user_id NUMBER(5),
+	chat_group_id NUMBER(5),
+	chat_content VARCHAR2(4000) NOT NULL,
+	chat_date DATE DEFAULT SYSDATE NOT NULL,
+	CONSTRAINT chat_user_id_fk FOREIGN KEY (chat_user_id) REFERENCES user_t(user_id),
+	CONSTRAINT chat_group_id_fk FOREIGN KEY (chat_group_id) REFERENCES group_t(group_id)
+);
+
+INSERT INTO user_t (user_id, login_id, password, is_admin, username) VALUES (user_seq.nextVal, 'Alex', 'Alex', 1, 'AL ABAYAJI ALEXANDRE');
+INSERT INTO user_t (user_id, login_id, password, is_admin, username) VALUES (user_seq.nextVal, 'Nakai', 'Nakai', 0, '中井祐喜');
+
+commit;

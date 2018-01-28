@@ -9,7 +9,7 @@ public class WebResponseContext implements ResponseContext {
 	private HttpServletResponse response;
 
 	public void setTarget(String transferInfo){
-		target = transferInfo + ".jsp";
+		target = "/WEB-INF/jsp/" +transferInfo + ".jsp";
 	}
 
 	public String getTarget(){

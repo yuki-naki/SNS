@@ -3,13 +3,16 @@
 	padding:0px;
 }
 
+body {
+	min-width:550px;
+}
+
 #header {
 	background-color:#5bc0de;
 }
 
 #headerContent {
-	position:relative;
-	top:50%;
+	text-align:center;
 	font-size:28px;
 }
 
@@ -22,13 +25,30 @@
 	text-align:center;
 }
 
+#logoutBtn {
+	background: none!important;
+	border: none;
+	padding: 0!important;
+	font: inherit;
+    border-bottom: 1px solid #444;
+    cursor: pointer;
+    margin-top:7px;
+}
+
+#logoutBtn:hover {
+	border: none;
+}
+
 li {
-	width:25%;
 	border-right: 1px solid;
 }
 
-#top-li {
-	border-left:1px solid;
+#top-left-li {
+	border-left:none;
+}
+
+#top-right-li {
+	border-right:none;
 }
 
 #text {
@@ -60,4 +80,8 @@ hr {
     height: 130px;
     width: 100%;
     border: 1px solid #F2F2F2;
+}
+
+.column {
+	padding:0px;
 }

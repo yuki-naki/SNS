@@ -20,8 +20,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
 @MultipartConfig(maxFileSize=2000000000)
-@WebServlet("/AddServlet")
-public class AddServlet extends HttpServlet {
+@WebServlet("/ImageUploadTestServlet")
+public class ImageUploadTestServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doPost(request, response);
@@ -80,7 +80,7 @@ public class AddServlet extends HttpServlet {
 	            String updatedFileName =  sdf.format(calendar.getTime())+".jpg";
 	            try {
 
-	                OutputStream os = new FileOutputStream("C:/workspace/SNS/WebContent/WEB-INF/uploaded/"+updatedFileName);
+	                OutputStream os = new FileOutputStream("C:/workspace/SNS/WebContent/uploaded/"+updatedFileName);
 
 	                byte[] buffer = new byte[1024];
 	                int bytesRead;

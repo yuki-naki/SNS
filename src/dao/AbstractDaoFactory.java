@@ -12,7 +12,7 @@ public abstract class AbstractDaoFactory
 
 		try
 		{
-			prop.load(new FileInputStream("../workspace/FrontController/src/dao.properties"));
+			prop.load(new FileInputStream("C:/workspace/SNS/src/dao.properties"));
 			String name = prop.getProperty("dao");
 			Class c = Class.forName(name);
 			factory = (AbstractDaoFactory)c.newInstance();
@@ -26,6 +26,7 @@ public abstract class AbstractDaoFactory
 	}
 
 	public abstract RemoveFollowDao getRemoveFollowDao();
-	public abstract LoginDao getLoginDao();
+	public abstract UserDao getUserDao();
 	public abstract FollowDao getFollowDao();
+	public abstract FollowsListDao getFollowsListDao();
 }

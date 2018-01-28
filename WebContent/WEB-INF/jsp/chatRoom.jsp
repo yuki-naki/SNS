@@ -93,9 +93,9 @@
         <div class="row message-body">
           <div class="col-sm-12 message-main-sender">
             <div class="sender">
-              <p class="message-text">
+              <div class="message-text">
                 I am doing nothing man!
-              </p>
+              </div>
               <span class="message-time pull-right">
                 Sun
               </span>

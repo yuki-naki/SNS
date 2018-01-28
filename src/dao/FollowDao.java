@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 public class FollowDao {
 	public void follow(String followerUserId, String followedUserId){
@@ -38,6 +37,6 @@ public class FollowDao {
 				e.printStackTrace();
 			}
 		}
-		ers;return followUs
+		//ers;return followUs
 	}
 }
