@@ -14,14 +14,14 @@
 <body>
    <div class="container-fluid">
 		<div id="header" class="row">
-			<div class="col-lg-4"></div>
-			<div id="headerContent" class="col-lg-4">専門学校東京テクニカルカレッジ</div>
-			<div class="col-lg-4"></div>
+			<div class="col-xs-1 column"></div>
+			<div id="headerContent" class="col-xs-10 column">専門学校東京テクニカルカレッジ</div>
+			<div class="col-xs-1 column"></div>
 		</div>
 		<div class="row">
-			<div class="col-lg-4"></div>
+			<div class="col-xs-1 column"></div>
 
-			<div id="loginBox" class="col-lg-4">
+			<div id="loginBox" class="col-xs-10 column">
 
 				<div class="panel panel-info">
 
@@ -50,7 +50,7 @@
 							</div>
 
 							<div class="form-group">
-								<div class="col-lg-12">
+								<div class="col-xs-12">
 								  <button class="btn btn-success">Login</button>
 								</div>
 							</div>
@@ -58,7 +58,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-lg-4"></div>
+			<div class="col-xs-1 column"></div>
 		</div>
     </div>
 </body>

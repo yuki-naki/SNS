@@ -3,13 +3,16 @@
 	padding:0px;
 }
 
+body {
+	min-width:550px;
+}
+
 #header {
 	background-color:#5bc0de;
 }
 
 #headerContent {
-	position:relative;
-	top:50%;
+	text-align:center;
 	font-size:28px;
 }
 
@@ -24,3 +27,17 @@
 .input-group{
 	margin-bottom:25px;
 }
+.panel {
+	width:500px;
+	margin:auto;
+}
+
+.column {
+	padding:0px;
+}
+/*
+@media only screen and (max-width: 550px) {
+    .panel {
+        width: lightblue;
+    }
+}*/
