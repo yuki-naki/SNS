@@ -69,7 +69,7 @@ tinymce.init({
 									}
 								}
 				            	else {
-				            		ed.insertContent('<img id='+(file_id-1)+' src="' + img_src + '" alt="" name="image" data-filename='+filename+' /> ');
+				            		ed.insertContent('<img id='+(file_id-1)+' src="' + img_src + '" alt="" name="image" data-filename='+filename+' >');
 				                    flag_input = false;
 				                    window.scrollTo(0,document.getElementById("form").scrollHeight);
 				                    (this).parent().parent().close();
@@ -78,7 +78,6 @@ tinymce.init({
 						},
 						{
 				            text: 'Cancel',
-
 				            onclick: function() {
 				                (this).parent().parent().close();
 				                if(flag_input){
@@ -198,7 +197,7 @@ function replaceSrc(content){
 		var beforeSrc = afterImg.substr(0,indexSrc);
 		var afterSrc = afterImg.substr(indexSrc);
 
-		afterSrc = afterSrc.replace(/src="[^\s]+"/, 'src=""');
+		afterSrc = afterSrc.replace(/src="[^\s]+"/, 'src="" width="100%" height="100%"');
 		content = afterSrc;
 		return beforeImg+beforeSrc+replaceSrc(content);
 	}

@@ -51,7 +51,7 @@
 		                    <form id="form" method="post" action="notify" enctype="multipart/form-data">
 		                        <textarea id="content" name="textarea" class="form-group"></textarea>
 		                        <textarea id="content2" name="textarea2" class="hidden"></textarea>
-		                        <button id="btn" class="btn btn-primary pull-right" type="submit">Submit</button>
+		                        <button id="btn" class="btn btn-primary pull-right" type="submit">投稿</button>
 	                    	</form>
 		                </div>
 		            </div>
@@ -62,21 +62,21 @@
 	</c:if>
 
 	<div class="container">
-    	<div class="row">
-    		<div class="col-xs-2"></div>
-        	<div class="col-xs-8">
-        		<hr>
-          		<h2>Post Title</h2>
-		        <!-- Date/Time -->
-		        <p>Posted on January 1, 2017 at 12:00 PM</p>
-		        <!-- Preview Image -->
-		        <p><img class="img-fluid rounded" src="http://placehold.it/900x300" alt=""></p>
-		        <!-- Post Content -->
-		        <p id="text">Text</p>
+		<c:forEach var="notification" items="${result}">
+	    	<div class="row">
+	    		<div class="col-xs-2"></div>
+	        	<div class="col-xs-8">
+	        		<hr><br>
+			        <%-- Date --%>
+			        <p>${notification.notificationDate}</p>
+			        <%-- Content --%>
+			        ${notification.notificationContent}
+				</div>
+				<div class="col-xs-2"></div>
 			</div>
-			<div class="col-xs-2"></div>
-		</div>
+		</c:forEach>
 	</div>
+	<br>
 
 	<script src="js/topPage.js"></script>
 </body>

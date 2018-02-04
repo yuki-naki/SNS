@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import bean.User;
 import dao.AbstractDaoFactory;
+import dao.OracleConnectionManager;
 import dao.UserDao;
 
 public class LoginCheckFilter implements Filter {
@@ -32,6 +33,8 @@ public class LoginCheckFilter implements Filter {
 			AbstractDaoFactory factory = AbstractDaoFactory.getFactory();
 			UserDao userDao = factory.getUserDao();
 			User user = userDao.getUser(paramId, paramPass);
+
+			OracleConnectionManager.getInstance().closeConnection();
 
 			if(user != null){
 

@@ -20,17 +20,18 @@ public class OracleConnectionManager{
 
 	public Connection getConnection()
 	{
-		if(cn == null){
-			try{
+
+		try{
+			if(cn == null || cn.isClosed()){
 				Class.forName("oracle.jdbc.driver.OracleDriver");
 				cn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl", "info", "pro");
 			}
-			catch(ClassNotFoundException e){
-				e.printStackTrace();
-			}
-			catch(SQLException e){
-				e.printStackTrace();
-			}
+		}
+		catch(ClassNotFoundException e){
+			e.printStackTrace();
+		}
+		catch(SQLException e){
+			e.printStackTrace();
 		}
 		return cn;
 	}
@@ -47,10 +48,11 @@ public class OracleConnectionManager{
 	}
 
 	public void beginTransaction(){
-		if(cn == null){
-			getConnection();
-		}
+
 		try{
+			if(cn == null || cn.isClosed()){
+				getConnection();
+			}
 			cn.setAutoCommit(false);
 		}
 		catch(SQLException e){

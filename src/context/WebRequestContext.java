@@ -27,4 +27,8 @@ public class WebRequestContext implements RequestContext {
 	public String[] getParameter(String key){
 		return (String[]) parameters.get(key);
 	}
+
+	public String getTextarea(){
+		return (String) request.getAttribute("textarea");
+	}
 }

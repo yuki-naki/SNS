@@ -77,6 +77,11 @@ CREATE TABLE chat_t(
 );
 
 INSERT INTO user_t (user_id, login_id, password, is_admin, username) VALUES (user_seq.nextVal, 'Alex', 'Alex', 1, 'AL ABAYAJI ALEXANDRE');
+INSERT INTO user_t (user_id, login_id, password, is_admin, username) VALUES (user_seq.nextVal, 'Idei', 'Idei', 1, '出井郁実');
+INSERT INTO user_t (user_id, login_id, password, is_admin, username) VALUES (user_seq.nextVal, 'Nagase', 'Nagase', 1, '長瀬史也');
 INSERT INTO user_t (user_id, login_id, password, is_admin, username) VALUES (user_seq.nextVal, 'Nakai', 'Nakai', 0, '中井祐喜');
+INSERT INTO user_t (user_id, login_id, password, is_admin, username) VALUES (user_seq.nextVal, 'Waka', 'Waka', 1, '若色巧');
+INSERT INTO user_t (user_id, login_id, password, is_admin, username) VALUES (user_seq.nextVal, 'Yokota', 'Yokota', 1, '横田涼馬');
+
 
 commit;

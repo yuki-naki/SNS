@@ -17,4 +17,8 @@ public class OraDaoFactory extends AbstractDaoFactory {
 	public FollowsListDao getFollowsListDao() {
 		return null;
 	}
+
+	public NotificationDao getNotificationDao() {
+		return new OraNotificationDao();
+	}
 }

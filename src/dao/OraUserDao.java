@@ -56,11 +56,9 @@ public class OraUserDao implements UserDao {
 				user.setAdmissionYear(admissionYear);
 				user.setGrouping(grouping);
 			}
-
-			//cn.commit();
 		}
 		catch(SQLException e){
-			//OracleConnectionManager.getInstance().rollback();
+			e.printStackTrace();
 		}
 		finally{
 			try{
