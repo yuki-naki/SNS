@@ -13,9 +13,6 @@
 <link rel="stylesheet" href="css/topPage.css">
 <script src="js/jquery.min.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
-<script src="tinymce/tinymce.min.js"></script>
-<script src="flat-ui/js/flat-ui.min.js"></script>
-<script src="flat-ui/js/application.js"></script>
 
 <title>Chat</title>
 </head>

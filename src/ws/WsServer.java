@@ -19,11 +19,14 @@ public class WsServer {
     private static final AtomicInteger connectionIds = new AtomicInteger(0);
     private static final Set<WsServer> connections = new CopyOnWriteArraySet<>();
 
+
+    private int id;
     private final String nickname;
     private Session session;
 
     public WsServer() {
-        nickname = GUEST_PREFIX + connectionIds.getAndIncrement();
+    	id = connectionIds.getAndIncrement();
+        nickname = GUEST_PREFIX + id;
     }
 
     @OnOpen
@@ -32,6 +35,11 @@ public class WsServer {
         connections.add(this);
         String message = String.format("* %s %s", nickname, "has joined.");
         System.out.println(message);
+        try {
+			session.getBasicRemote().sendText(String.valueOf(id));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
         //broadcast(message);
     }
 

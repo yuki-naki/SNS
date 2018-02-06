@@ -1,4 +1,5 @@
 var id;
+var first_message = true;
 
 $(function(){
     $(".heading-compose").click(function() {
@@ -37,9 +38,9 @@ Chat.connect = (function(host) {
                 Chat.sendMessage();
             }
         };
-        document.getElementById('reply_btn').click = function(event) {
+        $("#reply_btn").on("click",function(event) {
                 Chat.sendMessage();
-        };
+        });
     };
 
     Chat.socket.onclose = function () {
@@ -48,7 +49,12 @@ Chat.connect = (function(host) {
     };
 
     Chat.socket.onmessage = function(message) {
-        Console.log(message.data);
+    	if(first_message){
+    		id = message.data;
+    	}
+    	else {
+    		Console.log(message.data);
+    	}
     };
 });
 
