@@ -20,20 +20,30 @@
 <title>Chat</title>
 </head>
 <body>
-	<nav class="container-fluid">
-		<nav id="header" class="row">
-			<nav class="col-lg-4"></nav>
-			<nav id="headerContent" class="col-lg-4">専門学校東京テクニカルカレッジ</nav>
-			<nav class="col-lg-4"></nav>
-		</nav>
-	</nav>
+	<div class="container-fluid">
+		<div id="header" class="row">
+			<div class="col-xs-1">
+				<form id="logout" method="post" action="login">
+					<input type="hidden" name="logout" value="logout" />
+					<button type="submit" id="logoutBtn">Logout</button>
+				</form>
+			</div>
+			<div id="headerContent" class="col-xs-10">専門学校東京テクニカルカレッジ</div>
+			<div class="col-xs-1"></div>
+		</div>
+	</div>
+
 	<nav class="navbar navbar-default">
-		    <ul class="nav navbar-nav">
-		      <li id="top-li"><a href="#">Top</a></li>
-		      <li class="active"><a href="#">MyPage</a></li>
-		      <li><a href="#">Chat</a></li>
-		      <li><a href="#">Follow</a></li>
-		    </ul>
+		<div class="container-fluid">
+	 		<div class="row">
+			    <ul class="nav navbar-nav">
+			      <li id="top-left-li" class="col-xs-3 column"><a href="login">Top</a></li>
+			      <li class="col-xs-3 column"><a href="#">MyPage</a></li>
+			      <li class="active col-xs-3 column"><a href="chatRoom">Chat</a></li>
+			      <li id="top-right-li" class="col-xs-3 column"><a href="#">Follow</a></li>
+			    </ul>
+			 </div>
+		 </div>
 	</nav>
 
 
@@ -94,32 +104,6 @@
           <div class="col-sm-12 message-main-sender">
             <div class="sender">
               <div class="message-text">
-                I am doing nothing man!
-              </div>
-              <span class="message-time pull-right">
-                Sun
-              </span>
-            </div>
-          </div>
-        </div>
-
-        <div class="row message-body" id="div2">
-          <div class="col-sm-12 message-main-sender" id="div2">
-            <div class="sender" id="div2">
-              <div class="message-text" id="div2">
-                I am doing nothing man!
-              </div>
-              <span class="message-time pull-right">
-                Sun
-              </span>
-            </div>
-          </div>
-        </div>
-
-        <div class="row message-body" id="div2">
-          <div class="col-sm-12 message-main-sender" id="div2">
-            <div class="sender" id="div2">
-              <div class="message-text" id="div2">
                 I am doing nothing man!
               </div>
               <span class="message-time pull-right">
@@ -222,14 +206,14 @@
 
 
       <div class="row reply" id="div2">
-        <div class="col-sm-1 col-xs-1 reply-uploading" id="div2">
+        <div class="col-sm-1 col-xs-1 reply-uploading">
           <i class="glyphicon glyphicon-picture" aria-hidden="true"></i>
         </div>
-        <div class="col-sm-9 col-xs-9 reply-main" id="div2">
+        <div class="col-sm-9 col-xs-9 reply-main">
           <textarea class="form-control" rows="1" id="comment"></textarea>
         </div>
-        <div class="col-sm-1 col-xs-1 reply-send" id="div2">
-          <i class="fa fa-send fa-2x" aria-hidden="true"></i>
+        <div class="col-sm-1 col-xs-1 reply-send">
+          <i id="reply_btn" class="fa fa-send fa-2x" aria-hidden="true"></i>
         </div>
       </div>
     </div>

@@ -37,6 +37,9 @@ Chat.connect = (function(host) {
                 Chat.sendMessage();
             }
         };
+        document.getElementById('reply_btn').click = function(event) {
+                Chat.sendMessage();
+        };
     };
 
     Chat.socket.onclose = function () {
