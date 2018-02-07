@@ -25,6 +25,7 @@ public class MyPageSetupCommand extends AbstractCommand{
 
 		System.out.println(user.getUsername());
 
+
 		resc.setTarget("myPage");
 		return resc;
 	}
