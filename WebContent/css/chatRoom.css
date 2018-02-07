@@ -603,6 +603,7 @@ html, body {
 .reply-uploading{
 	padding: 12px 0px 0px 12px !important;
 
+<<<<<<< HEAD
 }
 
 /*追記*/
@@ -621,4 +622,6 @@ html, body {
     left: -440px;
     z-index: 5 ;
 
+=======
+>>>>>>> branch 'master' of https://github.com/yuki-naki/SNS.git
 }

@@ -47,7 +47,6 @@
     <div class="row app-one" id="div2">
 
 
-
     <div class="col-sm-8 conversation" id="div2">
       <div class="row heading" id="div2">
         <!-- <div class="col-sm-2 col-md-1 col-xs-3 heading-avatar">
@@ -55,17 +54,24 @@
             <img src="https://bootdey.com/img/Content/avatar/avatar6.png">
           </div>
         </div> -->
+<<<<<<< HEAD
         <a class="col-sm-2 col-xs-2 heading-compose  pull-right" >
             <i class="fa fa-comments fa-2x  pull-right" aria-hidden="true"></i>
         </a>
         <div class="col-sm-7 col-xs-6 heading-name" id="div2">
+=======
+        <div class="col-sm-8 col-xs-7 heading-name" id="div2">
+>>>>>>> branch 'master' of https://github.com/yuki-naki/SNS.git
           <a class="heading-name-meta">groupname
           </a>
           <span class="heading-online">Online</span>
         </div>
+        <div class="col-sm-1 col-xs-1  heading-dot pull-right" id="div2">
+          <i class="fa fa-ellipsis-v fa-2x  pull-right" aria-hidden="true"></i>
+        </div>
       </div>
 
-      <div class="row message" id="conversation">
+      <div class="row message" id="conversation" id="div2">
 
 
         <!-- <div class="row message-previous">
@@ -221,13 +227,12 @@
               <img src="https://bootdey.com/img/Content/avatar/avatar1.png">
             </div>
           </div>
-			<div class="col-sm-5 col-xs-5 grouplist_header">
-				GroupList
-			</div>
           <div class="col-sm-1 col-xs-1  heading-dot  pull-right" id="div2">
             <i class="fa fa-ellipsis-v fa-2x  pull-right" aria-hidden="true"></i>
           </div>
-
+          <div class="col-sm-2 col-xs-2 heading-compose  pull-right" id="div2">
+            <i class="fa fa-comments fa-2x  pull-right" aria-hidden="true"></i>
+          </div>
         </div>
 
         <div class="row searchBox" id="div2">
@@ -242,18 +247,18 @@
 
 
           <div class="row sideBar-body" id="div2">
-            <div class="col-xs-3 sideBar-avatar" id="div2">
+            <div class="col-sm-3 col-xs-3 sideBar-avatar" id="div2">
               <div class="avatar-icon" id="div2">
                 <img src="https://bootdey.com/img/Content/avatar/avatar2.png">
               </div>
             </div>
-            <div class="col-xs-9 sideBar-main" id="div2">
+            <div class="col-sm-9 col-xs-9 sideBar-main" id="div2">
               <div class="row" id="div2">
-                <div class="col-xs-8 sideBar-name" id="div2">
+                <div class="col-sm-8 col-xs-8 sideBar-name" id="div2">
                   <span class="name-meta">はまで太郎
                 </span>
                 </div>
-                <div class="col-xs-4 pull-right sideBar-time" id="div2">
+                <div class="col-sm-4 col-xs-4 pull-right sideBar-time" id="div2">
                   <span class="time-meta pull-right">18:18
                 </span>
                 </div>
@@ -262,18 +267,18 @@
           </div>
 
           <div class="row sideBar-body" id="div2">
-            <div class="col-xs-3 sideBar-avatar" id="div2">
+            <div class="col-sm-3 col-xs-3 sideBar-avatar" id="div2">
               <div class="avatar-icon" id="div2">
                 <img src="https://bootdey.com/img/Content/avatar/avatar4.png">
               </div>
             </div>
-            <div class="col-xs-9 sideBar-main" id="div2">
+            <div class="col-sm-9 col-xs-9 sideBar-main" id="div2">
               <div class="row" id="div2">
-                <div class="col-xs-8 sideBar-name" id="div2">
+                <div class="col-sm-8 col-xs-8 sideBar-name" id="div2">
                   <span class="name-meta">John Doe
                 </span>
                 </div>
-                <div class="col-xs-4 pull-right sideBar-time" id="div2">
+                <div class="col-sm-4 col-xs-4 pull-right sideBar-time" id="div2">
                   <span class="time-meta pull-right">18:18
                 </span>
                 </div>
