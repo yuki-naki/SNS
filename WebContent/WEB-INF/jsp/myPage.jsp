@@ -58,7 +58,7 @@
 						</div>
 						<div class="col-sm-12 text-right">
 							<button type="button" class="btn btn-success btn-md" id="config">編集</button>
-							<input type="submit" class="btn btn-success btn-md" value="保存">
+							<a href="myPageSetup"><button type="button" class="btn btn-success btn-md" >保存</button></a>
 						</div>
 						<input type="file" id="upload">
 				</form>
