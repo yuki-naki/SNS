@@ -31,10 +31,10 @@
 	</div>
 	<nav class="navbar navbar-default">
 		    <ul class="nav navbar-nav">
-		      <li id="top-li"><a href="#">Top</a></li>
-		      <li class="active"><a href="#">MyPage</a></li>
-		      <li><a href="#">Chat</a></li>
-		      <li><a href="#">Follow</a></li>
+		      <li id="top-li"><a href="topPage">Top</a></li>
+		      <li class="active"><a href="myPage">MyPage</a></li>
+		      <li><a href="chatRoom">Chat</a></li>
+		      <li><a href="followList">Follow</a></li>
 		    </ul>
 	</nav>
 	<div class="container-fluid text-center">
@@ -58,7 +58,7 @@
 						</div>
 						<div class="col-sm-12 text-right">
 							<button type="button" class="btn btn-success btn-md" id="config">編集</button>
-							<input type="submit" class="btn btn-success btn-md" value="保存">
+							<a href="myPageSetup"><button type="button" class="btn btn-success btn-md" >保存</button></a>
 						</div>
 						<input type="file" id="upload">
 				</form>
