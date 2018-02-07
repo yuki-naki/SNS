@@ -1,6 +1,3 @@
-var id;
-var first_message = true;
-
 $(function(){
     $(".heading-compose").click(function() {
       $(".side-two").css({
@@ -27,12 +24,12 @@ Chat.connect = (function(host) {
     } else if ('MozWebSocket' in window) {
         Chat.socket = new MozWebSocket(host);
     } else {
-        Console.log('Error: WebSocket is not supported by this browser.');
+        Console.createMessage('Error: WebSocket is not supported by this browser.');
         return;
     }
 
     Chat.socket.onopen = function () {
-       // Console.log('Info: WebSocket connection opened.');
+       // Console.createMessage('Info: WebSocket connection opened.');
         document.getElementById('comment').onkeydown = function(event) {
             if (event.keyCode == 13) {
                 Chat.sendMessage();
@@ -45,16 +42,11 @@ Chat.connect = (function(host) {
 
     Chat.socket.onclose = function () {
         document.getElementById('comment').onkeydown = null;
-        //Console.log('Info: WebSocket closed.');
+        //Console.createMessage('Info: WebSocket closed.');
     };
 
     Chat.socket.onmessage = function(message) {
-    	if(first_message){
-    		id = message.data;
-    	}
-    	else {
-    		Console.log(message.data);
-    	}
+    	Console.receiveMessage(message.data);
     };
 });
 
@@ -69,6 +61,7 @@ Chat.initialize = function() {
 Chat.sendMessage = (function() {
     var message = document.getElementById('comment').value;
     if (message.trim() != "" && message != null) {
+    	Console.createMessage(message);
         Chat.socket.send(message);
         document.getElementById('comment').value = '';
     }
@@ -76,7 +69,35 @@ Chat.sendMessage = (function() {
 
 var Console = {};
 
-Console.log = (function(message) {
+Console.createMessage = (function(message) {
+    var console = document.getElementById('conversation');
+    var p = document.createElement('p');
+    p.className  = 'message-text';
+    p.innerHTML = message;
+    var span = document.createElement('span');
+    span.className  = 'message-time pull-right';
+    var date = new Date(Date.now());
+    var now = date.getHours() + ":" + date.getMinutes();
+    span.innerHTML = now;
+    var div_sender = document.createElement('div');
+    div_sender.className  = 'sender';
+    div_sender.appendChild(p);
+    div_sender.appendChild(span);
+    var div_main_sender = document.createElement('div');
+    div_main_sender.className  = 'col-sm-12 message-main-sender';
+    div_main_sender.appendChild(div_sender);
+    var div_main_message = document.createElement('div');
+    div_main_message.className  = 'row message-body';
+    div_main_message.appendChild(div_main_sender);
+    console.appendChild(div_main_message);
+    /*
+    while (console.childNodes.length > 25) {
+        console.removeChild(console.firstChild);
+    }*/
+    console.scrollTop = console.scrollHeight;
+});
+
+Console.receiveMessage = (function(message) {
     var console = document.getElementById('conversation');
     var p = document.createElement('p');
     p.className  = 'message-text';
