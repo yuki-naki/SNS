@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 import bean.User;
 import context.RequestContext;
 import context.ResponseContext;
+import dao.MyPageDao;
 
 public class MyPageSetupCommand extends AbstractCommand{
 
@@ -18,6 +19,9 @@ public class MyPageSetupCommand extends AbstractCommand{
 		User user = (User)session.getAttribute("user");
 
 
+		MyPageDao dao = new MyPageDao();
+
+		user = dao.getMyProfile(user);
 
 		System.out.println(user.getUsername());
 

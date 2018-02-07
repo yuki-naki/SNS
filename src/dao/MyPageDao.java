@@ -4,9 +4,9 @@ import bean.User;
 
 public class MyPageDao{
 
-	public User getMyPage(User u){
+	public User getMyProfile(User u){
 		User user = u;
-		
+
 		
 
 		return user;
