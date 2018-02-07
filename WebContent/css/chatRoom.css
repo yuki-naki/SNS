@@ -603,3 +603,20 @@ html, body {
 	padding: 12px 0px 0px 12px !important;
 
 }
+
+/*追記*/
+
+.grouplist_header{
+	padding: 8px 0px 0px 12px !important;
+	font-size: 120%;
+}
+/*.heading-compose{
+	    padding: 0px 30px !important;
+}*/
+
+.heading-compose{
+	    position: relative;
+    top: 5px;
+    left: -440px;
+
+}
