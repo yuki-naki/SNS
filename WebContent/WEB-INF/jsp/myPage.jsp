@@ -31,10 +31,10 @@
 	</div>
 	<nav class="navbar navbar-default">
 		    <ul class="nav navbar-nav">
-		      <li id="top-li"><a href="#">Top</a></li>
-		      <li class="active"><a href="#">MyPage</a></li>
-		      <li><a href="#">Chat</a></li>
-		      <li><a href="#">Follow</a></li>
+		      <li id="top-li"><a href="topPage">Top</a></li>
+		      <li class="active"><a href="myPage">MyPage</a></li>
+		      <li><a href="chatRoom">Chat</a></li>
+		      <li><a href="followList">Follow</a></li>
 		    </ul>
 	</nav>
 	<div class="container-fluid text-center">
