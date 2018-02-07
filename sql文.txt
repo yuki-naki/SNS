@@ -1,13 +1,14 @@
+DROP TABLE contribution_t;
 DROP TABLE chat_t;
 DROP TABLE follow_t;
 DROP TABLE belong_department_t;
 DROP TABLE groupmember_t;
-DROP TABLE user_t;
 DROP SEQUENCE user_seq;
 DROP TABLE group_t;
 DROP TABLE department_t;
 DROP TABLE notification_t;
 DROP SEQUENCE notification_seq;
+DROP TABLE user_t;
 
 CREATE TABLE user_t (
 	user_id NUMBER(5),

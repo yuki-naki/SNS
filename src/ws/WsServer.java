@@ -12,13 +12,15 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 @ServerEndpoint(value = "/ws")
 public class WsServer {
 
 	private static final String GUEST_PREFIX = "Guest";
     private static final AtomicInteger connectionIds = new AtomicInteger(0);
     private static final Set<WsServer> connections = new CopyOnWriteArraySet<>();
-
 
     private int id;
     private final String nickname;
@@ -35,9 +37,18 @@ public class WsServer {
         connections.add(this);
         String message = String.format("* %s %s", nickname, "has joined.");
         System.out.println(message);
-        try {
-			session.getBasicRemote().sendText(String.valueOf(id));
+        ObjectMapper objectMapper = new ObjectMapper();
+
+    	Message messageObj = new Message();
+    	messageObj.setId(String.valueOf(id));
+    	try {
+			String json = objectMapper.writeValueAsString(messageObj);
+			session.getBasicRemote().sendText(json);
+		} catch (JsonProcessingException e1) {
+			// TODO 自動生成された catch ブロック
+			e1.printStackTrace();
 		} catch (IOException e) {
+			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
 		}
         //broadcast(message);
@@ -47,7 +58,7 @@ public class WsServer {
     public void end() {
         connections.remove(this);
         String message = String.format("* %s %s", nickname, "has disconnected.");
-        broadcast(message);
+        broadcast(message, id);
     }
 
     @OnMessage
@@ -55,19 +66,27 @@ public class WsServer {
         // Never trust the client
         String filteredMessage = String.format("%s: %s", nickname, message.toString());
         System.out.println(filteredMessage);
-        broadcast(filteredMessage);
+        broadcast(message,id);
     }
 
     @OnError
     public void onError(Throwable t) throws Throwable {
-    	broadcast(t.getMessage());
+    	broadcast(t.getMessage(), id);
     }
 
-    private static void broadcast(String msg) {
+    private static void broadcast(String msg, int id) {
         for(WsServer client : connections){
             try {
                 synchronized(client) {
-                    client.session.getBasicRemote().sendText(msg);
+                	ObjectMapper objectMapper = new ObjectMapper();
+
+                	Message message = new Message();
+                	message.setId(String.valueOf(id));
+                	message.setMessage(msg);
+
+                	String json = objectMapper.writeValueAsString(message);
+                	System.out.println(json);
+                    client.session.getBasicRemote().sendText(json);
                 }
             } catch(IOException e) {
                 connections.remove(client);
@@ -77,7 +96,7 @@ public class WsServer {
                     // Ignore
                 }
                 String message = String.format("* %s %s",client.nickname, "has been disconnected.");
-                broadcast(message);
+                broadcast(message,id);
             }
         }
     }
