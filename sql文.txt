@@ -28,7 +28,8 @@ CREATE SEQUENCE user_seq;
 
 CREATE TABLE group_t(
 	group_id NUMBER(5),
-	group_name VARCHAR2(30),
+	group_name VARCHAR2(30) NOT NULL,
+	group_icon BLOB,
 	CONSTRAINT group_id_pk PRIMARY KEY(group_id)
 );
 
@@ -84,5 +85,15 @@ INSERT INTO user_t (user_id, login_id, password, is_admin, username) VALUES (use
 INSERT INTO user_t (user_id, login_id, password, is_admin, username) VALUES (user_seq.nextVal, 'Waka', 'Waka', 1, '若色巧');
 INSERT INTO user_t (user_id, login_id, password, is_admin, username) VALUES (user_seq.nextVal, 'Yokota', 'Yokota', 1, '横田涼馬');
 
+/*
+INSERT INTO group_t (group_id, group_name) VALUES (1, 'group1');
+INSERT INTO group_t (group_id, group_name) VALUES (2, 'group2');
+
+INSERT INTO groupmember_t VALUES (1, 1);
+INSERT INTO groupmember_t VALUES (1, 4);
+INSERT INTO groupmember_t VALUES (2, 1);
+INSERT INTO groupmember_t VALUES (2, 2);
+INSERT INTO groupmember_t VALUES (2, 3);
+*/
 
 commit;
