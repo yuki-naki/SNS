@@ -8,11 +8,11 @@ import context.RequestContext;
 import context.ResponseContext;
 import dao.MyProfileDao;
 
-public class MyPageSetupCommand extends AbstractCommand{
+public class MyPage extends AbstractCommand{
 
 	public ResponseContext execute(ResponseContext resc) {
 
-		System.out.println("mypagesetupo開始");
+		//System.out.println("mypage開k始");
 
 		RequestContext rc = getRequestContext();
 		HttpServletRequest hreq = (HttpServletRequest)rc.getRequest();
