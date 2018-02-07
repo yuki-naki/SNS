@@ -3,6 +3,7 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import bean.User;
 
@@ -15,18 +16,34 @@ public class MyProfileDao{
 		Connection cn = null;
 		User user = u;
 
-//		try{
-//			cn = OracleConnectionManager.getInstance().getConnection();
-//
-//
-//		}catch(SQLException e){
-//
-//		}catch(IOException e){
-//
-//		}
+		try{
+			cn = OracleConnectionManager.getInstance().getConnection();
+
+			String sql = "Select ";
+			st = cn.prepareStatement(sql);
 
 
-		return user;
-	}
+			rs = st.executeQuery();
+
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		finally{
+			try{
+				if(rs != null){
+					rs.close();
+				}
+				if(st != null){
+					st.close();
+				}
+			}
+			catch(SQLException e){
+				e.printStackTrace();
+			}
+		}
+
+			return user;
+		}
 
 }
