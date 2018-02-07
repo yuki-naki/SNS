@@ -89,8 +89,9 @@ html, body {
 }
 
 .heading-name {
-  padding: 0px 30px !important;
+  padding: 0px 0px 0px 140px !important;
   cursor: pointer;
+  z-index:	1 ;
 }
 
 .heading-name-meta {
@@ -615,8 +616,9 @@ html, body {
 }*/
 
 .heading-compose{
-	    position: relative;
+	position: relative;
     top: 5px;
     left: -440px;
+    z-index: 5 ;
 
 }

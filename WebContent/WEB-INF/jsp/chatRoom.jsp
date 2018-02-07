@@ -58,7 +58,7 @@
         <a class="col-sm-2 col-xs-2 heading-compose  pull-right" >
             <i class="fa fa-comments fa-2x  pull-right" aria-hidden="true"></i>
         </a>
-        <div class="col-sm-8 col-xs-7 heading-name" id="div2">
+        <div class="col-sm-7 col-xs-6 heading-name" id="div2">
           <a class="heading-name-meta">groupname
           </a>
           <span class="heading-online">Online</span>
@@ -285,7 +285,7 @@
 
 
 
-
+	<!-- こっからびよーんだよ -->
       <div class="side-two" id="div2">
         <div class="row newMessage-heading" id="div2">
           <div class="row newMessage-main" id="div2">
