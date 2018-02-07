@@ -33,7 +33,7 @@
 	 		<div class="row">
 			    <ul class="nav navbar-nav">
 			      <li id="top-left-li" class="active col-xs-3 column"><a href="#">Top</a></li>
-			      <li class="col-xs-3 column"><a href="#">MyPage</a></li>
+			      <li class="col-xs-3 column"><a href="myPage">MyPage</a></li>
 			      <li class="col-xs-3 column"><a href="chatRoom">Chat</a></li>
 			      <li id="top-right-li" class="col-xs-3 column"><a href="#">Follow</a></li>
 			    </ul>
