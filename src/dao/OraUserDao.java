@@ -54,7 +54,6 @@ public class OraUserDao implements UserDao {
 				user.setUserIntroduction(userIntroduction);
 				user.setStudentId(studentId);
 				user.setAdmissionYear(admissionYear);
-				user.setGrouping(grouping);
 			}
 		}
 		catch(SQLException e){
