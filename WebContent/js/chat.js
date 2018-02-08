@@ -173,7 +173,6 @@ Console.receiveMessage = (function(message) {
 
 Chat.initialize();
 
-
 document.addEventListener("DOMContentLoaded", function() {
     // Remove elements with "noscript" class - <noscript> is not allowed in XHTML
     var noscripts = document.getElementsByClassName("noscript");

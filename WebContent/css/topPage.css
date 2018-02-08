@@ -51,6 +51,38 @@ li {
 	border-right:none;
 }
 
+.navbar-default .navbar-nav > li > a {
+	color:#337ab7;
+}
+.navbar-default .navbar-nav > li > a:hover {
+	color:black;
+}
+
+#chatLink {
+	color:#337ab7;
+	background: none;
+	border: none;
+	width:100%;
+	height:100%;
+}
+
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:focus, .navbar-default .navbar-nav > .active > a:hover {
+	color:black;
+	background-color:#e0e0e0;
+}
+
+#chatForm {
+	height:50px;
+}
+
+#chatForm:hover {
+	cursor:pointer;
+}
+
+#chatForm:hover #chatLink{
+	color: black;
+}
+
 #text {
 	margin-bottom:5px;
 }

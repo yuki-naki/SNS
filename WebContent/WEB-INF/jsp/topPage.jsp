@@ -34,7 +34,12 @@
 			    <ul class="nav navbar-nav">
 			      <li id="top-left-li" class="active col-xs-3 column"><a href="#">Top</a></li>
 			      <li class="col-xs-3 column"><a href="myPage">MyPage</a></li>
-			      <li class="col-xs-3 column"><a href="chat">Chat</a></li>
+			      <li class="col-xs-3 column">
+			      	<form id="chatForm" method="post" action="chat">
+			      		<input type="hidden" name="sessionUserId" value="${sessionScope.user.userId}" />
+			      		<button id="chatLink" type="submit">Chat</button>
+			      	</form>
+			      </li>
 			      <li id="top-right-li" class="col-xs-3 column"><a href="#">Follow</a></li>
 			    </ul>
 			 </div>
