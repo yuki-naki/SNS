@@ -21,4 +21,8 @@ public class OraDaoFactory extends AbstractDaoFactory {
 	public NotificationDao getNotificationDao() {
 		return new OraNotificationDao();
 	}
+
+	public ChatDao getChatDao() {
+		return new OraChatDao();
+	}
 }

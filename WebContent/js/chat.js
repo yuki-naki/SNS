@@ -1,3 +1,6 @@
+var id;
+var first_message = true;
+
 $(function(){
     $(".heading-compose").click(function() {
       $(".side-two").css({
@@ -24,12 +27,12 @@ Chat.connect = (function(host) {
     } else if ('MozWebSocket' in window) {
         Chat.socket = new MozWebSocket(host);
     } else {
-        Console.createMessage('Error: WebSocket is not supported by this browser.');
+        Console.selfMessage('Error: WebSocket is not supported by this browser.');
         return;
     }
 
     Chat.socket.onopen = function () {
-       // Console.createMessage('Info: WebSocket connection opened.');
+       // Console.selfMessage('Info: WebSocket connection opened.');
         document.getElementById('comment').onkeydown = function(event) {
             if (event.keyCode == 13) {
                 Chat.sendMessage();
@@ -42,11 +45,25 @@ Chat.connect = (function(host) {
 
     Chat.socket.onclose = function () {
         document.getElementById('comment').onkeydown = null;
-        //Console.createMessage('Info: WebSocket closed.');
+        //Console.selfMessage('Info: WebSocket closed.');
     };
 
     Chat.socket.onmessage = function(message) {
-    	Console.receiveMessage(message.data);
+    	var json = JSON.parse(message.data);
+    	if(first_message){
+    		first_message = false;
+    		id = json.id;
+    	}
+    	else {
+    		if(id === json.id){
+    			Console.selfMessage(json.message);
+    		}
+    		else {
+    			Console.receiveMessage(json.message);
+    		}
+    	}
+    	console.log(json);
+    	console.log("jsonid:"+json.id+" id:"+id);
     };
 });
 
@@ -61,7 +78,7 @@ Chat.initialize = function() {
 Chat.sendMessage = (function() {
     var message = document.getElementById('comment').value;
     if (message.trim() != "" && message != null) {
-    	Console.createMessage(message);
+    	//Console.selfMessage(message);
         Chat.socket.send(message);
         document.getElementById('comment').value = '';
     }
@@ -69,7 +86,7 @@ Chat.sendMessage = (function() {
 
 var Console = {};
 
-Console.createMessage = (function(message) {
+Console.selfMessage = (function(message) {
     var console = document.getElementById('conversation');
     var p = document.createElement('p');
     p.className  = 'message-text';
@@ -77,7 +94,15 @@ Console.createMessage = (function(message) {
     var span = document.createElement('span');
     span.className  = 'message-time pull-right';
     var date = new Date(Date.now());
-    var now = date.getHours() + ":" + date.getMinutes();
+    var hour = date.getHours();
+    if(hour < 10){
+    	hour = "0"+hour;
+    }
+    var min = date.getMinutes();
+    if(min < 10){
+    	min = "0"+min;
+    }
+    var now = hour + ":" + min;
     span.innerHTML = now;
     var div_sender = document.createElement('div');
     div_sender.className  = 'sender';
@@ -105,18 +130,39 @@ Console.receiveMessage = (function(message) {
     var span = document.createElement('span');
     span.className  = 'message-time pull-right';
     var date = new Date(Date.now());
-    var now = date.getHours() + ":" + date.getMinutes();
+    var hour = date.getHours();
+    if(hour < 10){
+    	hour = "0"+hour;
+    }
+    var min = date.getMinutes();
+    if(min < 10){
+    	min = "0"+min;
+    }
+    var now = hour + ":" + min;
     span.innerHTML = now;
     var div_sender = document.createElement('div');
-    div_sender.className  = 'sender';
+    div_sender.className  = 'receiver';
     div_sender.appendChild(p);
     div_sender.appendChild(span);
-    var div_main_sender = document.createElement('div');
-    div_main_sender.className  = 'col-sm-12 message-main-sender';
-    div_main_sender.appendChild(div_sender);
+    var div_sender_name = document.createElement('div');
+    div_sender_name.className = 'row receiver-name';
+    div_sender_name.innerHTML = "username";
+    var div_main_receiver = document.createElement('div');
+    div_main_receiver.className  = 'col-sm-12 message-main-receiver';
+    div_main_receiver.appendChild(div_sender_name);
+    div_main_receiver.appendChild(div_sender);
+    var div_avatar = document.createElement('div');
+    div_avatar.className  = 'avatar-icon';
+    var img = document.createElement('img');
+    img.setAttribute("src","https://bootdey.com/img/Content/avatar/avatar2.png");
+    div_avatar.appendChild(img);
+    var div_body_avatar = document.createElement('div');
+    div_body_avatar.className = "col-sm-2 col-xs-2 messageBody-avatar";
+    div_body_avatar.appendChild(div_avatar);
     var div_main_message = document.createElement('div');
     div_main_message.className  = 'row message-body';
-    div_main_message.appendChild(div_main_sender);
+    div_main_message.appendChild(div_body_avatar);
+    div_main_message.appendChild(div_main_receiver);
     console.appendChild(div_main_message);
     /*
     while (console.childNodes.length > 25) {

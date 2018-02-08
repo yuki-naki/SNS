@@ -30,4 +30,5 @@ public abstract class AbstractDaoFactory
 	public abstract NotificationDao getNotificationDao();
 	public abstract FollowDao getFollowDao();
 	public abstract FollowsListDao getFollowsListDao();
+	public abstract ChatDao getChatDao();
 }
