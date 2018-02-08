@@ -20,7 +20,6 @@ CREATE TABLE user_t (
 	user_introduction VARCHAR2(500),
 	student_id VARCHAR2(20),
 	admission_year VARCHAR2(4),
-	grouping VARCHAR2(1),
 	CONSTRAINT user_id_pk PRIMARY KEY(user_id)
 );
 
@@ -101,6 +100,28 @@ INSERT INTO chat_t VALUES (4, 1, 'Yo2', SYSDATE);
 INSERT INTO chat_t VALUES (1, 2, 'Yo', SYSDATE);
 INSERT INTO chat_t VALUES (2, 2, 'Yo2', SYSDATE);
 INSERT INTO chat_t VALUES (3, 2, 'Yo3', SYSDATE);
+
+
+
+//ユーザー
+INSERT INTO user_t (user_id, login_id, password, is_admin, username) VALUES (user_seq.nextVal, ' ', ' ', 0, ' ');
+
+//学科
+
+//学科とユーザーの結び
+
+
+
 */
+
+
+
+
+
+
+
+
+
+
 
 commit;

@@ -14,7 +14,6 @@ public class User implements Serializable {
 	private String userIntroduction;
 	private String studentId;
 	private String admissionYear;
-	private String grouping;
 
 	public String getUserId() {
 		return userId;
@@ -67,13 +66,7 @@ public class User implements Serializable {
 	public String getAdmissionYear() {
 		return admissionYear;
 	}
-	public void setAdmissionYear(String admissionYear) {
+	public void setAdmissionYear(String admissionYear){
 		this.admissionYear = admissionYear;
-	}
-	public String getGrouping() {
-		return grouping;
-	}
-	public void setGrouping(String grouping) {
-		this.grouping = grouping;
 	}
 }

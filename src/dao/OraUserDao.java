@@ -36,7 +36,6 @@ public class OraUserDao implements UserDao {
 				String userIntroduction = rs.getString(7);
 				String studentId = rs.getString(8);
 				String admissionYear = rs.getString(9);
-				String grouping = rs.getString(10);
 
 				user.setUserId(userId);
 				user.setLoginId(loginId);
@@ -54,7 +53,6 @@ public class OraUserDao implements UserDao {
 				user.setUserIntroduction(userIntroduction);
 				user.setStudentId(studentId);
 				user.setAdmissionYear(admissionYear);
-				user.setGrouping(grouping);
 			}
 		}
 		catch(SQLException e){
