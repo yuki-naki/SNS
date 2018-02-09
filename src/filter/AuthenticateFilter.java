@@ -20,8 +20,9 @@ public class AuthenticateFilter implements Filter {
 
 		HttpSession session = ((HttpServletRequest) req).getSession();
 		User user = (User) session.getAttribute("user");
+		Boolean notChecked = (Boolean) req.getAttribute("notChecked");
 
-		if(user == null){
+		if(user == null || (notChecked != null && notChecked)){
 			RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/index.jsp");
 			dispatcher.forward(req, resp);
 		}
