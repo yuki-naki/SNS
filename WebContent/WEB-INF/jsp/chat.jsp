@@ -50,7 +50,9 @@
 
     <div class="col-sm-8 conversation" >
       <div class="row heading" >
-
+		<div class="col-sm-2 col-xs-2 heading-compose  pull-right">
+		   <i class="fa fa-comments fa-2x  pull-right" aria-hidden="true"></i>
+         </div>
         <div class="col-xs-8 heading-name" >
           <a id="groupname" class="heading-name-meta">
           	<c:if test="${not empty result[0]}">
@@ -117,12 +119,7 @@
               <img src="https://bootdey.com/img/Content/avatar/avatar1.png">
             </div>
           </div>
-          <div class="col-sm-1 col-xs-1  heading-dot  pull-right" >
-            <i class="fa fa-ellipsis-v fa-2x  pull-right" aria-hidden="true"></i>
-          </div>
-          <div class="col-sm-2 col-xs-2 heading-compose  pull-right" >
-            <i class="fa fa-comments fa-2x  pull-right" aria-hidden="true"></i>
-          </div>
+          <span class="grouplist_header">Group List</span>
         </div>
 
         <div class="row searchBox" >
@@ -175,14 +172,14 @@
           </div>
         </div>
 
-        <div class="row composeBox" >
+        <!--<div class="row composeBox" >
           <div class="col-sm-12 composeBox-inner" >
-            <div class="form-group has-feedback" >
+            <!--<div class="form-group has-feedback" >
               <input id="composeText" type="text" class="form-control" name="searchText" placeholder="Search People">
               <span class="glyphicon glyphicon-search form-control-feedback"></span>
-            </div>
+            </div>-->
           </div>
-        </div>
+        </div>-->
 
         <div class="row compose-sideBar" >
           <div class="row sideBar-body" >
