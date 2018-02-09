@@ -55,8 +55,6 @@ public class WsServer {
     @OnMessage
     public void incoming(String message, Session session) {
         // Never trust the client
-        String filteredMessage = String.format("%s: %s", nickname, message.toString());
-        System.out.println(filteredMessage);
         broadcast(message,id);
     }
 
