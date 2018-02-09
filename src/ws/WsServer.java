@@ -3,7 +3,6 @@ package ws;
 import java.io.IOException;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
-import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.websocket.OnClose;
 import javax.websocket.OnError;
@@ -18,17 +17,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @ServerEndpoint(value = "/ws")
 public class WsServer {
 
-	private static final String GUEST_PREFIX = "Guest";
-    private static final AtomicInteger connectionIds = new AtomicInteger(0);
     private static final Set<WsServer> connections = new CopyOnWriteArraySet<>();
 
-    private int id;
-    private final String nickname;
     private Session session;
 
     public WsServer() {
-    	id = connectionIds.getAndIncrement();
-        nickname = GUEST_PREFIX + id;
     }
 
     @OnOpen
@@ -45,10 +38,8 @@ public class WsServer {
 			String json = objectMapper.writeValueAsString(messageObj);
 			session.getBasicRemote().sendText(json);
 		} catch (JsonProcessingException e1) {
-			// TODO 自動生成された catch ブロック
 			e1.printStackTrace();
 		} catch (IOException e) {
-			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
 		}
         //broadcast(message);
@@ -64,8 +55,6 @@ public class WsServer {
     @OnMessage
     public void incoming(String message, Session session) {
         // Never trust the client
-        String filteredMessage = String.format("%s: %s", nickname, message.toString());
-        System.out.println(filteredMessage);
         broadcast(message,id);
     }
 
@@ -82,7 +71,7 @@ public class WsServer {
 
                 	Message message = new Message();
                 	message.setId(String.valueOf(id));
-                	message.setMessage(msg);
+                	message.setContent(msg);
 
                 	String json = objectMapper.writeValueAsString(message);
                 	System.out.println(json);

@@ -2,19 +2,19 @@ package ws;
 
 public class Message {
 
-	private String id;
-	private String message;
+	private String userId;
+	private String content;
 
-	public String getId() {
-		return id;
+	public String getUserId() {
+		return userId;
 	}
-	public void setId(String id) {
-		this.id = id;
+	public void setUserId(String id) {
+		this.userId = id;
 	}
-	public String getMessage() {
-		return message;
+	public String getContent() {
+		return content;
 	}
-	public void setMessage(String message) {
-		this.message = message;
+	public void setContent(String content) {
+		this.content = content;
 	}
 }

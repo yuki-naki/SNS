@@ -45,7 +45,6 @@ Chat.connect = (function(host) {
 
     Chat.socket.onclose = function () {
         document.getElementById('comment').onkeydown = null;
-        //Console.selfMessage('Info: WebSocket closed.');
     };
 
     Chat.socket.onmessage = function(message) {
@@ -78,7 +77,6 @@ Chat.initialize = function() {
 Chat.sendMessage = (function() {
     var message = document.getElementById('comment').value;
     if (message.trim() != "" && message != null) {
-    	//Console.selfMessage(message);
         Chat.socket.send(message);
         document.getElementById('comment').value = '';
     }
