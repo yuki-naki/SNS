@@ -80,12 +80,12 @@ CREATE TABLE chat_t(
 	CONSTRAINT chat_group_id_fk FOREIGN KEY (chat_group_id) REFERENCES group_t(group_id)
 );
 
-INSERT INTO user_t (user_id, login_id, password, is_admin, username) VALUES (user_seq.nextVal, 'Alex', 'Alex', 1, 'AL ABAYAJI ALEXANDRE');
-INSERT INTO user_t (user_id, login_id, password, is_admin, username) VALUES (user_seq.nextVal, 'Idei', 'Idei', 1, '出井郁実');
-INSERT INTO user_t (user_id, login_id, password, is_admin, username) VALUES (user_seq.nextVal, 'Nagase', 'Nagase', 1, '長瀬史也');
+INSERT INTO user_t (user_id, login_id, password, is_admin, username) VALUES (user_seq.nextVal, 'Alex', 'Alex', 0, 'AL ABAYAJI ALEXANDRE');
+INSERT INTO user_t (user_id, login_id, password, is_admin, username) VALUES (user_seq.nextVal, 'Idei', 'Idei', 0, '出井郁実');
+INSERT INTO user_t (user_id, login_id, password, is_admin, username) VALUES (user_seq.nextVal, 'Nagase', 'Nagase', 0, '長瀬史也');
 INSERT INTO user_t (user_id, login_id, password, is_admin, username) VALUES (user_seq.nextVal, 'Nakai', 'Nakai', 0, '中井祐喜');
-INSERT INTO user_t (user_id, login_id, password, is_admin, username) VALUES (user_seq.nextVal, 'Waka', 'Waka', 1, '若色巧');
-INSERT INTO user_t (user_id, login_id, password, is_admin, username) VALUES (user_seq.nextVal, 'Yokota', 'Yokota', 1, '横田涼馬');
+INSERT INTO user_t (user_id, login_id, password, is_admin, username) VALUES (user_seq.nextVal, 'Waka', 'Waka', 0, '若色巧');
+INSERT INTO user_t (user_id, login_id, password, is_admin, username) VALUES (user_seq.nextVal, 'Yokota', 'Yokota', 0, '横田涼馬');
 
 /*
 INSERT INTO group_t (group_id, group_name) VALUES (1, 'group1');
@@ -155,7 +155,48 @@ INSERT INTO department_t VALUES (department_seq.nextVal,'環境テクノロジ�
 INSERT INTO department_t VALUES (department_seq.nextVal,'建築監督科');
 
 //学科とユーザーの結び
-INSERT INTO belong_department_t VALUES(?,?);
+INSERT INTO belong_department_t VALUES(user_id,department_id);
+
+//情報処理科
+INSERT INTO belong_department_t VALUES(1,1);
+INSERT INTO belong_department_t VALUES(2,1);
+INSERT INTO belong_department_t VALUES(3,1);
+INSERT INTO belong_department_t VALUES(4,1);
+INSERT INTO belong_department_t VALUES(5,1);
+INSERT INTO belong_department_t VALUES(6,1);
+
+//インテリア科
+INSERT INTO belong_department_t VALUES(7,2);
+INSERT INTO belong_department_t VALUES(8,2);
+INSERT INTO belong_department_t VALUES(9,2);
+INSERT INTO belong_department_t VALUES(10,2);
+INSERT INTO belong_department_t VALUES(11,2);
+INSERT INTO belong_department_t VALUES(12,2);
+
+//Web動画クリエーター科
+INSERT INTO belong_department_t VALUES(13,3);
+INSERT INTO belong_department_t VALUES(14,3);
+INSERT INTO belong_department_t VALUES(15,3);
+INSERT INTO belong_department_t VALUES(16,3);
+INSERT INTO belong_department_t VALUES(17,3);
+INSERT INTO belong_department_t VALUES(18,3);
+
+//環境テクノロジー科
+INSERT INTO belong_department_t VALUES(19,4);
+INSERT INTO belong_department_t VALUES(20,4);
+INSERT INTO belong_department_t VALUES(21,4);
+INSERT INTO belong_department_t VALUES(22,4);
+INSERT INTO belong_department_t VALUES(23,4);
+INSERT INTO belong_department_t VALUES(24,4);
+
+//建築監督科
+INSERT INTO belong_department_t VALUES(25,5);
+INSERT INTO belong_department_t VALUES(26,5);
+INSERT INTO belong_department_t VALUES(27,5);
+INSERT INTO belong_department_t VALUES(28,5);
+INSERT INTO belong_department_t VALUES(29,5);
+INSERT INTO belong_department_t VALUES(30,5);
+
 
 //belong_department_tの中身確認用
 select u.user_id, u.username, bd.department_id, d.department_name from belong_department_t bd, user_t u, department_t d WHERE bd.user_id = u.user_id AND bd.department_id =d.department_id ORDER BY department_id;
