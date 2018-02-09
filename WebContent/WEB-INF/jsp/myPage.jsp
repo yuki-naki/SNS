@@ -41,7 +41,7 @@
 	<div class="container-fluid text-center">
 		<div class="row justify-content-center">
 			<div class="col-sm-8 col-sm-offset-2" id="profile">
-				<form method="post" action="IconTestServlet">
+				<form method="post" action="myPageSetup">
 						<div class="col">
 							<h1>MyProfile</h1>
 						</div>
@@ -52,7 +52,7 @@
 						<c:forEach var="result" items="${result}">
 							<h3>名前:${result.userName }</h3>
 							<h3>学年:${result.schoolYear }年</h3>
-							<h3>学科:${result.departmentName }科</h3>
+							<h3>学科:${result.departmentName }</h3>
 						</div>
 						<div class="col-sm-12">
 							<h3>自己紹介文</h3>
@@ -60,7 +60,8 @@
 						</div>
 						<div class="col-sm-12 text-right">
 							<button type="button" class="btn btn-success btn-md" id="config">編集</button>
-							<a href="myPageSetup"><button type="button" class="btn btn-success btn-md" >保存</button></a>
+							<a href="myPageSetup"><button type="submit" class="btn btn-success btn-md" >保存</button></a>
+
 						</div>
 						</c:forEach>
 						<input type="file" id="upload">
