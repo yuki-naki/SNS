@@ -11,6 +11,48 @@ import bean.MyProfile;
 
 public class MyProfileDao{
 
+	public void addMyProfile(String Id,String user_introduction){
+
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		Connection cn = null;
+		ArrayList list = new ArrayList();
+		MyProfile bean = new MyProfile();
+
+		try{
+			cn = OracleConnectionManager.getInstance().getConnection();
+
+			String sql = "Update user_t Set user_introduction = ? where user_id = ?";
+
+			st = cn.prepareStatement(sql);
+
+			st.setString(1, user_introduction);
+			st.setString(2, Id);
+
+			st.executeUpdate();
+
+
+
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		finally{
+			try{
+				if(rs != null){
+					rs.close();
+				}
+				if(st != null){
+					st.close();
+				}
+			}
+			catch(SQLException e){
+				e.printStackTrace();
+			}
+		}
+
+	}
+
 	public List getMyProfile(String userId){
 
 		PreparedStatement st = null;

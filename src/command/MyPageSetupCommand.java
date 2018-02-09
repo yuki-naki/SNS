@@ -26,7 +26,7 @@ public class MyPageSetupCommand extends AbstractCommand{
 		MyProfileDao dao = new MyProfileDao();
 
 
-//		dao.addMyProfile(user.getUserId());
+		dao.addMyProfile(user.getUserId(),user_introduction);
 
 		list = (ArrayList)dao.getMyProfile(user.getUserId());
 
