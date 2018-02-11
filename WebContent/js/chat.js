@@ -1,5 +1,27 @@
+function filterGroup(){
+	$(".group").each(function(){
+		if(! $(this).find("#sideGroupname > span").text().match($("#searchGroupTxtBox").val())){
+			$(this).css("display","none");
+		}
+		else {
+			$(this).css("display","block");
+		}
+	});
+}
+
+function filterMember(){
+	$(".member").each(function(){
+		if(! $(this).find(".sideBar-main .sideBar-name > span").text().match($("#searchMemberTxtBox").val())){
+			$(this).css("display","none");
+		}
+		else {
+			$(this).css("display","block");
+		}
+	});
+}
+
 $(function() {
-	$(".heading-compose").click(function() {
+	$("#membersListBtn").click(function() {
 		$(".side-two").css({
 			"left" : "0"
 		});
@@ -7,11 +29,33 @@ $(function() {
 
 	$(".newMessage-back").click(function() {
 		$(".side-two").css({
-			"left" : "-100%"
+			"left" : "100%"
 		});
 	});
-	var console = document.getElementById('conversation');
-	console.scrollTop = console.scrollHeight;
+
+	$("#searchGroupTxtBox").change(function(){
+		filterGroup();
+	});
+
+	$('#searchGroupTxtBox').bind("enterKey",function(e){
+		filterGroup();
+	});
+
+	$("#searchMemberTxtBox").change(function(){
+		filterMember()
+	});
+
+	$('#searchMemberTxtBox').bind("enterKey",function(e){
+		filterMember();
+	});
+
+	var conversation = document.getElementById('conversation');
+	conversation.scrollTop = conversation.scrollHeight;
+
+	var groupId = $("#headingGroupname").attr("data-groupId");
+	if(typeof groupId != "undefined"){
+		$(".heading-name").css("padding","3px 0px 3px 0");
+	}
 })
 
 "use strict";
