@@ -1,8 +1,11 @@
 package context;
 
+import java.io.IOException;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class WebRequestContext implements RequestContext {
 
@@ -30,5 +33,17 @@ public class WebRequestContext implements RequestContext {
 
 	public String getTextarea(){
 		return (String) request.getAttribute("textarea");
+	}
+
+	public Object getSessionObject(String object){
+		return request.getSession().getAttribute(object);
+	}
+
+	public String convertObjectToString(Object object) {
+		ObjectMapper objectMapper = new ObjectMapper();
+		String string = null;
+		try { string = objectMapper.writeValueAsString(object); }
+		catch (IOException e) { e.printStackTrace(); }
+		return string;
 	}
 }

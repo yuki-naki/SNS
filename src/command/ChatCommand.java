@@ -3,6 +3,7 @@ package command;
 import java.util.Map;
 
 import bean.Chat;
+import bean.User;
 import context.RequestContext;
 import context.ResponseContext;
 import dao.AbstractDaoFactory;
@@ -15,7 +16,9 @@ public class ChatCommand extends AbstractCommand {
 
 		RequestContext rc = getRequestContext();
 
-		String sessionUserId = rc.getParameter("sessionUserId")[0];
+		User sessionUser = (User)rc.getSessionObject("user");
+		String sessionUserId = sessionUser.getUserId();
+		String userString = rc.convertObjectToString(sessionUser);
 
 		String[] chatIdTab = rc.getParameter("chatId");
 		String chatId = null;
@@ -30,9 +33,10 @@ public class ChatCommand extends AbstractCommand {
 
 		OracleConnectionManager.getInstance().closeConnection();
 
-		Object[] array = new Object[2];
+		Object[] array = new Object[3];
 		array[0] = chatId;
 		array[1] = chats;
+		array[2] = userString;
 
 		resc.setResult(array);
 		resc.setTarget("chat");
