@@ -1,7 +1,7 @@
 package dao;
 
-import java.util.List;
+import java.util.Map;
 
 public interface ChatDao {
-	List getAllChats();
+	Map getAllChats(String sessionUserId);
 }

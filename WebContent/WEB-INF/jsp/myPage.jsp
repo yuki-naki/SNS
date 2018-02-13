@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -31,7 +32,7 @@
 	</div>
 	<nav class="navbar navbar-default">
 		    <ul class="nav navbar-nav">
-		      <li id="top-li"><a href="topPage">Top</a></li>
+		      <li id="top-li"><a href="login">Top</a></li>
 		      <li class="active"><a href="myPage">MyPage</a></li>
 		      <li><a href="chatRoom">Chat</a></li>
 		      <li><a href="followList">Follow</a></li>
@@ -40,7 +41,7 @@
 	<div class="container-fluid text-center">
 		<div class="row justify-content-center">
 			<div class="col-sm-8 col-sm-offset-2" id="profile">
-				<form method="post" action="IconTestServlet">
+				<form method="post" action="myPageSetup">
 						<div class="col">
 							<h1>MyProfile</h1>
 						</div>
@@ -48,18 +49,21 @@
 							<img name="icon" class="img-circle" src="https://bootdey.com/img/Content/avatar/avatar1.png" id="icon">
 						</div>
 						<div class="col-sm-5 col-sm-offset-2">
-							<h3>名前:#####</h3>
-							<h3>学年:##年</h3>
-							<h3>学科:#######科</h3>
+						<c:forEach var="result" items="${result}">
+							<h3>名前:${result.userName }</h3>
+							<h3>学年:${result.schoolYear }年</h3>
+							<h3>学科:${result.departmentName }</h3>
 						</div>
 						<div class="col-sm-12">
 							<h3>自己紹介文</h3>
-								<textarea name="comment" class="form-control" rows="8" id="comment" readonly>わたしはジョンスミスです</textarea>
+								<textarea name="comment" class="form-control" rows="8" id="comment" readonly>${result.userIntroduction}</textarea>
 						</div>
 						<div class="col-sm-12 text-right">
 							<button type="button" class="btn btn-success btn-md" id="config">編集</button>
-							<a href="myPageSetup"><button type="button" class="btn btn-success btn-md" >保存</button></a>
+							<a href="myPageSetup"><button type="submit" class="btn btn-success btn-md" >保存</button></a>
+
 						</div>
+						</c:forEach>
 						<input type="file" id="upload">
 				</form>
 			</div>

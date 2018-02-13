@@ -37,7 +37,6 @@ public class LoginCheckFilter implements Filter {
 			OracleConnectionManager.getInstance().closeConnection();
 
 			if(user != null){
-
 				String id = user.getLoginId();
 				String password = user.getPassword();
 
@@ -46,8 +45,10 @@ public class LoginCheckFilter implements Filter {
 					session.setAttribute("user", user);
 				}
 			}
-			req.setAttribute("notChecked", true);
-			req.setAttribute("paramId", paramId);
+			else {
+				req.setAttribute("notChecked", true);
+				req.setAttribute("paramId", paramId);
+			}
 			chain.doFilter(req, resp);
 		}
 	}

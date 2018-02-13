@@ -51,6 +51,18 @@ li {
 	border-right:none;
 }
 
+.navbar-default .navbar-nav > li > a {
+	color:#337ab7;
+}
+.navbar-default .navbar-nav > li > a:hover {
+	color:black;
+}
+
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:focus, .navbar-default .navbar-nav > .active > a:hover {
+	color:black;
+	background-color:#e0e0e0;
+}
+
 #text {
 	margin-bottom:5px;
 }
