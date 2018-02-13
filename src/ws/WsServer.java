@@ -38,8 +38,6 @@ public class WsServer {
         this.session = session;
         connections.add(this);
         this.groupId = groupId;
-        //String message = String.format("* %s %s", nickname, "has joined.");
-        //System.out.println(message);
        // ObjectMapper objectMapper = new ObjectMapper();
 
     	//Message messageObj = new Message();
