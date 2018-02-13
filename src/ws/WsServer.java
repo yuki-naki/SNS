@@ -1,104 +1,73 @@
 package ws;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Locale;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.websocket.OnClose;
 import javax.websocket.OnError;
 import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
 import javax.websocket.Session;
-import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import bean.Message;
-import dao.AbstractDaoFactory;
-import dao.MessageDao;
-import dao.OracleConnectionManager;
-
-@ServerEndpoint(value = "/ws/{groupId}")
+@ServerEndpoint(value = "/ws")
 public class WsServer {
 
+	private static final String GUEST_PREFIX = "Guest";
+    private static final AtomicInteger connectionIds = new AtomicInteger(0);
     private static final Set<WsServer> connections = new CopyOnWriteArraySet<>();
 
+
+    private int id;
+    private final String nickname;
     private Session session;
-    private String groupId;
 
     public WsServer() {
+    	id = connectionIds.getAndIncrement();
+        nickname = GUEST_PREFIX + id;
     }
 
     @OnOpen
-    public void start(final Session session, @PathParam("groupId") final String groupId){
+    public void start(Session session){
         this.session = session;
         connections.add(this);
-        this.groupId = groupId;
-        //String message = String.format("* %s %s", nickname, "has joined.");
-        //System.out.println(message);
-       // ObjectMapper objectMapper = new ObjectMapper();
-
-    	//Message messageObj = new Message();
-    	//messageObj.setId(String.valueOf(id));
-    	/*try {
-			String json = objectMapper.writeValueAsString(messageObj);
-			session.getBasicRemote().sendText(json);
-		} catch (JsonProcessingException e1) {
-			e1.printStackTrace();
+        String message = String.format("* %s %s", nickname, "has joined.");
+        System.out.println(message);
+        try {
+			session.getBasicRemote().sendText(String.valueOf(id));
 		} catch (IOException e) {
 			e.printStackTrace();
-		}*/
+		}
         //broadcast(message);
     }
 
     @OnClose
     public void end() {
         connections.remove(this);
-        //String message = String.format("* %s %s", nickname, "has disconnected.");
-        //broadcast(message, id);
+        String message = String.format("* %s %s", nickname, "has disconnected.");
+        broadcast(message);
     }
 
     @OnMessage
-    public void incoming(String JsonMessage, Session session) {
-
-    	ObjectMapper mapper = new ObjectMapper();
-    	Message message;
-		try {
-			message = mapper.readValue(JsonMessage, Message.class);
-			message.setGroupId(groupId);
-			Calendar calendar = Calendar.getInstance(new Locale("ja", "JAPAN"));
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm");
-			String date = sdf.format(calendar.getTime());
-			message.setDate(date);
-
-			AbstractDaoFactory factory = AbstractDaoFactory.getFactory();
-			OracleConnectionManager.getInstance().beginTransaction();
-			MessageDao messageDao = factory.getMessageDao();
-			messageDao.addMessage(message);
-			OracleConnectionManager.getInstance().closeConnection();
-
-			broadcast(message);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+    public void incoming(String message, Session session) {
+        // Never trust the client
+        String filteredMessage = String.format("%s: %s", nickname, message.toString());
+        System.out.println(filteredMessage);
+        broadcast(filteredMessage);
     }
 
     @OnError
     public void onError(Throwable t) throws Throwable {
-    	//broadcast(t.getMessage(), id);
+    	broadcast(t.getMessage());
     }
 
-    private static void broadcast(Message message) {
+    private static void broadcast(String msg) {
         for(WsServer client : connections){
             try {
                 synchronized(client) {
-                	ObjectMapper objectMapper = new ObjectMapper();
-                	String json = objectMapper.writeValueAsString(message);
-                    client.session.getBasicRemote().sendText(json);
+                    client.session.getBasicRemote().sendText(msg);
                 }
             } catch(IOException e) {
                 connections.remove(client);
@@ -107,8 +76,8 @@ public class WsServer {
                 } catch(IOException e1){
                     // Ignore
                 }
-                //String message = String.format("* %s %s",client.nickname, "has been disconnected.");
-                //broadcast(message,id);
+                String message = String.format("* %s %s",client.nickname, "has been disconnected.");
+                broadcast(message);
             }
         }
     }

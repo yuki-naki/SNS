@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -64,72 +64,16 @@
 						</form>
 					</div>
 				</div>
-				<div class="col-lg-3">
-			    	<table class="table-condensed table1" style="margin:20px 0px;">
-			    	<tr>
-						<td class="col-lg-1"><img src="img/image.jpg" id="icon" class="img-circle" alt="anoni"></td>
-						<td>１</td>
-					</tr>
-					<tr>
-						<td colspan="2"><button type="button" class="btn btn-danger">解除</button></td>
-					</tr>
+
+					<table>
+						<c:forEach var="user" items="${result}">
+							<form method='post' action='removeFollow'>
+								<input type="hidden" name="removeTargetUserId" value="${user.userId}"	/>
+								<tr><td>${user.username}</td><td><input type='submit' value='解除'></td></tr>
+							</form>
+						</c:forEach>
 					</table>
-				</div>
-				<div class="col-lg-3">
-			    	<table class="table-condensed table1" style="margin:20px 0px;">
-			    	<tr>
-						<td class="col-lg-1"><img src="img/image.jpg" id="icon" class="img-circle" alt="anoni"></td>
-						<td>１２</td>
-					</tr>
-					<tr>
-						<td colspan="2"><button type="button" class="btn btn-danger">解除</button></td>
-					</tr>
-					</table>
-				</div>
-				<div class="col-lg-3">
-			    	<table class="table-condensed table1" style="margin:20px 0px;">
-			    	<tr>
-						<td class="col-lg-1"><img src="img/image.jpg" id="icon" class="img-circle" alt="anoni"></td>
-						<td>１２３</td>
-					</tr>
-					<tr>
-						<td colspan="2"><button type="button" class="btn btn-danger">解除</button></td>
-					</tr>
-					</table>
-				</div>
-				<div class="col-lg-3">
-			    	<table class="table-condensed" style="margin:20px 0px;">
-			    	<tr>
-						<td class="col-lg-1"><img src="img/image.jpg" id="icon" class="img-circle" alt="anoni"></td>
-						<td>１２３４</td>
-					</tr>
-					<tr>
-						<td colspan="2"><button type="button" class="btn btn-danger">解除</button></td>
-					</tr>
-					</table>
-				</div>
-				<div class="col-lg-3">
-			    	<table class="table-condensed" style="margin:20px 0px;">
-			    	<tr>
-						<td class="col-lg-1"><img src="img/image.jpg" id="icon" class="img-circle" alt="anoni"></td>
-						<td>１２３４５</td>
-					</tr>
-					<tr>
-						<td colspan="2"><button type="button" class="btn btn-danger">解除</button></td>
-					</tr>
-					</table>
-				</div>
-				<div class="col-lg-3">
-			    	<table class="table-condensed" style="margin:20px 0px;">
-			    	<tr>
-						<td class="col-lg-1"><img src="img/image.jpg" id="icon" class="img-circle" alt="anoni"></td>
-						<td>１２３４５６</td>
-					</tr>
-					<tr>
-						<td colspan="2"><button type="button" class="btn btn-danger">解除</button></td>
-					</tr>
-					</table>
-				</div>
+
 				<div class="col-lg-3">
 			    	<table class="table-condensed" style="margin:20px 0px;">
 			    	<tr>
@@ -144,5 +88,7 @@
 	    	</div>
 		</div>
     </div>
+
+    <a href="getUnFollowList">リンク</a>>
 </body>
 </html>

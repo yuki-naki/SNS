@@ -2,20 +2,13 @@ package dao;
 
 public class OraDaoFactory extends AbstractDaoFactory {
 
-	public RemoveFollowDao getRemoveFollowDao(){
-		return new RemoveFollowDao();
-	}
 
 	public UserDao getUserDao() {
 		return new OraUserDao();
 	}
 
 	public FollowDao getFollowDao() {
-		return null;
-	}
-
-	public FollowsListDao getFollowsListDao() {
-		return null;
+		return new OraFollowDao();
 	}
 
 	public NotificationDao getNotificationDao() {
@@ -24,9 +17,5 @@ public class OraDaoFactory extends AbstractDaoFactory {
 
 	public ChatDao getChatDao() {
 		return new OraChatDao();
-	}
-
-	public MessageDao getMessageDao() {
-		return new OraMessageDao();
 	}
 }
