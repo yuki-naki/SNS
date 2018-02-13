@@ -17,11 +17,10 @@ public class MyPageCommand extends AbstractCommand{
 		System.out.println("mypage開k始");
 
 		RequestContext rc = getRequestContext();
-		HttpServletRequest hreq = (HttpServletRequest)rc.getRequest();
-		HttpSession session = hreq.getSession();
+
 		ArrayList list = null;
 
-		User user = (User)session.getAttribute("user");
+		User user = (User)rc.getSessionObject("user");
 
 
 
