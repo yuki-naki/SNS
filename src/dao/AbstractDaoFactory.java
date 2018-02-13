@@ -25,7 +25,6 @@ public abstract class AbstractDaoFactory
 		return factory;
 	}
 
-
 	public abstract UserDao getUserDao();
 	public abstract NotificationDao getNotificationDao();
 	public abstract FollowDao getFollowDao();
