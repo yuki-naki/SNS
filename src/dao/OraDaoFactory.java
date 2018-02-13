@@ -7,7 +7,7 @@ public class OraDaoFactory extends AbstractDaoFactory {
 	}
 
 	public FollowDao getFollowDao() {
-		return new OraFollowDao();
+		return null;
 	}
 
 
