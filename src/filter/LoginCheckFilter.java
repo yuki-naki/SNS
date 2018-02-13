@@ -24,7 +24,6 @@ public class LoginCheckFilter implements Filter {
 		if(logout != null){
 			HttpSession session = ((HttpServletRequest)req).getSession();
 			session.invalidate();
-			chain.doFilter(req, resp);
 		}
 		else {
 			String paramId = req.getParameter("id");
@@ -49,8 +48,8 @@ public class LoginCheckFilter implements Filter {
 				req.setAttribute("notChecked", true);
 				req.setAttribute("paramId", paramId);
 			}
-			chain.doFilter(req, resp);
 		}
+		chain.doFilter(req, resp);
 	}
 
 	public void init(FilterConfig config) throws ServletException {}
