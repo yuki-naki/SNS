@@ -20,13 +20,14 @@
 			<div class="col-sm-8 col-sm-offset-2" id="profile">
 				<form method="post" action="IconTestServlet" enctype="multipart/form-data">
 						<div class="col">
+						<c:forEach var="result" items="${result}">
 							<h1>MyProfile</h1>
 						</div>
 						<div class="col-sm-3 col-sm-offset-1 content-center" id="iconwrap">
-							<img name="icon" class="img-circle" src="https://bootdey.com/img/Content/avatar/avatar1.png" id="icon">
+							<img name="icon" class="img-circle" src="data:image/jpeg;base64,${result.icon}" id="icon">
 						</div>
 						<div class="col-sm-5 col-sm-offset-2">
-						<c:forEach var="result" items="${result}">
+
 							<h3>名前:${result.userName }</h3>
 							<h3>学年:${result.schoolYear }年</h3>
 							<h3>学科:${result.departmentName }</h3>
