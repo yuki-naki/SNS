@@ -13,6 +13,7 @@
 <title>Follow List</title>
 </head>
 <body>
+
 <%@include file="header.jsp" %>
 
 	<div class="container-fluid text-center">
@@ -62,6 +63,6 @@
 		<div align="center"><a href="getUnFollowList" class="btn btn-success">新しくお気に入りする</a></div>
     </div>
 
-
+	<script src="js/follow.js"></script>
 </body>
 </html>

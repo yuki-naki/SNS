@@ -56,7 +56,10 @@ $(function() {
 	if(typeof groupId != "undefined"){
 		$(".heading-name").css("padding","3px 0px 3px 0");
 	}
-})
+
+	$('#chat').addClass("active");
+	$('#top').removeClass("active");
+});
 
 "use strict";
 
@@ -78,7 +81,15 @@ Chat.connect = (function(host) {
 		// Console.selfMessage('Info: WebSocket connection opened.');
 		document.getElementById('comment').onkeydown = function(event) {
 			if (event.keyCode == 13) {
-				Chat.sendMessage();
+				if(event.shiftKey){
+					var content = this.value;
+			        var caret = getCaret(this);
+			        this.value = content.substring(0, caret - 1) + "<br>" + content.substring(caret, content.length);
+			        event.stopPropagation();
+				}
+				else {
+					Chat.sendMessage();
+				}
 			}
 		};
 		$("#reply_btn").on("click", function(event) {
@@ -116,6 +127,7 @@ Chat.initialize = function() {
 
 Chat.sendMessage = (function() {
 	var message = document.getElementById('comment').value;
+	console.log(this.value);
 	if (message.trim() != "" && message != null) {
 		var JsonUser = $("#reply").attr("data-user");
 		var user = JSON.parse(JsonUser);
