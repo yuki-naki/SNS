@@ -26,4 +26,5 @@ public class Group implements Serializable{
 	public void setGroupIcon(Blob groupIcon) {
 		this.groupIcon = groupIcon;
 	}
+
 }
