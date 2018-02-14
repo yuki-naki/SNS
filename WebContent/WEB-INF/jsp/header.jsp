@@ -25,7 +25,7 @@
 	 		<div class="row">
 			    <ul class="nav navbar-nav">
 			      <li id="top" class="active col-xs-3 column"><a href="login">Top</a></li>
-			      <li id="mypage" class="col-xs-3 column"><a href="myPage">MyPage</a></li>
+			      <li id="myPage" class="col-xs-3 column"><a href="myPage">MyPage</a></li>
 			      <li id="chat" class="col-xs-3 column"><a href="chat">Chat</a></li>
 			      <li id="follow" class="col-xs-3 column"><a href="getFollowList">Follow</a></li>
 			    </ul>

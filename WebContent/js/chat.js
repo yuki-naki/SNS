@@ -58,6 +58,7 @@ $(function() {
 	}
 
 	$('#chat').addClass("active");
+	$('#top').removeClass("active");
 });
 
 "use strict";
