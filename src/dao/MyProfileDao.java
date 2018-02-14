@@ -1,5 +1,6 @@
 package dao;
 
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -37,6 +38,47 @@ public class MyProfileDao{
 
 		}
 		catch(SQLException e){
+			e.printStackTrace();
+		}
+		finally{
+			try{
+				if(rs != null){
+					rs.close();
+				}
+				if(st != null){
+					st.close();
+				}
+			}
+			catch(SQLException e){
+				e.printStackTrace();
+			}
+		}
+
+	}
+
+	public void iconUpdate(InputStream input,long inputsize,String id){
+
+		System.out.println("iconUpdateメソッドの実行");
+
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		Connection cn = null;
+
+		System.out.println("id:"+id);
+		System.out.println("inputsize:"+inputsize);
+
+
+		try{
+			cn = OracleConnectionManager.getInstance().getConnection();
+
+			String sql = "update user_t set user_icon = ? where user_id = ?";
+			st = cn.prepareStatement(sql);
+			st.setBinaryStream(1,input,(int)inputsize);
+			st.setString(2,id);
+
+			st.executeUpdate();
+
+		}catch(SQLException e){
 			e.printStackTrace();
 		}
 		finally{
