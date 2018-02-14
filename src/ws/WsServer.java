@@ -38,8 +38,6 @@ public class WsServer {
         this.session = session;
         connections.add(this);
         this.groupId = groupId;
-
-        //broadcast(message);
     }
 
     @OnClose
