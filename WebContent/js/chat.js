@@ -20,6 +20,23 @@ function filterMember(){
 	});
 }
 
+function getCaret(el) {
+    if (el.selectionStart) {
+        return el.selectionStart;
+    } else if (document.selection) {
+        el.focus();
+        var r = document.selection.createRange();
+        if (r == null) {
+            return 0;
+        }
+        var re = el.createTextRange(), rc = re.duplicate();
+        re.moveToBookmark(r.getBookmark());
+        rc.setEndPoint('EndToStart', re);
+        return rc.text.length;
+    }
+    return 0;
+}
+
 $(function() {
 	$("#membersListBtn").click(function() {
 		$(".side-two").css({
@@ -56,7 +73,10 @@ $(function() {
 	if(typeof groupId != "undefined"){
 		$(".heading-name").css("padding","3px 0px 3px 0");
 	}
-})
+
+	$('#chat').addClass("active");
+	$('#top').removeClass("active");
+});
 
 "use strict";
 
@@ -78,7 +98,18 @@ Chat.connect = (function(host) {
 		// Console.selfMessage('Info: WebSocket connection opened.');
 		document.getElementById('comment').onkeydown = function(event) {
 			if (event.keyCode == 13) {
-				Chat.sendMessage();
+				if(event.shiftKey){
+					var content = this.value;
+			        //var caret = getCaret(this);
+					var caret = $('#comment').prop("selectionStart");
+					console.log(content.substring(0, caret));
+					console.log(content.substring(caret, content.length));
+			        this.value = content.substring(0, caret) + "\n" + content.substring(caret, content.length);
+			        event.stopPropagation();
+				}
+				else {
+					Chat.sendMessage();
+				}
 			}
 		};
 		$("#reply_btn").on("click", function(event) {
@@ -116,6 +147,10 @@ Chat.initialize = function() {
 
 Chat.sendMessage = (function() {
 	var message = document.getElementById('comment').value;
+	console.log(message);
+	message = message.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+	message = "<pre>" + message.replace(/\n/g,"<br>") + "</pre>";
+	console.log(message);
 	if (message.trim() != "" && message != null) {
 		var JsonUser = $("#reply").attr("data-user");
 		var user = JSON.parse(JsonUser);

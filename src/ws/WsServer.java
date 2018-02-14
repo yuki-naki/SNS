@@ -52,7 +52,9 @@ public class WsServer {
     	Message message;
 		try {
 			message = mapper.readValue(JsonMessage, Message.class);
+
 			message.setGroupId(groupId);
+
 			Calendar calendar = Calendar.getInstance(new Locale("ja", "JAPAN"));
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm");
 			String date = sdf.format(calendar.getTime());

@@ -7,37 +7,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" href="css/topPage.css">
 <link rel="stylesheet" href="css/myPage.css">
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
-<script>
-	$(function(){
-		$("#config").click(function(){
-			$('#comment').attr('readonly',false);
-			$('#config').attr("disabled",true);
-
-		});
-	});
-</script>
 <title>MyProfile</title>
 </head>
 <body>
-	<div class="container-fluid">
-		<div id="header" class="row">
-			<div class="col-lg-4"></div>
-			<div id="headerContent" class="col-lg-4">専門学校東京テクニカルカレッジ</div>
-			<div class="col-lg-4"></div>
-		</div>
-	</div>
-	<nav class="navbar navbar-default">
-		    <ul class="nav navbar-nav">
-		      <li id="top-li"><a href="login">Top</a></li>
-		      <li class="active"><a href="myPage">MyPage</a></li>
-		      <li><a href="chatRoom">Chat</a></li>
-		      <li><a href="followList">Follow</a></li>
-		    </ul>
-	</nav>
+	<%@include file="header.jsp" %>
 	<div class="container-fluid text-center">
 		<div class="row justify-content-center">
 			<div class="col-sm-8 col-sm-offset-2" id="profile">
@@ -69,5 +45,6 @@
 			</div>
 		</div>
 	</div>
+	<script src="js/myPage.js"></script>
 </body>
 </html>

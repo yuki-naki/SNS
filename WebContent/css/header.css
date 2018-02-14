@@ -43,11 +43,11 @@ li {
 	border-right: 1px solid;
 }
 
-#top-left-li {
+#top{
 	border-left:none;
 }
 
-#top-right-li {
+#follow {
 	border-right:none;
 }
 

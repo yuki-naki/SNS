@@ -183,6 +183,8 @@ $(document).ready(function() {
 		}
 		$("#content").remove();
 	});
+
+	$('#top').addClass("active");
 });
 
 function replaceSrc(content){
