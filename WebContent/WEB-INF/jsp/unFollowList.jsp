@@ -8,9 +8,11 @@
 <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" type="text/css">
 <link rel="stylesheet" href="tinymce/css/tinymce.css" type="text/css">
 <link rel="stylesheet" href="css/topPage.css" type="text/css">
+<link rel="stylesheet" href="css/followList.css">
 <script src="js/jquery.min.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
 <script src="tinymce/tinymce.min.js"></script>
+
 
 <title>unFollowList</title>
 </head>
@@ -41,24 +43,27 @@
 		 </div>
 	</nav>
 
-	<div id="search-bar" style="margin:30px 0px;">
-		<div class="col-xs-4">
-	      <select class="form-control" name="grade">
-	      	<option value="default" selected="selected">学年</option>
-	        <option value="1">1学年</option>
-	        <option value="2">2学年</option>
-	        <option value="3">3学年</option>
-	        <option value="4">4学年</option>
-	      </select>
-	    </div>
-	    <div class="col-xs-4">
-	      <select class="form-control" name="department">
-	      	<option value="default" selected="selected">学科</option>
-	        <option value="a">情報処理科</option>
-	        <option value="b">建築科</option>
-	        <option value="c">バイオ科</option>
-	      </select>
-	    </div>
+<div class="container-fluid text-center">
+		<div class="row justify-content-center">
+			<div class="col-sm-8 col-sm-offset-2">
+				<div id="search-bar" style="margin:30px 0px;">
+					<div class="col-xs-4">
+	    			  <select class="form-control" name="grade">
+	      				<option value="default" selected="selected">学年</option>
+	  			   	    	<option value="1">1学年</option>
+	    		        	<option value="2">2学年</option>
+	    		       		<option value="3">3学年</option>
+	    		        	<option value="4">4学年</option>
+	    		       </select>
+					</div>
+	    		<div class="col-xs-4">
+	      			<select class="form-control" name="department">
+	      				<option value="default" selected="selected">学科</option>
+	        			<option value="a">情報処理科</option>
+	       				<option value="b">建築科</option>
+	        			<option value="c">バイオ科</option>
+	      			</select>
+	    		</div>
 		<div class="col-xs-4">
 			<form action="/action_page.php">
 			   <div class="input-group">
@@ -70,14 +75,19 @@
 			</form>
 		</div>
 	</div>
+			<div>
+				<table border="0" class="table table-condensed" >
+					<c:forEach var="user" items="${result}">
+						<form method='post' action='follow'>
+							<input type="hidden" name="userId" value="${user.userId}"/>
+							<tr><td width="100" ><img src="img/image.jpg" id="icon" class="img-circle" alt="anoni"></td><td class="text-left">${user.username}</td><td><input type='submit' class="btn btn-info" value='follow'></td></tr>
+						</form>
+					</c:forEach>
+				</table>
+			</div>
+		</div>
+	</div>
 
-	<table>
-		<c:forEach var="user" items="${result}">
-			<form method='post' action='follow'>
-				<input type="hidden" name="userId" value="${user.userId}"/>
-				<tr><td>${user.username}</td><td><input type='submit' value='follow'></td></tr>
-			</form>
-		</c:forEach>
-	</table>
+	<div align="center"><a href="getFollowList" class="btn btn-success">お気に入り 一覧</a></div>
 </body>
 </html>
