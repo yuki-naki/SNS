@@ -21,36 +21,36 @@ public class LoginCheckFilter implements Filter {
 	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws IOException, ServletException {
 
 		String logout = req.getParameter("logout");
+		HttpSession session = ((HttpServletRequest)req).getSession();
 		if(logout != null){
-			HttpSession session = ((HttpServletRequest)req).getSession();
 			session.invalidate();
-			chain.doFilter(req, resp);
 		}
 		else {
-			String paramId = req.getParameter("id");
-			String paramPass = req.getParameter("password");
+			if(session.getAttribute("user") == null){
+				String paramId = req.getParameter("id");
+				String paramPass = req.getParameter("password");
 
-			AbstractDaoFactory factory = AbstractDaoFactory.getFactory();
-			UserDao userDao = factory.getUserDao();
-			User user = userDao.getUser(paramId, paramPass);
+				AbstractDaoFactory factory = AbstractDaoFactory.getFactory();
+				UserDao userDao = factory.getUserDao();
+				User user = userDao.getUser(paramId, paramPass);
 
-			OracleConnectionManager.getInstance().closeConnection();
+				OracleConnectionManager.getInstance().closeConnection();
 
-			if(user != null){
-				String id = user.getLoginId();
-				String password = user.getPassword();
+				if(user != null){
+					String id = user.getLoginId();
+					String password = user.getPassword();
 
-				if(paramId.equals(id) && paramPass.equals(password)){
-					HttpSession session = ((HttpServletRequest)req).getSession();
-					session.setAttribute("user", user);
+					if(paramId.equals(id) && paramPass.equals(password)){
+						session.setAttribute("user", user);
+					}
+				}
+				else {
+					req.setAttribute("notChecked", true);
+					req.setAttribute("paramId", paramId);
 				}
 			}
-			else {
-				req.setAttribute("notChecked", true);
-				req.setAttribute("paramId", paramId);
-			}
-			chain.doFilter(req, resp);
 		}
+		chain.doFilter(req, resp);
 	}
 
 	public void init(FilterConfig config) throws ServletException {}

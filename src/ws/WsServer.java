@@ -38,20 +38,7 @@ public class WsServer {
         this.session = session;
         connections.add(this);
         this.groupId = groupId;
-        //String message = String.format("* %s %s", nickname, "has joined.");
-        //System.out.println(message);
-       // ObjectMapper objectMapper = new ObjectMapper();
 
-    	//Message messageObj = new Message();
-    	//messageObj.setId(String.valueOf(id));
-    	/*try {
-			String json = objectMapper.writeValueAsString(messageObj);
-			session.getBasicRemote().sendText(json);
-		} catch (JsonProcessingException e1) {
-			e1.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}*/
         //broadcast(message);
     }
 
