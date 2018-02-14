@@ -101,30 +101,32 @@
 						</div>
 					</div>
 
-					<c:forEach var="chat" items="${result[1]}">
-						<form method="post" action="chat">
-							<input type="hidden" name="chatId" value="${chat.key}" />
-							<button type="submit" class="row sideBar-body group">
-								<div class="col-xs-1 sideBar-avatar">
-									<div class="avatar-icon">
-										<img src="https://bootdey.com/img/Content/avatar/avatar2.png">
-									</div>
-								</div>
-								<div class="col-xs-11 sideBar-main">
-									<div class="row">
-										<div id="sideGroupname" data-groupId="${chat.key}"
-											class="col-xs-8 sideBar-name">
-											<span class="name-meta">${chat.value.groupName}</span>
-										</div>
-										<div id="sideDate" class="col-xs-4 pull-right sideBar-time">
-											<span class="time-meta pull-right">${chat.value.messages[fn:length(chat.value.messages)-1].date}</span>
+					<div class="row compose-sideBar">
+						<c:forEach var="chat" items="${result[1]}">
+							<form method="post" action="chat">
+								<input type="hidden" name="chatId" value="${chat.key}" />
+								<button type="submit" class="row sideBar-body group">
+									<div class="col-xs-1 sideBar-avatar">
+										<div class="avatar-icon">
+											<img src="https://bootdey.com/img/Content/avatar/avatar2.png">
 										</div>
 									</div>
-								</div>
-							</button>
-							<hr>
-						</form>
-					</c:forEach>
+									<div class="col-xs-11 sideBar-main">
+										<div class="row">
+											<div id="sideGroupname" data-groupId="${chat.key}"
+												class="col-xs-8 sideBar-name">
+												<span class="name-meta">${chat.value.groupName}</span>
+											</div>
+											<div id="sideDate" class="col-xs-4 pull-right sideBar-time">
+												<span class="time-meta pull-right">${chat.value.messages[fn:length(chat.value.messages)-1].date}</span>
+											</div>
+										</div>
+									</div>
+								</button>
+								<hr>
+							</form>
+						</c:forEach>
+					</div>
 				</div>
 
 				<div class="side-two">

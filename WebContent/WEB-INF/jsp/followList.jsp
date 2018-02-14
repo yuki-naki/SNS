@@ -9,8 +9,6 @@
 <link rel="stylesheet" href="css/followList.css">
 <script src="js/jquery.min.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
-<script src="flat-ui/js/flat-ui.min.js"></script>
-<script src="flat-ui/js/application.js"></script>
 <title>Follow List</title>
 </head>
 <body>
@@ -63,6 +61,6 @@
 		<div align="center"><a href="getUnFollowList" class="btn btn-success">新しくお気に入りする</a></div>
     </div>
 
-
+	<script src="js/follow.js"></script>
 </body>
 </html>

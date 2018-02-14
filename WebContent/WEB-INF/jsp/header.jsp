@@ -24,10 +24,10 @@
 		<div class="container-fluid">
 	 		<div class="row">
 			    <ul class="nav navbar-nav">
-			      <li id="top-left-li" class="active col-xs-3 column"><a href="#">Top</a></li>
-			      <li class="col-xs-3 column"><a href="myPage">MyPage</a></li>
-			      <li class="col-xs-3 column"><a href="chat">Chat</a></li>
-			      <li id="top-right-li" class="col-xs-3 column"><a href="getFollowList">Follow</a></li>
+			      <li id="top" class="active col-xs-3 column"><a href="login">Top</a></li>
+			      <li id="mypage" class="col-xs-3 column"><a href="myPage">MyPage</a></li>
+			      <li id="chat" class="col-xs-3 column"><a href="chat">Chat</a></li>
+			      <li id="follow" class="col-xs-3 column"><a href="getFollowList">Follow</a></li>
 			    </ul>
 			 </div>
 		 </div>

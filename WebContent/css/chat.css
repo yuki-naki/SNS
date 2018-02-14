@@ -50,10 +50,10 @@ html, body {
 .side-two {
   padding: 0;
   margin: 0;
-  height: 100%;
+  height: calc(100% - 53px);
   width: 100%;
   position: relative;
-  top: -100%;
+  top: calc(-100% + 53px);
   left: 100%;
   -webkit-transition: left 0.3s ease;
   transition: left 0.3s ease;
@@ -123,15 +123,6 @@ html, body {
   outline: none;
   border: none;
   box-shadow: none;
-}
-
-.sideBar {
-  padding: 0 !important;
-  margin: 0 !important;
-  background-color: #fff;
-  overflow-y: auto;
-  border: 1px solid #f7f7f7;
-  height: calc(100% - 120px);
 }
 
 .sideBar-body {
@@ -265,7 +256,7 @@ hr {
   background-color: #fff;
   overflow-y: auto;
   border: 1px solid #f7f7f7;
-  height:calc(100% - 152px);
+  height:calc(100% - 100px);
 }
 
 #backGroupBtn {
