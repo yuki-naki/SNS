@@ -21,8 +21,6 @@ public class MyPageSetupCommand extends AbstractCommand{
 
 		MyProfileDao dao = new MyProfileDao();
 
-		//アイコン取得
-
 
 
 		dao.addMyProfile(user.getUserId(),user_introduction);
