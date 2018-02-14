@@ -287,24 +287,13 @@ hr {
   padding: 0 !important;
   margin: 0 !important;
   overflow-y: auto;
-  height: calc(100% - 95px);
+  height: calc(100% - 54px);
 }
-.message-previous {
-  margin : 0 !important;
+.message-group {
   padding: 0 !important;
-  height: auto;
-  width: 100%;
-}
-.previous {
-  font-size: 15px;
-  text-align: center;
-  padding: 10px !important;
-  cursor: pointer;
-}
-
-.previous a {
-  text-decoration: none;
-  font-weight: 700;
+  margin: 0 !important;
+  overflow-y: auto;
+  height: calc(100% - 95px);
 }
 
 .message-body {

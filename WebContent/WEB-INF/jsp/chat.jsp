@@ -33,16 +33,16 @@
 	</div>
 
 	<nav class="navbar navbar-default">
-	<div class="container-fluid">
-		<div class="row">
-			<ul class="nav navbar-nav">
-				<li id="top-left-li" class="col-xs-3 column"><a href="login">Top</a></li>
-				<li class="col-xs-3 column"><a href="#">MyPage</a></li>
-				<li class="active col-xs-3 column"><a href="chat">Chat</a></li>
-				<li id="top-right-li" class="col-xs-3 column"><a href="#">Follow</a></li>
-			</ul>
+		<div class="container-fluid">
+			<div class="row">
+				<ul class="nav navbar-nav">
+					<li id="top-left-li" class="col-xs-3 column"><a href="login">Top</a></li>
+					<li class="col-xs-3 column"><a href="myPage">MyPage</a></li>
+					<li class="active col-xs-3 column"><a href="chat">Chat</a></li>
+					<li id="top-right-li" class="col-xs-3 column"><a href="getFollowList">Follow</a></li>
+				</ul>
+			</div>
 		</div>
-	</div>
 	</nav>
 
 	<div class="container app">
@@ -58,7 +58,7 @@
 					</div>
 				</div>
 
-				<div class="row message" id="conversation">
+				<div class="row ${empty result[0] ? 'message' : 'message-group'}" id="conversation">
 
 					<c:if test="${not empty result[0]}">
 						<c:forEach var="message" items="${result[1][result[0]].messages}">
