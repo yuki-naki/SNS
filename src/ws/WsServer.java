@@ -39,7 +39,7 @@ public class WsServer {
         connections.add(this);
         this.groupId = groupId;
 
-        //broadcast(message);
+
     }
 
     @OnClose
