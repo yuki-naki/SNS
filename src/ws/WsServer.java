@@ -45,7 +45,6 @@ public class WsServer {
     @OnClose
     public void end() {
         connections.remove(this);
-        //String message = String.format("* %s %s", nickname, "has disconnected.");
         //broadcast(message, id);
     }
 
