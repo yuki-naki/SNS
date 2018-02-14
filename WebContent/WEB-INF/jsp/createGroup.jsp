@@ -16,21 +16,7 @@
 <title>Follow List</title>
 </head>
 <body>
-	<div class="container-fluid">
-		<div id="header" class="row">
-			<div class="col-lg-4"></div>
-			<div id="headerContent" class="col-lg-4">専門学校東京テクニカルカレッジ</div>
-			<div class="col-lg-4"></div>
-		</div>
-	</div>
-	<nav class="navbar navbar-default">
-		    <ul class="nav navbar-nav">
-		      <li id="top-li"><a href="#">Top</a></li>
-		      <li class="active"><a href="#">MyPage</a></li>
-		      <li><a href="#">Chat</a></li>
-		      <li><a href="#">Follow</a></li>
-		    </ul>
-	</nav>
+	<%@include file="header.jsp" %>
 
 	<div class="container-fluid text-center">
 		<div class="row justify-content-center">
@@ -53,7 +39,7 @@
 				        <option value="c">バイオ科</option>
 				      </select>
 				    </div>
-					<div class="col-xs-4">
+				    <div class="col-xs-4">
 						<form action="/action_page.php">
 						   <div class="input-group">
 						     <input type="text" class="form-control" placeholder="Search" name="search">
@@ -63,33 +49,21 @@
 						   </div>
 						</form>
 					</div>
-				</div>
-
-					<table>
-						<c:forEach var="user" items="${result}">
-							<form method='post' action='removeFollow'>
-								<input type="hidden" name="removeTargetUserId" value="${user.userId}"	/>
-								<tr><td>${user.username}</td><td><input type='submit' value='解除'></td></tr>
-							</form>
+				<div>
+					<form method='post' action='createGroup'>
+						<input type="text" name="groupName">
+						<div>フォロー中</div>
+						<c:forEach var="followUser" items="${result[0]}">
+							<div><input type="checkbox" name="selectedUser" value="${followUser.userId}"/>${followUser.username}</div>
 						</c:forEach>
-					</table>
-
-				<div class="col-lg-3">
-			    	<table class="table-condensed" style="margin:20px 0px;">
-			    	<tr>
-						<td class="col-lg-1"><img src="img/image.jpg" id="icon" class="img-circle" alt="anoni"></td>
-						<td>AL AVAYAJI ALEXANDRE</td>
-					</tr>
-					<tr>
-						<td colspan="2"><button type="button" class="btn btn-danger">解除</button></td>
-					</tr>
-					</table>
-				</div>
-	    	</div>
+						<div>フォローしてない</div>
+						<c:forEach var="unFollowUser" items="${result[1]}">
+							<div><input type="checkbox" name="selectedUser" value="${unFollowUser.userId}"/>${unFollowUser.username}</div>
+						</c:forEach>
+						<input type="submit" value="作成">
+	    			</form>
+    			</div>
 		</div>
     </div>
-
-    <a href="getUnFollowList">フォローページ</a>
-    <a href="getSelectGroupUserList">グループ作成ページ</a>
 </body>
 </html>
