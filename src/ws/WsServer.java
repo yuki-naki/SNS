@@ -43,7 +43,6 @@ public class WsServer {
     @OnClose
     public void end() {
         connections.remove(this);
-        //broadcast(message, id);
     }
 
     @OnMessage
