@@ -4,14 +4,21 @@ import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
+
+import bean.User;
+import dao.MyProfileDao;
 
 /**
  * Servlet implementation class IconTestServlet
  */
+@MultipartConfig(maxFileSize=1000000000)
 @WebServlet("/IconTestServlet")
 public class IconTestServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -39,13 +46,24 @@ public class IconTestServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
 		request.setCharacterEncoding("utf-8");
+		System.out.println("Partファイル生成");
+		Part part = request.getPart("iconimg");
 
-		System.out.println(request.getRequestURI());
+		System.out.println("inputstream生成完了");
 
 
-		RequestDispatcher rd = request.getRequestDispatcher("/myPage.jsp");
 
-		rd.forward(request, response);
+		HttpSession session = request.getSession();
+		User user = (User)session.getAttribute("user");
+
+
+		 MyProfileDao mp = new MyProfileDao();
+		 mp.iconUpdate(part.getInputStream(),part.getSize(),user.getUserId());
+
+		 RequestDispatcher dis = request.getRequestDispatcher("/MyPageSetupCommand");
+
+		 dis.forward(request, response);
+
 
 	}
 

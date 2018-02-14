@@ -41,7 +41,7 @@
 	<div class="container-fluid text-center">
 		<div class="row justify-content-center">
 			<div class="col-sm-8 col-sm-offset-2" id="profile">
-				<form method="post" action="myPageSetup">
+				<form method="post" action="IconTestServlet" enctype="multipart/form-data">
 						<div class="col">
 							<h1>MyProfile</h1>
 						</div>
@@ -59,12 +59,13 @@
 								<textarea name="comment" class="form-control" rows="8" id="comment" readonly>${result.userIntroduction}</textarea>
 						</div>
 						<div class="col-sm-12 text-right">
-							<button type="button" class="btn btn-success btn-md" id="config">編集</button>
+							<input type="file" id="upload" name="iconimg">
+							<button type="button" class="btn btn-success btn-md" id="config" >編集</button>
 							<a href="myPageSetup"><button type="submit" class="btn btn-success btn-md" >保存</button></a>
 
 						</div>
 						</c:forEach>
-						<input type="file" id="upload">
+
 				</form>
 			</div>
 		</div>
