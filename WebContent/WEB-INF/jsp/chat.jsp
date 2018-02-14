@@ -12,38 +12,13 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="css/chat.css">
-<link rel="stylesheet" href="css/topPage.css">
 <script src="js/jquery.min.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
 
 <title>Chat</title>
 </head>
 <body>
-	<div class="container-fluid">
-		<div id="header" class="row">
-			<div class="col-xs-1">
-				<form id="logout" method="post" action="login">
-					<input type="hidden" name="logout" value="logout" />
-					<button type="submit" id="logoutBtn">Logout</button>
-				</form>
-			</div>
-			<div id="headerContent" class="col-xs-10">専門学校東京テクニカルカレッジ</div>
-			<div class="col-xs-1"></div>
-		</div>
-	</div>
-
-	<nav class="navbar navbar-default">
-		<div class="container-fluid">
-			<div class="row">
-				<ul class="nav navbar-nav">
-					<li id="top-left-li" class="col-xs-3 column"><a href="login">Top</a></li>
-					<li class="col-xs-3 column"><a href="myPage">MyPage</a></li>
-					<li class="active col-xs-3 column"><a href="chat">Chat</a></li>
-					<li id="top-right-li" class="col-xs-3 column"><a href="getFollowList">Follow</a></li>
-				</ul>
-			</div>
-		</div>
-	</nav>
+	<%@include file="header.jsp" %>
 
 	<div class="container app">
 
