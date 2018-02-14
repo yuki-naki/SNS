@@ -150,7 +150,7 @@ Web動画クリエーター科　3
 建築監督科　5
 
 INSERT INTO department_t VALUES (department_seq.nextVal,'情報処理科');
-INSERT INTO department_t VALUES (department_seq.nextVal,'インテリ科');
+INSERT INTO department_t VALUES (department_seq.nextVal,'インテリア科');
 INSERT INTO department_t VALUES (department_seq.nextVal,'Web動画クリエーター科');
 INSERT INTO department_t VALUES (department_seq.nextVal,'環境テクノロジー科');
 INSERT INTO department_t VALUES (department_seq.nextVal,'建築監督科');

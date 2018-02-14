@@ -6,7 +6,7 @@ import java.util.Properties;
 public abstract class AbstractDaoFactory
 {
 	public static AbstractDaoFactory getFactory()
-	{
+	{	
 		AbstractDaoFactory factory = null;
 		Properties prop = new Properties();
 
@@ -24,7 +24,6 @@ public abstract class AbstractDaoFactory
 
 		return factory;
 	}
-
 	public abstract UserDao getUserDao();
 	public abstract NotificationDao getNotificationDao();
 	public abstract FollowDao getFollowDao();
