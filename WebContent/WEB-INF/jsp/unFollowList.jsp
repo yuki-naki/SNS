@@ -6,8 +6,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" type="text/css">
-<link rel="stylesheet" href="tinymce/css/tinymce.css" type="text/css">
-<link rel="stylesheet" href="css/topPage.css" type="text/css">
 <link rel="stylesheet" href="css/followList.css">
 <script src="js/jquery.min.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
@@ -17,31 +15,7 @@
 <title>unFollowList</title>
 </head>
 <body>
-	<div class="container-fluid">
-		<div id="header" class="row">
-			<div class="col-xs-1">
-				<form id="logout" method="post" action="login">
-					<input type="hidden" name="logout" value="logout" />
-					<button type="submit" id="logoutBtn">Logout</button>
-				</form>
-			</div>
-			<div id="headerContent" class="col-xs-10">専門学校東京テクニカルカレッジ</div>
-			<div class="col-xs-1"></div>
-		</div>
-	</div>
-
-	<nav class="navbar navbar-default">
-		<div class="container-fluid">
-	 		<div class="row">
-			    <ul class="nav navbar-nav">
-			      <li id="top-left-li" class="active col-xs-3 column"><a href="#">Top</a></li>
-			      <li class="col-xs-3 column"><a href="#">MyPage</a></li>
-			      <li class="col-xs-3 column"><a href="chatRoom">Chat</a></li>
-			      <li id="top-right-li" class="col-xs-3 column"><a href="followList">Follow</a></li>
-			    </ul>
-			 </div>
-		 </div>
-	</nav>
+<%@include file="header.jsp" %>
 
 <div class="container-fluid text-center">
 		<div class="row justify-content-center">
@@ -79,13 +53,14 @@
 				<table border="0" class="table table-condensed" >
 					<c:forEach var="user" items="${result}">
 						<form method='post' action='follow'>
-							<input type="hidden" name="userId" value="${user.userId}"/>
-							<tr><td width="100" ><img src="img/image.jpg" id="icon" class="img-circle" alt="anoni"></td><td class="text-left">${user.username}</td><td><input type='submit' class="btn btn-info" value='follow'></td></tr>
+							<input type="hidden" valign="middle" name="userId" value="${user.userId}"/>
+							<tr><td width="100" ><img src="img/image.jpg" id="icon" class="img-circle" alt="anoni"></td><td class="text-left td" >${user.username}</td><td  width="100" class="td"><input type='submit' class="btn btn-info" value='追加'></td></tr>
 						</form>
 					</c:forEach>
 				</table>
 			</div>
 		</div>
+	</div>
 	</div>
 
 	<div align="center"><a href="getFollowList" class="btn btn-success">お気に入り 一覧</a></div>

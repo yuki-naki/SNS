@@ -9,12 +9,11 @@
 <link rel="stylesheet" href="css/followList.css">
 <script src="js/jquery.min.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
-<script src="flat-ui/js/flat-ui.min.js"></script>
-<script src="flat-ui/js/application.js"></script>
+
 <title>Follow List</title>
 </head>
 <body>
-
+<%@include file="header.jsp" %>
 
 	<div class="container-fluid text-center">
 		<div class="row justify-content-center">
@@ -53,7 +52,7 @@
 						<c:forEach var="user" items="${result}">
 							<form method='post' action='removeFollow'>
 								<input type="hidden" name="removeTargetUserId" value="${user.userId}"	/>
-								<tr><td width="100" ><img src="img/image.jpg" id="icon" class="img-circle" alt="anoni"></td><td class="text-left">${user.username}</td><td width="100"><input type='submit' class="btn btn-danger " value='解除'></td></tr>
+								<tr><td width="100" ><img src="img/image.jpg" id="icon" class="img-circle" alt="anoni"></td><td class="text-left td">${user.username}</td><td width="100" class="td"><input type='submit' class="btn btn-danger" value='解除'></td></tr>
 							</form>
 						</c:forEach>
 					</table>
