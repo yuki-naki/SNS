@@ -9,7 +9,6 @@ import java.sql.SQLException;
 import bean.User;
 
 public class OraUserDao implements UserDao {
-
 	public User getUser(String loginId, String password){
 
 		PreparedStatement st = null;
@@ -54,6 +53,44 @@ public class OraUserDao implements UserDao {
 				user.setStudentId(studentId);
 				user.setAdmissionYear(admissionYear);
 			}
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		finally{
+			try{
+				if(rs != null){
+					rs.close();
+				}
+				if(st != null){
+					st.close();
+				}
+			}
+			catch(SQLException e){
+				e.printStackTrace();
+			}
+		}
+		return user;
+	}
+
+	public User getUserByUserId(String userId){
+
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		Connection cn = null;
+		User user = new User();
+
+		try{
+			cn = OracleConnectionManager.getInstance().getConnection();
+
+			String sql = "SELECT user_id FROM user_t WHERE user_id = ?";
+			st = cn.prepareStatement(sql);
+			st.setString(1, userId);
+
+			rs = st.executeQuery();
+
+			user.setUserId(userId);
+			user.setUsername(rs.getString(1));
 		}
 		catch(SQLException e){
 			e.printStackTrace();
