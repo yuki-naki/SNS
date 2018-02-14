@@ -13,6 +13,7 @@
 </head>
 <body>
 
+	<%@include file="header.jsp" %>
 
 	<div class="container-fluid text-center">
 		<div class="row justify-content-center">
