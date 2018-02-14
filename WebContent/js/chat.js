@@ -20,6 +20,23 @@ function filterMember(){
 	});
 }
 
+function getCaret(el) {
+    if (el.selectionStart) {
+        return el.selectionStart;
+    } else if (document.selection) {
+        el.focus();
+        var r = document.selection.createRange();
+        if (r == null) {
+            return 0;
+        }
+        var re = el.createTextRange(), rc = re.duplicate();
+        re.moveToBookmark(r.getBookmark());
+        rc.setEndPoint('EndToStart', re);
+        return rc.text.length;
+    }
+    return 0;
+}
+
 $(function() {
 	$("#membersListBtn").click(function() {
 		$(".side-two").css({
@@ -83,8 +100,11 @@ Chat.connect = (function(host) {
 			if (event.keyCode == 13) {
 				if(event.shiftKey){
 					var content = this.value;
-			        var caret = getCaret(this);
-			        this.value = content.substring(0, caret - 1) + "<br>" + content.substring(caret, content.length);
+			        //var caret = getCaret(this);
+					var caret = $('#comment').prop("selectionStart");
+					console.log(content.substring(0, caret));
+					console.log(content.substring(caret, content.length));
+			        this.value = content.substring(0, caret) + "\n" + content.substring(caret, content.length);
 			        event.stopPropagation();
 				}
 				else {
@@ -127,7 +147,10 @@ Chat.initialize = function() {
 
 Chat.sendMessage = (function() {
 	var message = document.getElementById('comment').value;
-	console.log(this.value);
+	console.log(message);
+	message = message.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+	message = "<pre>" + message.replace(/\n/g,"<br>") + "</pre>";
+	console.log(message);
 	if (message.trim() != "" && message != null) {
 		var JsonUser = $("#reply").attr("data-user");
 		var user = JSON.parse(JsonUser);
