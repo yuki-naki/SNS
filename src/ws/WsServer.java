@@ -38,15 +38,11 @@ public class WsServer {
         this.session = session;
         connections.add(this);
         this.groupId = groupId;
-
-        //broadcast(message);
     }
 
     @OnClose
     public void end() {
         connections.remove(this);
-        //String message = String.format("* %s %s", nickname, "has disconnected.");
-        //broadcast(message, id);
     }
 
     @OnMessage
