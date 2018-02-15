@@ -9,7 +9,16 @@ public class MyProfile implements Serializable {
 	private String departmentName;
 	private String userIntroduction;
 	private String icon;
+	private String userId;
 
+
+
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
 	public void setUserName(String userName){
 		this.userName = userName;
 	}

@@ -24,7 +24,7 @@
 							<h1>MyProfile</h1>
 						</div>
 						<div class="col-sm-3 col-sm-offset-1 content-center" id="iconwrap">
-							<img name="icon" class="img-circle" src="data:image/jpeg;base64,${result.icon}" id="icon">
+							<img name="icon" class="img-circle" src="loadIcon?userId=${result.userId}" id="icon">
 						</div>
 						<div class="col-sm-5 col-sm-offset-2">
 
