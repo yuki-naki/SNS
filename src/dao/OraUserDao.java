@@ -110,4 +110,41 @@ public class OraUserDao implements UserDao {
 		}
 		return user;
 	}
+
+	public User getUserByUserIcon(String userId){
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		Connection cn = null;
+		User user = new User();
+
+		try{
+			cn = OracleConnectionManager.getInstance().getConnection();
+
+			String sql = "select user_icon from user_t where user_id = ?";
+			st = cn.prepareStatement(sql);
+			st.setString(1, userId);
+
+			rs = st.executeQuery();
+
+			rs.next();
+			user.setIcon(rs.getBlob(1));
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		finally{
+			try{
+				if(rs != null){
+					rs.close();
+				}
+				if(st != null){
+					st.close();
+				}
+			}
+			catch(SQLException e){
+				e.printStackTrace();
+			}
+		}
+		return user;
+	}
 }

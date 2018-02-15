@@ -111,7 +111,7 @@ public class MyProfileDao{
 		try{
 			cn = OracleConnectionManager.getInstance().getConnection();
 
-			String sql = " select t1.username,TO_CHAR(sysdate,'YYYY') - t1.admission_year  + case when (TO_CHAR(sysdate,'MMDD')<TO_CHAR(0331)) AND (TO_CHAR(sysdate,'MMDD')<TO_CHAR(0101)) then 0 else 1 end,t3.department_name ,t1.user_introduction,t1.user_icon from user_t t1,Belong_department_t t2,department_t t3 where t1.user_id = t2.user_id and t2.department_id = t3.department_id and t1.user_id = "+userId;
+			String sql = " select t1.username,TO_CHAR(sysdate,'YYYY') - t1.admission_year  + case when (TO_CHAR(sysdate,'MMDD')<TO_CHAR(0331)) AND (TO_CHAR(sysdate,'MMDD')<TO_CHAR(0101)) then 0 else 1 end,t3.department_name ,t1.user_introduction,t1.user_icon,t1.user_Id from user_t t1,Belong_department_t t2,department_t t3 where t1.user_id = t2.user_id and t2.department_id = t3.department_id and t1.user_id = "+userId;
 
 			st = cn.prepareStatement(sql);
 
@@ -123,6 +123,7 @@ public class MyProfileDao{
 			bean.setDepartmentName(rs.getString(3));
 			bean.setUserIntroduction(rs.getString(4));
 			byte[] imgData = rs.getBytes(5);
+			bean.setUserId(rs.getString(6));
  //           request.setAttribute("rvi", "Ravinath");
  //           rs.getString("teatitle");
 
