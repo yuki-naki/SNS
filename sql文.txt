@@ -99,14 +99,6 @@ INSERT INTO groupmember_t VALUES (2, 2);
 INSERT INTO groupmember_t VALUES (2, 3);
 INSERT INTO groupmember_t VALUES (2, 5);
 
-INSERT INTO chat_t VALUES (1, 1, 'Yo', SYSDATE);
-INSERT INTO chat_t VALUES (4, 1, 'Yo2', SYSDATE);
-INSERT INTO chat_t VALUES (1, 2, 'Yo', SYSDATE);
-INSERT INTO chat_t VALUES (2, 2, 'Yo2', SYSDATE);
-INSERT INTO chat_t VALUES (3, 2, 'Yo3', SYSDATE);
-
-
-
 //ユーザー
 
 
