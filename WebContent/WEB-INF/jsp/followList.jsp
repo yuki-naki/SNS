@@ -32,37 +32,50 @@
 				      <select class="form-control" name="department">
 				      	<option value="default" selected="selected">学科</option>
 				        <option value="a">情報処理科</option>
-				        <option value="b">建築科</option>
-				        <option value="c">バイオ科</option>
+				        <option value="b">インテリア科</option>
+				        <option value="c">Web動画クリエーター科</option>
+				        <option value="d">環境テクノロジー科</option>
+				        <option value="e">建築監督科</option>
+				        <option value="f">職員</option>
 				      </select>
 				    </div>
 					<div class="col-xs-4">
 						<form action="/action_page.php">
 						   <div class="input-group">
-						     <input type="text" class="form-control" placeholder="Search" name="search">
+						     <input type="text" class="form-control" placeholder="Search" name="search" id="test" onclick="change()">
 						     <div class="input-group-btn">
-						       <button class="btn btn-default" type="submit" style="height:34px;"><i class="glyphicon glyphicon-search"></i></button>
+						       <button class="btn btn-default" type="submit" style="height:34px;" disabled><i class="glyphicon glyphicon-search"></i></button>
 						     </div>
 						   </div>
 						</form>
 					</div>
 				</div>
 				<div>
-					<table border="0" class="table table-condensed" >
-						<c:forEach var="user" items="${result}">
-							<form method='post' action='removeFollow'>
-								<input type="hidden" name="removeTargetUserId" value="${user.userId}"	/>
-								<tr><td width="100" ><img src="img/image.jpg" id="icon" class="img-circle" alt="anoni"></td><td class="text-left">${user.username}</td><td width="100"><input type='submit' class="btn btn-danger " value='解除'></td></tr>
-							</form>
-						</c:forEach>
+					<table border="0" class="table table-condensed" id="test2">
+						<thead>
+							<tr>
+								<th></th>
+								<th></th>
+								<th></th>
+							</tr>
+						 </thead> 
+						 <tbody>
+							<c:forEach var="user" items="${result}">
+								<form method='post' action='removeFollow'>
+									<input type="hidden" name="removeTargetUserId" value="${user.userId}"	/>
+									<tr>
+										<td width="100" ><img src="img/image.jpg" id="icon" class="img-circle" alt="anoni"></td>
+										<td class="text-left">${user.username}</td><td width="100">
+										<input type='submit' class="btn btn-danger " value='解除'></td>
+									</tr>
+								</form>
+							</c:forEach>
+						</tbody>
 					</table>
 				</div>
 			</div>
 		</div>
 		<div align="center"><a href="getUnFollowList" class="btn btn-success">新しくお気に入りする</a></div>
-		<a href="getSelectGroupUserList">グループ作成テスト</a><br/>
-		<a href="getBelongGroupList">グループ削除テスト</a><br/>
-		<a href="getBelongGroupList">グループメンバー削除テスト</a>
     </div>
 
 	<script src="js/follow.js"></script>
