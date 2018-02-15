@@ -80,17 +80,10 @@ Chat.connect = (function(host) {
 	Chat.socket.onopen = function() {
 		// Console.selfMessage('Info: WebSocket connection opened.');
 		document.getElementById('comment').onkeydown = function(event) {
-			if (event.keyCode == 13) {
-				if(event.shiftKey){
-					var content = this.value;
-			        var caret = getCaret(this);
-			        this.value = content.substring(0, caret - 1) + "<br>" + content.substring(caret, content.length);
-			        event.stopPropagation();
-				}
-				else {
-					Chat.sendMessage();
-				}
-			}
+			 if (event.keyCode == 13 && !event.shiftKey){
+				 	event.preventDefault();
+				 	Chat.sendMessage();
+			    }
 		};
 		$("#reply_btn").on("click", function(event) {
 			Chat.sendMessage();
@@ -127,7 +120,10 @@ Chat.initialize = function() {
 
 Chat.sendMessage = (function() {
 	var message = document.getElementById('comment').value;
-	console.log(this.value);
+	console.log(message);
+	message = message.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+	message = "<pre>" + message.replace(/\n/g,"<br>") + "</pre>";
+	console.log(message);
 	if (message.trim() != "" && message != null) {
 		var JsonUser = $("#reply").attr("data-user");
 		var user = JSON.parse(JsonUser);

@@ -73,7 +73,7 @@
 						<i class="glyphicon glyphicon-picture" aria-hidden="true"></i>
 					</div>
 					<div class="col-xs-10 reply-main">
-						<textarea class="form-control" rows="1" id="comment"></textarea>
+						<textarea class="form-control" rows="1" id="comment" ${empty result[0] ? "disabled" : ""}></textarea>
 					</div>
 					<div class="col-xs-1 reply-send">
 						<i id="reply_btn" class="fa fa-send fa-2x" aria-hidden="true"></i>
