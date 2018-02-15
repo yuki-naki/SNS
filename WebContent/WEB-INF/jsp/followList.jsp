@@ -60,6 +60,9 @@
 			</div>
 		</div>
 		<div align="center"><a href="getUnFollowList" class="btn btn-success">新しくお気に入りする</a></div>
+		<a href="getSelectGroupUserList">グループ作成テスト</a><br/>
+		<a href="getBelongGroupList">グループ削除テスト</a><br/>
+		<a href="getBelongGroupList">グループメンバー削除テスト</a>
     </div>
 
 	<script src="js/follow.js"></script>
