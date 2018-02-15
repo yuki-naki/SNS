@@ -8,6 +8,7 @@ public class MyProfile implements Serializable {
 	private String schoolYear;
 	private String departmentName;
 	private String userIntroduction;
+	private String icon;
 
 	public void setUserName(String userName){
 		this.userName = userName;
@@ -35,5 +36,11 @@ public class MyProfile implements Serializable {
 	}
 	public String getUserIntroduction(){
 		return this.userIntroduction;
+	}
+	public void setIcon(String str){
+		this.icon = str;
+	}
+	public String getIcon(){
+		return this.icon;
 	}
 }
