@@ -20,7 +20,7 @@ public class OraUserDao implements UserDao {
 			cn = OracleConnectionManager.getInstance().getConnection();
 
 			String sql = "SELECT user_id,login_id, password, is_admin, username, user_icon, user_introduction, student_id, admission_year, d.department_name "
-					+ "FROM user_t u, department_t d WHERE login_id = ?' AND password = ? AND u.department_id=d.department_id";
+					+ "FROM user_t u, department_t d WHERE login_id = ? AND password = ? AND u.department_id=d.department_id";
 			st = cn.prepareStatement(sql);
 			st.setString(1, loginId);
 			st.setString(2, password);
