@@ -126,6 +126,10 @@
 							</form>
 						</c:forEach>
 					</div>
+
+					<div class="row sideBottom">
+						<input id="groupIcon" class="iconImage" type="image" src="img/group.png" />
+					</div>
 				</div>
 
 				<div class="side-two">
@@ -170,6 +174,9 @@
 								<hr>
 							</c:forEach>
 						</c:if>
+					</div>
+					<div class="row sideBottom">
+						<input class="iconImage" type="image" src="img/user.png" />
 					</div>
 				</div>
 			</div>

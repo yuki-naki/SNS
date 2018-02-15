@@ -189,6 +189,15 @@ html, body {
   vertical-align: baseline;
 }
 
+.sideBottom {
+	height:53px;
+	text-align:right;
+}
+
+.iconImage {
+	height: calc(100% - 1px);
+}
+
 .form-control-feedback{
 	pointer-events:auto !important;
 	cursor:pointer;
