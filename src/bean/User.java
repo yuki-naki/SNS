@@ -14,6 +14,17 @@ public class User implements Serializable {
 	private String userIntroduction;
 	private String studentId;
 	private String admissionYear;
+	//新しい追加 2018.2.15
+	private String departmentName;
+	
+	//新しい追加 2018.2.15
+	public String getDepartmentName(){
+		return departmentName;
+	}
+	//新しい追加 2018.2.15
+	public void  setDepartmentName(String departmentName){
+		this.departmentName = departmentName;
+	}
 
 	public String getUserId() {
 		return userId;

@@ -48,18 +48,11 @@ public class CreateGroupCommand extends AbstractCommand{
 
 		// chatページに遷移するための処理
 		String userString = rc.convertObjectToString(user);
-		String[] chatIdTab = rc.getParameter("chatId");
-		String chatId = null;
-		if(chatIdTab != null){
-			chatId = chatIdTab[0];
-		}
-
 		Map<String, Chat> chats = chatDao.getAllChats(userId);
-
 		OracleConnectionManager.getInstance().closeConnection();
 
 		Object[] array = new Object[3];
-		array[0] = chatId;
+		array[0] = groupId;
 		array[1] = chats;
 		array[2] = userString;
 

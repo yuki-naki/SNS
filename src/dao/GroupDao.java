@@ -7,5 +7,7 @@ import bean.Group;
 public interface GroupDao {
 	public Group getGroup(String groupId);
 	public String createGroup(Group group);
-	public ArrayList<String> getBelongGroups(String userId);
+	public void deleteGroup(String deleteTargetGroupId);
+	public ArrayList<Group> getBelongGroupList(String userId);
+	public ArrayList<String> getBelongGroupIdList(String userId);
 }

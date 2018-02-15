@@ -19,7 +19,8 @@ public class OraUserDao implements UserDao {
 		try{
 			cn = OracleConnectionManager.getInstance().getConnection();
 
-			String sql = "SELECT * FROM user_t WHERE login_id = ? AND password = ?";
+			String sql = "SELECT user_id,login_id, password, is_admin, username, user_icon, user_introduction, student_id, admission_year, d.department_name "
+					+ "FROM user_t u, department_t d WHERE login_id = ?' AND password = ? AND u.department_id=d.department_id";
 			st = cn.prepareStatement(sql);
 			st.setString(1, loginId);
 			st.setString(2, password);
@@ -35,6 +36,7 @@ public class OraUserDao implements UserDao {
 				String userIntroduction = rs.getString(7);
 				String studentId = rs.getString(8);
 				String admissionYear = rs.getString(9);
+				String departmentName = rs.getString(10);
 
 				user.setUserId(userId);
 				user.setLoginId(loginId);
@@ -52,6 +54,7 @@ public class OraUserDao implements UserDao {
 				user.setUserIntroduction(userIntroduction);
 				user.setStudentId(studentId);
 				user.setAdmissionYear(admissionYear);
+				user.setDepartmentName(departmentName);
 			}
 		}
 		catch(SQLException e){
