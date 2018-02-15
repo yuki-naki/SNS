@@ -195,7 +195,7 @@ html, body {
 }
 
 .iconImage {
-	height: calc(100% - 1px);
+	height: calc(100% - 2px);
 }
 
 .form-control-feedback{

@@ -25,8 +25,7 @@
 				<div class="row conversationHeading">
 					<div class="col-xs-12 heading-name">
 						<c:if test="${not empty result[0]}">
-							<a id="headingGroupname" class="heading-name-meta"
-								data-groupId="${result[0]}">${result[1][result[0]].groupName}</a>
+							<a id="headingGroupname" class="heading-name-meta" data-groupId="${result[0]}">${result[1][result[0]].groupName}</a>
 						</c:if>
 					</div>
 				</div>
@@ -36,8 +35,7 @@
 					<c:if test="${not empty result[0]}">
 						<c:forEach var="message" items="${result[1][result[0]].messages}">
 							<c:choose>
-								<c:when
-									test="${sessionScope.user.userId eq message.user.userId}">
+								<c:when test="${sessionScope.user.userId eq message.user.userId}">
 									<div class="row message-body">
 										<div class="col-xs-12 message-main-sender">
 											<div class="sender">
@@ -175,9 +173,11 @@
 							</c:forEach>
 						</c:if>
 					</div>
+
 					<div class="row sideBottom">
 						<input class="iconImage" type="image" src="img/user.png" />
 					</div>
+
 				</div>
 			</div>
 		</div>

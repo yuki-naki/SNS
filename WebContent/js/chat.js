@@ -23,12 +23,14 @@ function filterMember(){
 $(function() {
 	$("#membersListBtn").click(function() {
 		$(".side-two").css({"left" : "0"});
-		//$("#groupIcon").css({"display" : "none"});
+		$("#groupIcon").css({"display" : "none"});
 	});
 
 	$(".newMessage-back").click(function() {
 		$(".side-two").css({"left" : "100%"});
-		//$("#groupIcon").css({"display" : "inline"});
+		setTimeout(function(){
+			$("#groupIcon").css({"display" : "inline"});
+		}, 100);
 	});
 
 	$("#searchGroupTxtBox").change(function(){

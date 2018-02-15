@@ -80,7 +80,7 @@ INSERT INTO department_t VALUES (department_seq.nextVal,'インテリア科');
 INSERT INTO department_t VALUES (department_seq.nextVal,'Web動画クリエーター科');
 INSERT INTO department_t VALUES (department_seq.nextVal,'環境テクノロジー科');
 INSERT INTO department_t VALUES (department_seq.nextVal,'建築監督科');
-INSERT INTO department_t VALUES (department_seq.nextVal,'職員')
+INSERT INTO department_t VALUES (department_seq.nextVal,'職員');
 
 INSERT INTO user_t (user_id, login_id, password, is_admin, username, department_id) VALUES (user_seq.nextVal, 'Alex', 'Alex', 0, 'AL ABAYAJI ALEXANDRE', 1);
 INSERT INTO user_t (user_id, login_id, password, is_admin, username, department_id) VALUES (user_seq.nextVal, 'Idei', 'Idei', 0, '出井郁実',1);
@@ -147,15 +147,5 @@ Web動画クリエーター科　3
 職員 6
 
 */
-
-
-
-
-
-
-
-
-
-
 
 commit;

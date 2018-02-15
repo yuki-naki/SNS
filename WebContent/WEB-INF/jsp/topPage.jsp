@@ -53,7 +53,6 @@
 		</c:forEach>
 	</div>
 	<br>
-	<img name="icon" class="img-circle" src="loadIcon?userId=1" id="icon">
 	<script src="js/topPage.js"></script>
 </body>
 </html>
