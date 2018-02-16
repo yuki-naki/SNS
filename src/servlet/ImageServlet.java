@@ -26,6 +26,7 @@ public class ImageServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		System.out.println("ImageServletStart");
 		OraUserDao dao = new OraUserDao();
 		User user = dao.getUserByUserIcon(request.getParameter("userId"));
 

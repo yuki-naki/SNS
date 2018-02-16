@@ -2,9 +2,6 @@ package command;
 
 import java.util.ArrayList;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
 import bean.User;
 import context.RequestContext;
 import context.ResponseContext;
@@ -21,8 +18,6 @@ public class MyPageCommand extends AbstractCommand{
 		ArrayList list = null;
 
 		User user = (User)rc.getSessionObject("user");
-
-
 
 
 

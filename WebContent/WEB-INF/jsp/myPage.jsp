@@ -1,6 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -19,8 +18,9 @@
 		<div class="row justify-content-center">
 			<div class="col-sm-8 col-sm-offset-2" id="profile">
 				<form method="post" action="IconTestServlet" enctype="multipart/form-data">
+				<c:forEach var="result" items="${result}">
 						<div class="col">
-						<c:forEach var="result" items="${result}">
+
 							<h1>MyProfile</h1>
 						</div>
 						<div class="col-sm-3 col-sm-offset-1 content-center" id="iconwrap">
@@ -28,8 +28,8 @@
 						</div>
 						<div class="col-sm-5 col-sm-offset-2">
 
-							<h3>名前:${result.userName }</h3>
-							<h3>学年:${result.schoolYear }年</h3>
+							<h3>名前:${result.username }</h3>
+							<h3>学年:${result.admissionYear}年</h3>
 							<h3>学科:${result.departmentName }</h3>
 						</div>
 						<div class="col-sm-12">
@@ -42,9 +42,7 @@
 							<a href="myPageSetup"><button type="submit" class="btn btn-success btn-md" >保存</button></a>
 
 						</div>
-						</c:forEach>
-
-
+					</c:forEach>
 				</form>
 			</div>
 		</div>
