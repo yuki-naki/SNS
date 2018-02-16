@@ -33,8 +33,11 @@
 						<select class="form-control" name="department">
 							<option value="default" selected="selected">学科</option>
 							<option value="a">情報処理科</option>
-							<option value="b">建築科</option>
-							<option value="c">バイオ科</option>
+					        <option value="b">インテリア科</option>
+					        <option value="c">Web動画クリエーター科</option>
+					        <option value="d">環境テクノロジー科</option>
+					        <option value="e">建築監督科</option>
+					        <option value="f">職員</option>
 						</select>
 					</div>
 					<div class="col-xs-4">
