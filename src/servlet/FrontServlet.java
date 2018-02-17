@@ -24,17 +24,19 @@ public class FrontServlet extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 
 		if(req.getRequestedSessionId() != null && !req.isRequestedSessionIdValid()){
+			req.setAttribute("sessionTimeout", true);
 			RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/index.jsp");
 			dispatcher.forward(req, resp);
 		}
+		else {
+			ApplicationController app = new WebApplicationController();
 
-		ApplicationController app = new WebApplicationController();
+			RequestContext reqc = app.getRequest(req);
+			ResponseContext resc = app.handleRequest(reqc);
 
-		RequestContext reqc = app.getRequest(req);
-		ResponseContext resc = app.handleRequest(reqc);
+			resc.setResponse(resp);
 
-		resc.setResponse(resp);
-
-		app.handleResponse(reqc, resc);
+			app.handleResponse(reqc, resc);
+		}
 	}
 }

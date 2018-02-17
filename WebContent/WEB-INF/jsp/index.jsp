@@ -18,6 +18,11 @@
 			<div id="headerContent" class="col-xs-10 column">専門学校東京テクニカルカレッジ</div>
 			<div class="col-xs-1 column"></div>
 		</div>
+		<c:if test="${requestScope.sessionTimeout}">
+			<div class="alert alert-warning">
+				<strong>Session Timeout</strong>
+			</div>
+		</c:if>
 		<div class="row">
 			<div class="col-xs-1 column"></div>
 
