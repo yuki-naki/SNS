@@ -290,7 +290,7 @@ hr {
   padding: 0 !important;
   margin: 0 !important;
   overflow-y: auto;
-  height: calc(100% - 54px);
+  height: calc(100% - 79px);
 }
 .message-group {
   padding: 0 !important;

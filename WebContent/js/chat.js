@@ -78,17 +78,10 @@ Chat.connect = (function(host) {
 	}
 
 	Chat.socket.onopen = function() {
-		var offset = document.getElementById('comment').offsetHeight - document.getElementById('comment').clientHeight;
 		document.getElementById('comment').onkeydown = function(event) {
-			var offset = document.getElementById('comment').offsetHeight - document.getElementById('comment').clientHeight;
-			console.log("offsetHeight"+document.getElementById('comment').offsetHeight);
-			console.log("clientHeight"+document.getElementById('comment').clientHeight);
 			if(event.keyCode == 13 && !event.shiftKey){
 				event.preventDefault();
 				Chat.sendMessage();
-			}
-			else if((event.keyCode == 13 && event.shiftKey) || event.keyCode == 8){
-				//$('#comment').css('height', 'auto').css('height', document.getElementById('comment').scrollHeight + 2);
 			}
 		};
 		$("#reply_btn").on("click", function(event) {
