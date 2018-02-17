@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bean.User;
 import dao.OraUserDao;
 
 @MultipartConfig(maxFileSize=1000000000)
@@ -26,11 +25,9 @@ public class ImageServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		System.out.println("ImageServletStart");
-		OraUserDao dao = new OraUserDao();
-		User user = dao.getUserByUserIcon(request.getParameter("userId"));
+		OraUserDao userDao = new OraUserDao();
 
-		Blob imageToReturn = user.getIcon();
+		Blob imageToReturn = userDao.getIcon(request.getParameter("userId"));
 		// query your DB (or other data source) to get a blob representation of your image
 		// Set content type
 		response.setContentType("image/png");
@@ -49,7 +46,6 @@ public class ImageServlet extends HttpServlet {
 			while ((count = in.read(buf)) >= 0) {
 				out.write(buf, 0, count);
 			}
-		long end = System.currentTimeMillis();
 		} catch (SQLException e) {
 			// do something useful when reading image from DB fails
 		} finally {

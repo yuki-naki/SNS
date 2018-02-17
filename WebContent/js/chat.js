@@ -184,7 +184,7 @@ Console.receiveMessage = (function(jsonMessage) {
 	var div_avatar = document.createElement('div');
 	div_avatar.className = 'avatar-icon';
 	var img = document.createElement('img');
-	img.setAttribute("src","https://bootdey.com/img/Content/avatar/avatar2.png");
+	img.setAttribute("src","loadIcon?userId="+jsonMessage.user.userId);
 	div_avatar.appendChild(img);
 	var div_body_avatar = document.createElement('div');
 	div_body_avatar.className = "col-xs-1 messageBody-avatar";

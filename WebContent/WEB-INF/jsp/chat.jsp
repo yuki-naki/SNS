@@ -49,7 +49,7 @@
 									<div class="row message-body">
 										<div class="col-xs-1 messageBody-avatar">
 											<div class="avatar-icon">
-												<img src="https://bootdey.com/img/Content/avatar/avatar2.png">
+												<img src="loadIcon?userId=${message.user.userId}">
 											</div>
 										</div>
 										<div class="col-xs-11 message-main-receiver">
@@ -155,7 +155,7 @@
 								<div class="row sideBar-body member">
 									<div class="col-xs-1 sideBar-avatar">
 										<div class="avatar-icon">
-											<img src="https://bootdey.com/img/Content/avatar/avatar4.png">
+											<img src="loadIcon?userId=${user.userId}">
 										</div>
 									</div>
 									<div class="col-xs-11 sideBar-main">

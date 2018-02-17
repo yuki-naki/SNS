@@ -50,7 +50,7 @@ public class OraChatDao implements ChatDao {
 				chat.setGroupName(groupName);
 				chat.setGroupIcon(groupIcon);
 
-				sql = "SELECT gm.user_id, u.username, u.user_icon FROM group_t g, groupmember_t gm, user_t u"
+				sql = "SELECT gm.user_id, u.username FROM group_t g, groupmember_t gm, user_t u"
 						+ " WHERE g.group_id = gm.group_id AND gm.user_id = u.user_id AND g.group_id = ?";
 				stUser = cn.prepareStatement(sql);
 				stUser.setString(1, groupId);
@@ -62,11 +62,9 @@ public class OraChatDao implements ChatDao {
 					User user = new User();
 					String userId = rsUser.getString(1);
 					String username = rsUser.getString(2);
-					Blob icon = rsUser.getBlob(3);
 
 					user.setUserId(userId);
 					user.setUsername(username);
-					user.setIcon(icon);
 
 					users.add(user);
 				}
@@ -91,7 +89,7 @@ public class OraChatDao implements ChatDao {
 					String chatContent = rsMessage.getString(3);
 					String chatDate = rsMessage.getString(4);
 
-					sql = "SELECT user_id, username, user_icon FROM user_t WHERE user_id = ?";
+					sql = "SELECT username FROM user_t WHERE user_id = ?";
 					stMsgUser = cn.prepareStatement(sql);
 					stMsgUser.setString(1, chatUserId);
 
@@ -100,13 +98,10 @@ public class OraChatDao implements ChatDao {
 					if(rsMsgUser.next()){
 						User user = new User();
 
-						String userId = rsMsgUser.getString(1);
-						String username = rsMsgUser.getString(2);
-						Blob icon = rsMsgUser.getBlob(3);
+						String username = rsMsgUser.getString(1);
 
-						user.setUserId(userId);
+						user.setUserId(chatUserId);
 						user.setUsername(username);
-						user.setIcon(icon);
 
 						message.setUser(user);
 					}

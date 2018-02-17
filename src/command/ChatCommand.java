@@ -8,7 +8,6 @@ import context.RequestContext;
 import context.ResponseContext;
 import dao.AbstractDaoFactory;
 import dao.ChatDao;
-import dao.OracleConnectionManager;
 
 public class ChatCommand extends AbstractCommand {
 
@@ -31,7 +30,7 @@ public class ChatCommand extends AbstractCommand {
 
 		Map<String, Chat> chats = chatDao.getAllChats(sessionUserId);
 
-		OracleConnectionManager.getInstance().closeConnection();
+		//OracleConnectionManager.getInstance().closeConnection();
 
 		Object[] array = new Object[3];
 		array[0] = chatId;
