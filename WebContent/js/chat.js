@@ -78,12 +78,18 @@ Chat.connect = (function(host) {
 	}
 
 	Chat.socket.onopen = function() {
-		// Console.selfMessage('Info: WebSocket connection opened.');
+		var offset = document.getElementById('comment').offsetHeight - document.getElementById('comment').clientHeight;
 		document.getElementById('comment').onkeydown = function(event) {
-			 if (event.keyCode == 13 && !event.shiftKey){
-				 	event.preventDefault();
-				 	Chat.sendMessage();
-			    }
+			var offset = document.getElementById('comment').offsetHeight - document.getElementById('comment').clientHeight;
+			console.log("offsetHeight"+document.getElementById('comment').offsetHeight);
+			console.log("clientHeight"+document.getElementById('comment').clientHeight);
+			if(event.keyCode == 13 && !event.shiftKey){
+				event.preventDefault();
+				Chat.sendMessage();
+			}
+			else if((event.keyCode == 13 && event.shiftKey) || event.keyCode == 8){
+				//$('#comment').css('height', 'auto').css('height', document.getElementById('comment').scrollHeight + 2);
+			}
 		};
 		$("#reply_btn").on("click", function(event) {
 			Chat.sendMessage();
@@ -120,11 +126,9 @@ Chat.initialize = function() {
 
 Chat.sendMessage = (function() {
 	var message = document.getElementById('comment').value;
-	console.log(message);
-	message = message.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
-	message = "<pre>" + message.replace(/\n/g,"<br>") + "</pre>";
-	console.log(message);
 	if (message.trim() != "" && message != null) {
+		message = message.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+		message = "<pre>" + message.replace(/\n/g,"<br>") + "</pre>";
 		var JsonUser = $("#reply").attr("data-user");
 		var user = JSON.parse(JsonUser);
 		const JsonMessage = {"content":message,"user":user};
