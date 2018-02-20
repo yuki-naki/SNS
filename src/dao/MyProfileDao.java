@@ -17,25 +17,19 @@ public class MyProfileDao{
 		PreparedStatement st = null;
 		ResultSet rs = null;
 		Connection cn = null;
-		ArrayList list = new ArrayList();
 		User user = u;
 
 		try{
 			cn = OracleConnectionManager.getInstance().getConnection();
 
-			String sql = "Update user_t Set user_introduction = ?  where user_id = ?";
+			String sql = "Update user_t Set user_introduction = ? where user_id = ?";
 
 			st = cn.prepareStatement(sql);
 
 			st.setString(1, user.getUserIntroduction());
-			//st.setBlob(2, user.getIcon());
 			st.setString(2, user.getUserId());
+
 			st.executeUpdate();
-
-
-
-
-
 		}
 		catch(SQLException e){
 			e.printStackTrace();
@@ -53,7 +47,6 @@ public class MyProfileDao{
 				e.printStackTrace();
 			}
 		}
-
 	}
 
 	public void iconUpdate(InputStream input,long inputsize,String id){
@@ -110,7 +103,7 @@ public class MyProfileDao{
 		try{
 			cn = OracleConnectionManager.getInstance().getConnection();
 
-			String sql = " select t1.user_Id, t1.username,TO_CHAR(sysdate,'YYYY') - t1.admission_year  + case when (TO_CHAR(sysdate,'MMDD')<TO_CHAR(0331)) AND (TO_CHAR(sysdate,'MMDD')<TO_CHAR(0101)) then 0 else 1 end,t2.department_name ,t1.user_introduction,t1.user_icon from user_t t1,department_t t2 where t1.department_id = t2.department_id and t1.user_id = "+userId;
+			String sql = " select t1.user_Id, t1.username,TO_CHAR(sysdate,'YYYY') - t1.admission_year  + case when (TO_CHAR(sysdate,'MMDD')<TO_CHAR(0331)) AND (TO_CHAR(sysdate,'MMDD')<TO_CHAR(0101)) then 0 else 1 end,t2.department_name ,t1.user_introduction from user_t t1,department_t t2 where t1.department_id = t2.department_id and t1.user_id = "+userId;
 
 			st = cn.prepareStatement(sql);
 
@@ -122,7 +115,6 @@ public class MyProfileDao{
 			bean.setAdmissionYear(rs.getString(3));
 			bean.setDepartmentName(rs.getString(4));
 			bean.setUserIntroduction(rs.getString(5));
-			bean.setIcon(rs.getBlob(6));
 			//byte[] imgData = rs.getBytes(5);
  //           request.setAttribute("rvi", "Ravinath");
  //           rs.getString("teatitle");

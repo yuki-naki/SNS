@@ -19,7 +19,7 @@ public class OraUserDao implements UserDao {
 		try{
 			cn = OracleConnectionManager.getInstance().getConnection();
 
-			String sql = "SELECT user_id,login_id, password, is_admin, username, user_icon, user_introduction, student_id, admission_year, d.department_name "
+			String sql = "SELECT user_id,login_id, password, is_admin, username, user_introduction, student_id, admission_year, d.department_name "
 					+ "FROM user_t u, department_t d WHERE login_id = ? AND password = ? AND u.department_id=d.department_id";
 			st = cn.prepareStatement(sql);
 			st.setString(1, loginId);
@@ -32,11 +32,10 @@ public class OraUserDao implements UserDao {
 				String userId = rs.getString(1);
 				int isAdmin = rs.getInt(4);
 				String username = rs.getString(5);
-				Blob icon = rs.getBlob(6);
-				String userIntroduction = rs.getString(7);
-				String studentId = rs.getString(8);
-				String admissionYear = rs.getString(9);
-				String departmentName = rs.getString(10);
+				String userIntroduction = rs.getString(6);
+				String studentId = rs.getString(7);
+				String admissionYear = rs.getString(8);
+				String departmentName = rs.getString(9);
 
 				user.setUserId(userId);
 				user.setLoginId(loginId);
@@ -50,7 +49,6 @@ public class OraUserDao implements UserDao {
 				}
 
 				user.setUsername(username);
-				user.setIcon(icon);
 				user.setUserIntroduction(userIntroduction);
 				user.setStudentId(studentId);
 				user.setAdmissionYear(admissionYear);
@@ -114,23 +112,22 @@ public class OraUserDao implements UserDao {
 		return user;
 	}
 
-	public User getUserByUserIcon(String userId){
+	public Blob getIcon(String userId){
 		PreparedStatement st = null;
 		ResultSet rs = null;
 		Connection cn = null;
-		User user = new User();
-
+		Blob blob = null;
 		try{
 			cn = OracleConnectionManager.getInstance().getConnection();
 
-			String sql = "select user_icon from user_t where user_id = ?";
+			String sql = "SELECT user_icon FROM user_t WHERE user_id = ?";
 			st = cn.prepareStatement(sql);
 			st.setString(1, userId);
 
 			rs = st.executeQuery();
 
 			rs.next();
-			user.setIcon(rs.getBlob(1));
+			blob = rs.getBlob(1);
 		}
 		catch(SQLException e){
 			e.printStackTrace();
@@ -148,6 +145,6 @@ public class OraUserDao implements UserDao {
 				e.printStackTrace();
 			}
 		}
-		return user;
+		return blob;
 	}
 }

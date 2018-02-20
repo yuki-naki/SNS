@@ -18,10 +18,7 @@ public class OraChatDao implements ChatDao {
 
 	public Map getAllChats(String sessionUserId) {
 
-		PreparedStatement stGroup = null;
-		PreparedStatement stUser = null;
-		PreparedStatement stMessage = null;
-		PreparedStatement stMsgUser = null;
+		PreparedStatement st = null;
 		ResultSet rsGroup = null;
 		ResultSet rsUser = null;
 		ResultSet rsMessage = null;
@@ -34,10 +31,10 @@ public class OraChatDao implements ChatDao {
 
 			String sql = "SELECT g.group_id, g.group_name, g.group_icon FROM group_t g, groupmember_t gm "
 					+ "WHERE g.group_id = gm.group_id AND gm.user_id = ?";
-			stGroup = cn.prepareStatement(sql);
-			stGroup.setString(1, sessionUserId);
+			st = cn.prepareStatement(sql);
+			st.setString(1, sessionUserId);
 
-			rsGroup = stGroup.executeQuery();
+			rsGroup = st.executeQuery();
 
 			while(rsGroup.next()){
 				Chat chat = new Chat();
@@ -50,23 +47,21 @@ public class OraChatDao implements ChatDao {
 				chat.setGroupName(groupName);
 				chat.setGroupIcon(groupIcon);
 
-				sql = "SELECT gm.user_id, u.username, u.user_icon FROM group_t g, groupmember_t gm, user_t u"
+				sql = "SELECT gm.user_id, u.username FROM group_t g, groupmember_t gm, user_t u"
 						+ " WHERE g.group_id = gm.group_id AND gm.user_id = u.user_id AND g.group_id = ?";
-				stUser = cn.prepareStatement(sql);
-				stUser.setString(1, groupId);
+				st = cn.prepareStatement(sql);
+				st.setString(1, groupId);
 
-				rsUser = stUser.executeQuery();
+				rsUser = st.executeQuery();
 
 				List<User> users = new ArrayList<User>();
 				while(rsUser.next()){
 					User user = new User();
 					String userId = rsUser.getString(1);
 					String username = rsUser.getString(2);
-					Blob icon = rsUser.getBlob(3);
 
 					user.setUserId(userId);
 					user.setUsername(username);
-					user.setIcon(icon);
 
 					users.add(user);
 				}
@@ -77,10 +72,10 @@ public class OraChatDao implements ChatDao {
 						+ " groupmember_t gm, chat_t c WHERE gm.group_id = c.chat_group_id AND gm.user_id = c.chat_user_id AND c.chat_group_id = ?"
 						+ " ORDER BY c.chat_date";
 
-				stMessage = cn.prepareStatement(sql);
-				stMessage.setString(1, groupId);
+				st = cn.prepareStatement(sql);
+				st.setString(1, groupId);
 
-				rsMessage = stMessage.executeQuery();
+				rsMessage = st.executeQuery();
 
 				List<Message> messages = new ArrayList<Message>();
 				while(rsMessage.next()){
@@ -91,22 +86,19 @@ public class OraChatDao implements ChatDao {
 					String chatContent = rsMessage.getString(3);
 					String chatDate = rsMessage.getString(4);
 
-					sql = "SELECT user_id, username, user_icon FROM user_t WHERE user_id = ?";
-					stMsgUser = cn.prepareStatement(sql);
-					stMsgUser.setString(1, chatUserId);
+					sql = "SELECT username FROM user_t WHERE user_id = ?";
+					st = cn.prepareStatement(sql);
+					st.setString(1, chatUserId);
 
-					rsMsgUser = stMsgUser.executeQuery();
+					rsMsgUser = st.executeQuery();
 
 					if(rsMsgUser.next()){
 						User user = new User();
 
-						String userId = rsMsgUser.getString(1);
-						String username = rsMsgUser.getString(2);
-						Blob icon = rsMsgUser.getBlob(3);
+						String username = rsMsgUser.getString(1);
 
-						user.setUserId(userId);
+						user.setUserId(chatUserId);
 						user.setUsername(username);
-						user.setIcon(icon);
 
 						message.setUser(user);
 					}
@@ -140,17 +132,8 @@ public class OraChatDao implements ChatDao {
 				if(rsMsgUser != null){
 					rsGroup.close();
 				}
-				if(stGroup != null){
-					stGroup.close();
-				}
-				if(stUser != null){
-					stGroup.close();
-				}
-				if(stMessage != null){
-					stGroup.close();
-				}
-				if(stMsgUser != null){
-					stGroup.close();
+				if(st != null){
+					st.close();
 				}
 			}
 			catch(SQLException e){

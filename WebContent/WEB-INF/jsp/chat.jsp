@@ -49,7 +49,7 @@
 									<div class="row message-body">
 										<div class="col-xs-1 messageBody-avatar">
 											<div class="avatar-icon">
-												<img src="https://bootdey.com/img/Content/avatar/avatar2.png">
+												<img src="loadIcon?userId=${message.user.userId}">
 											</div>
 										</div>
 										<div class="col-xs-11 message-main-receiver">
@@ -71,7 +71,7 @@
 						<i class="glyphicon glyphicon-picture" aria-hidden="true"></i>
 					</div>
 					<div class="col-xs-10 reply-main">
-						<textarea class="form-control" rows="1" id="comment" ${empty result[0] ? "disabled" : ""}></textarea>
+						<textarea class="form-control" id="comment" ${empty result[0] ? "disabled" : ""}></textarea>
 					</div>
 					<div class="col-xs-1 reply-send">
 						<i id="reply_btn" class="fa fa-send fa-2x" aria-hidden="true"></i>
@@ -155,7 +155,7 @@
 								<div class="row sideBar-body member">
 									<div class="col-xs-1 sideBar-avatar">
 										<div class="avatar-icon">
-											<img src="https://bootdey.com/img/Content/avatar/avatar4.png">
+											<img src="loadIcon?userId=${user.userId}">
 										</div>
 									</div>
 									<div class="col-xs-11 sideBar-main">

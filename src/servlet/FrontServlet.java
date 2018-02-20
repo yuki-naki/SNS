@@ -2,6 +2,7 @@ package servlet;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -22,13 +23,20 @@ public class FrontServlet extends HttpServlet {
 
 		req.setCharacterEncoding("UTF-8");
 
-		ApplicationController app = new WebApplicationController();
+		if(req.getRequestedSessionId() != null && !req.isRequestedSessionIdValid()){
+			req.setAttribute("sessionTimeout", true);
+			RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/index.jsp");
+			dispatcher.forward(req, resp);
+		}
+		else {
+			ApplicationController app = new WebApplicationController();
 
-		RequestContext reqc = app.getRequest(req);
-		ResponseContext resc = app.handleRequest(reqc);
+			RequestContext reqc = app.getRequest(req);
+			ResponseContext resc = app.handleRequest(reqc);
 
-		resc.setResponse(resp);
+			resc.setResponse(resp);
 
-		app.handleResponse(reqc, resc);
+			app.handleResponse(reqc, resc);
+		}
 	}
 }
