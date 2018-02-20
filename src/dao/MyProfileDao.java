@@ -23,14 +23,13 @@ public class MyProfileDao{
 		try{
 			cn = OracleConnectionManager.getInstance().getConnection();
 
-			String sql = "Update user_t Set user_introduction = ? ,user_icon = ? where user_id = ?";
+			String sql = "Update user_t Set user_introduction = ?  where user_id = ?";
 
 			st = cn.prepareStatement(sql);
 
 			st.setString(1, user.getUserIntroduction());
-			st.setBlob(2, user.getIcon());
-			st.setString(3, user.getUserId());
-
+			//st.setBlob(2, user.getIcon());
+			st.setString(2, user.getUserId());
 			st.executeUpdate();
 
 

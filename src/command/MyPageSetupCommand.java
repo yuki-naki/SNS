@@ -6,7 +6,6 @@ import bean.User;
 import context.RequestContext;
 import context.ResponseContext;
 import dao.MyProfileDao;
-import dao.OraUserDao;
 
 public class MyPageSetupCommand extends AbstractCommand{
 
@@ -19,13 +18,13 @@ public class MyPageSetupCommand extends AbstractCommand{
 		String user_introduction = rc.getParameter("comment")[0];
 
 		User user = (User)rc.getSessionObject("user");
-		User user2 = null;
+		//User user2 = null;
 
 		MyProfileDao dao = new MyProfileDao();
-		OraUserDao udao = new OraUserDao();
-		user2 = udao.getUserByUserIcon(user.getUserId());
+		//OraUserDao udao = new OraUserDao();
+		//user2 = udao.getUserByUserIcon(user.getUserId());
 
-		user.setIcon(user2.getIcon());
+		//user.setIcon(user2.getIcon());
 		user.setUserIntroduction(user_introduction);
 
 

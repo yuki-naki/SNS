@@ -9,6 +9,26 @@
 <link rel="stylesheet" href="css/myPage.css">
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
+<script>
+	$(function(){
+		$("#config").click(function(){
+			$('#comment').attr('readonly',false);
+			$('#config').attr("disabled",true);
+			$('#save').attr("disabled",false);
+			$('#icon').css('cursor','pointer');
+			$('#upload').attr("disabled",false);
+
+			$('#icon').css('opacity',0.5);
+
+		});
+	})
+
+	$(function(){
+		$('#icon').click(function(){
+			document.getElementById("upload").click();
+		});
+	})
+</script>
 <title>MyProfile</title>
 </head>
 <body>
@@ -37,9 +57,9 @@
 								<textarea name="comment" class="form-control" rows="8" id="comment" readonly>${result.userIntroduction}</textarea>
 						</div>
 						<div class="col-sm-12 text-right">
-							<input type="file" id="upload" name="iconimg">
+							<input type="file" id="upload" name="iconimg" disabled="true">
 							<button type="button" class="btn btn-success btn-md" id="config" >編集</button>
-							<a href="myPageSetup"><button type="submit" class="btn btn-success btn-md" >保存</button></a>
+							<a href="myPageSetup"><button type="submit" id="save" class="btn btn-success btn-md" disabled="true">保存</button></a>
 
 						</div>
 					</c:forEach>
