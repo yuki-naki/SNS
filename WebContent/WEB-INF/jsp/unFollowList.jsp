@@ -6,8 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"
-	type="text/css">
+<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" type="text/css">
 <link rel="stylesheet" href="css/followList.css">
 <script src="js/jquery.min.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
@@ -41,17 +40,14 @@
 				      </select>
 					</div>
 					<div class="col-xs-4">
-						<form action="/action_page.php">
-							<div class="input-group">
-								<input type="text" class="form-control" placeholder="Search" name="search">
-								<div class="input-group-btn">
-									<button class="btn btn-default" type="submit"
-										style="height: 34px;">
-										<i class="glyphicon glyphicon-search"></i>
-									</button>
-								</div>
+						<div class="input-group">
+							<input type="text" class="form-control" placeholder="Search" name="search">
+							<div class="input-group-btn">
+								<button class="btn btn-default" type="submit" style="height: 34px;">
+									<i class="glyphicon glyphicon-search"></i>
+								</button>
 							</div>
-						</form>
+						</div>
 					</div>
 				</div>
 				<div>
@@ -69,9 +65,9 @@
 							<form method='post' action='follow'>
 								<input type="hidden" name="userId" value="${user.userId}" />
 								<tr>
-									<td width="100" ><img src="img/image.jpg" id="icon" class="img-circle" alt="anoni"></td><!-- 0番目 -->
+									<td width="100"><img src="loadIcon?userId=${user.userId}" id="icon" class="img-circle" alt="icon"></td><!-- 0番目 -->
 									<td class="text-left">${user.username}</td><!-- １番目 -->
-									<td class="text-left">${user.admissionYear}年生</td><!-- ２番目 -->
+									<td class="text-left"><c:if test="${user.departmentName != '職員'}">${user.admissionYear}年生</c:if></td><!-- ２番目 -->
 									<td class="text-left">${user.departmentName}</td><!-- ３番目 -->
 									<td><input type='submit' class="btn btn-info" value='follow'></td>
 								</tr>
@@ -87,7 +83,7 @@
 	<div align="center">
 		<a href="getFollowList" class="btn btn-success">お気に入り 一覧</a>
 	</div>
-	
+
 	<script src="js/follow.js"></script>
 </body>
 </html>
