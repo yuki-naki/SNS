@@ -20,23 +20,6 @@ function filterMember(){
 	});
 }
 
-function getCaret(el) {
-    if (el.selectionStart) {
-        return el.selectionStart;
-    } else if (document.selection) {
-        el.focus();
-        var r = document.selection.createRange();
-        if (r == null) {
-            return 0;
-        }
-        var re = el.createTextRange(), rc = re.duplicate();
-        re.moveToBookmark(r.getBookmark());
-        rc.setEndPoint('EndToStart', re);
-        return rc.text.length;
-    }
-    return 0;
-}
-
 $(function() {
 	$("#membersListBtn").click(function() {
 		$(".side-two").css({
@@ -97,20 +80,10 @@ Chat.connect = (function(host) {
 	Chat.socket.onopen = function() {
 		// Console.selfMessage('Info: WebSocket connection opened.');
 		document.getElementById('comment').onkeydown = function(event) {
-			if (event.keyCode == 13) {
-				if(event.shiftKey){
-					var content = this.value;
-			        //var caret = getCaret(this);
-					var caret = $('#comment').prop("selectionStart");
-					console.log(content.substring(0, caret));
-					console.log(content.substring(caret, content.length));
-			        this.value = content.substring(0, caret) + "\n" + content.substring(caret, content.length);
-			        event.stopPropagation();
-				}
-				else {
-					Chat.sendMessage();
-				}
-			}
+			 if (event.keyCode == 13 && !event.shiftKey){
+				 	event.preventDefault();
+				 	Chat.sendMessage();
+			    }
 		};
 		$("#reply_btn").on("click", function(event) {
 			Chat.sendMessage();
