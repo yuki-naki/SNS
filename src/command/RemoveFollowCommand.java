@@ -1,33 +1,37 @@
 package command;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
+import java.util.List;
 
 import bean.User;
 import context.RequestContext;
 import context.ResponseContext;
 import dao.AbstractDaoFactory;
 import dao.FollowDao;
+import dao.UserDao;
 
 public class RemoveFollowCommand extends AbstractCommand{
 	public ResponseContext execute(ResponseContext responseContext){
-
 		RequestContext rc = getRequestContext();
-		HttpServletRequest request = (HttpServletRequest)rc.getRequest();
-		HttpSession session = request.getSession();
-		User user = (User)session.getAttribute("user");
-		String userId = user.getUserId();
+
+		//SessionからUser情報取得
+		User loginUser = (User)rc.getSessionObject("user");
+		String loginUserId = loginUser.getUserId();
 
 		//フォロー解除対象のユーザーIDを取得
 		String removeTargetUserId = rc.getParameter("removeTargetUserId")[0];
 
 		//dao取得
 		AbstractDaoFactory factory = AbstractDaoFactory.getFactory();
-		FollowDao FollowDao = factory.getFollowDao();
+		FollowDao followDao = factory.getFollowDao();
+		UserDao userDao = factory.getUserDao();
 
-		FollowDao.removeFollow(userId, removeTargetUserId);
+		followDao.removeFollow(loginUserId, removeTargetUserId);
+
+		List<String> followIdList = followDao.getFollowIdList(loginUserId);
+		List<User> followList = userDao.getUserList(followIdList);
+
 		responseContext.setTarget("followList");
-		responseContext.setResult((Object)FollowDao.getFollowList(userId));
+		responseContext.setResult(followList);
 		return responseContext;
 	}
 }

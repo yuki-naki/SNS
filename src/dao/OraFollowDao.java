@@ -7,8 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import bean.User;
-
 public class OraFollowDao implements FollowDao{
 	public void follow(String followerUserId, String followedUserId){
 		PreparedStatement st = null;
@@ -76,32 +74,27 @@ public class OraFollowDao implements FollowDao{
 		}
 	}
 
-	public List getFollowList(String followerUserId){
+	public List<String> getFollowIdList(String followerUserId){
 		PreparedStatement st = null;
 		ResultSet rs = null;
 
-		ArrayList followUsers = new ArrayList();
+		ArrayList<String> followUserIdList = new ArrayList<String>();
 
 		try
 		{
 			Connection cn = null;
 			cn = OracleConnectionManager.getInstance().getConnection();
 
-			String sql = "SELECT user_id, username FROM user_t WHERE user_id IN "
-					+"(SELECT followed_user_id FROM follow_t WHERE follower_user_id = '" + followerUserId + "')";
+			String sql = "SELECT followed_user_id FROM follow_t WHERE follower_user_id = ?";
 
 			st = cn.prepareStatement(sql);
+			st.setString(1, followerUserId);
 
 			rs = st.executeQuery();
 
 			while(rs.next())
 			{
-				User user = new User();
-
-				user.setUserId(rs.getString(1));
-				user.setUsername(rs.getString(2));
-
-				followUsers.add(user);
+				followUserIdList.add(rs.getString(1));
 			}
 
 			cn.commit();
@@ -128,34 +121,31 @@ public class OraFollowDao implements FollowDao{
 				e.printStackTrace();
 			}
 		}
-		return followUsers;
+		return followUserIdList;
 	}
 
-	public List getUnFollowList(String followerUserId){
+	public List<String> getUnFollowIdList(String followerUserId){
 		PreparedStatement st = null;
 		ResultSet rs = null;
 
-		ArrayList unFollowUsers = new ArrayList();
+		List<String> unFollowUserIdList = new ArrayList<String>();
 
 		try
 		{
 			Connection cn = null;
 			cn = OracleConnectionManager.getInstance().getConnection();
-			String sql = "SELECT user_id, username FROM user_t WHERE user_id NOT IN "
-						+"(SELECT followed_user_id FROM follow_t WHERE follower_user_id = '" + followerUserId + "') AND user_id != '" + followerUserId + "'";
+			String sql = "SELECT user_id FROM user_t WHERE user_id NOT IN "
+						+"(SELECT followed_user_id FROM follow_t WHERE follower_user_id = ?) AND user_id != ?";
 
 			st = cn.prepareStatement(sql);
+			st.setString(1, followerUserId);
+			st.setString(2, followerUserId);
 
 			rs = st.executeQuery();
 
 			while(rs.next())
 			{
-				User user = new User();
-
-				user.setUserId(rs.getString(1));
-				user.setUsername(rs.getString(2));
-
-				unFollowUsers.add(user);
+				unFollowUserIdList.add(rs.getString(1));
 			}
 
 			cn.commit();
@@ -182,6 +172,6 @@ public class OraFollowDao implements FollowDao{
 				e.printStackTrace();
 			}
 		}
-		return unFollowUsers;
+		return unFollowUserIdList;
 	}
 }

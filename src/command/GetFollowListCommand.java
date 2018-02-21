@@ -1,29 +1,32 @@
 package command;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
+import java.util.List;
 
 import bean.User;
 import context.RequestContext;
 import context.ResponseContext;
 import dao.AbstractDaoFactory;
 import dao.FollowDao;
+import dao.UserDao;
 
 public class GetFollowListCommand extends AbstractCommand{
 	public ResponseContext execute(ResponseContext responseContext){
+		RequestContext rc = getRequestContext();
+
+		//SessionからUser情報取得
+		User loginUser = (User)rc.getSessionObject("user");
+		String loginUserId = loginUser.getUserId();
+
 		//dao取得
 		AbstractDaoFactory factory = AbstractDaoFactory.getFactory();
 		FollowDao followDao = factory.getFollowDao();
+		UserDao userDao = factory.getUserDao();
 
-		//SessionからUser情報取得
-		RequestContext rc = getRequestContext();
-		HttpServletRequest request = (HttpServletRequest)rc.getRequest();
-		HttpSession session = request.getSession();
-		User user = (User)session.getAttribute("user");
-		String userId = user.getUserId();
+		List<String> followIdList = followDao.getFollowIdList(loginUserId);
+		List<User> followList = userDao.getUserList(followIdList);
 
 		responseContext.setTarget("followList");
-		responseContext.setResult((Object)followDao.getFollowList(userId));
+		responseContext.setResult(followList);
 
 		return responseContext;
 	}

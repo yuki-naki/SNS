@@ -10,6 +10,7 @@ DROP SEQUENCE notification_seq;
 DROP TABLE user_t;
 DROP TABLE department_t;
 DROP SEQUENCE department_seq;
+DROP SEQUENCE group_seq;
 
 CREATE TABLE department_t(
 	department_id NUMBER(2),
@@ -40,6 +41,8 @@ CREATE TABLE group_t(
 	group_icon BLOB,
 	CONSTRAINT group_id_pk PRIMARY KEY(group_id)
 );
+
+CREATE SEQUENCE group_seq;
 
 CREATE TABLE groupmember_t(
 	group_id NUMBER(5),
@@ -90,8 +93,8 @@ INSERT INTO user_t (user_id, login_id, password, is_admin, username, department_
 INSERT INTO user_t (user_id, login_id, password, is_admin, username, department_id) VALUES (user_seq.nextVal, 'Yokota', 'Yokota', 0, '横田涼馬',1);
 
 /*
-INSERT INTO group_t (group_id, group_name) VALUES (1, 'group1');
-INSERT INTO group_t (group_id, group_name) VALUES (2, 'group2');
+INSERT INTO group_t (group_id, group_name) VALUES (group_seq.nextval, 'group1');
+INSERT INTO group_t (group_id, group_name) VALUES (group_seq.nextval, 'group2');
 
 INSERT INTO groupmember_t VALUES (1, 1);
 INSERT INTO groupmember_t VALUES (1, 4);

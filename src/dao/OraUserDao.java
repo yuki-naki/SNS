@@ -5,6 +5,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 import bean.User;
 
@@ -76,6 +79,69 @@ public class OraUserDao implements UserDao {
 		return user;
 	}
 
+	public  List<User> getUserList(List<String> userIdList){
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		Connection cn = null;
+
+		List<User> userList = new ArrayList<User>();
+
+		try{
+			cn = OracleConnectionManager.getInstance().getConnection();
+
+			Iterator<String> userIdListIterator = userIdList.iterator();
+
+			while(userIdListIterator.hasNext()){
+				String userId = userIdListIterator.next();
+
+				String sql = "SELECT * FROM user_t WHERE user_id = ?";
+				st = cn.prepareStatement(sql);
+				st.setString(1, userId);
+
+				rs = st.executeQuery();
+
+				while(rs.next()){
+					User user = new User();
+					user.setUserId(rs.getString(1));
+					user.setLoginId(rs.getString(2));
+					user.setPassword(rs.getString(3));
+					int isAdmin = rs.getInt(4);
+					if(isAdmin == 1){
+						user.setAdmin(true);
+					}
+					else {
+						user.setAdmin(false);
+					}
+					user.setUsername(rs.getString(5));
+					user.setIcon(rs.getBlob(6));
+					user.setUserIntroduction(rs.getString(7));
+					user.setStudentId(rs.getString(8));
+					user.setAdmissionYear(rs.getString(9));
+
+					userList.add(user);
+				}
+			}
+			return userList;
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		finally{
+			try{
+				if(rs != null){
+					rs.close();
+				}
+				if(st != null){
+					st.close();
+				}
+			}
+			catch(SQLException e){
+				e.printStackTrace();
+			}
+		}
+		return userList;
+	}
+
 	public User getUserByUserId(String userId){
 
 		PreparedStatement st = null;
@@ -86,14 +152,28 @@ public class OraUserDao implements UserDao {
 		try{
 			cn = OracleConnectionManager.getInstance().getConnection();
 
-			String sql = "SELECT user_id FROM user_t WHERE user_id = ?";
+			String sql = "SELECT * FROM user_t WHERE user_id = ?";
 			st = cn.prepareStatement(sql);
 			st.setString(1, userId);
 
 			rs = st.executeQuery();
 
-			user.setUserId(userId);
-			user.setUsername(rs.getString(1));
+			rs.next();
+			user.setUserId(rs.getString(1));
+			user.setLoginId(rs.getString(2));
+			user.setPassword(rs.getString(3));
+			int isAdmin = rs.getInt(4);
+			if(isAdmin == 1){
+				user.setAdmin(true);
+			}
+			else {
+				user.setAdmin(false);
+			}
+			user.setUsername(rs.getString(5));
+			user.setIcon(rs.getBlob(6));
+			user.setUserIntroduction(rs.getString(7));
+			user.setStudentId(rs.getString(8));
+			user.setAdmissionYear(rs.getString(9));
 		}
 		catch(SQLException e){
 			e.printStackTrace();
