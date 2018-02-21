@@ -80,7 +80,6 @@ public abstract class AbstractChatCommand extends AbstractCommand{
 
 			chat.setGroupId(group.getGroupId());
 			chat.setGroupName(group.getGroupName());
-			chat.setGroupIcon(group.getGroupIcon());
 			chat.setMembers(memberList);
 			chat.setNotMembers(notMemberList);
 			chat.setMessages(messageList);

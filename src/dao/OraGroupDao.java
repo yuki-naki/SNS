@@ -1,6 +1,10 @@
 package dao;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,6 +15,7 @@ import java.util.Iterator;
 import bean.Group;
 
 public class OraGroupDao implements GroupDao{
+
 	public Group getGroup(String groupId){
 		PreparedStatement st = null;
 		ResultSet rs = null;
@@ -22,7 +27,7 @@ public class OraGroupDao implements GroupDao{
 			Connection cn = null;
 			cn = OracleConnectionManager.getInstance().getConnection();
 
-			String sql = "SELECT group_id, group_name, group_icon FROM group_t WHERE group_id = ?";
+			String sql = "SELECT group_id, group_name FROM group_t WHERE group_id = ?";
 			st = cn.prepareStatement(sql);
 			st.setString(1, groupId);
 
@@ -30,7 +35,6 @@ public class OraGroupDao implements GroupDao{
 			rs.next();
 			group.setGroupId(rs.getString(1));
 			group.setGroupName(rs.getString(2));
-			group.setGroupIcon(rs.getBlob(3));
 
 			cn.commit();
 		}
@@ -59,7 +63,6 @@ public class OraGroupDao implements GroupDao{
 		return group;
 	}
 
-
 	public ArrayList<Group> getGroupList(ArrayList<String> groupIdList){
 		PreparedStatement st = null;
 		ResultSet rs = null;
@@ -81,7 +84,6 @@ public class OraGroupDao implements GroupDao{
 					Group group = new Group();
 					group.setGroupId(rs.getString(1));
 					group.setGroupName(rs.getString(2));
-					group.setGroupIcon(rs.getBlob(3));
 					groupList.add(group);
 				}
 			}
@@ -122,10 +124,13 @@ public class OraGroupDao implements GroupDao{
 			Connection cn = null;
 			cn = OracleConnectionManager.getInstance().getConnection();
 
+			File file = new File("C:/workspace/SNS/WebContent/img/groupIcon.png");
+			FileInputStream fip = new FileInputStream(file);
+
 			String sql = "INSERT INTO group_t(group_id, group_name, group_icon) VALUES(group_seq.nextval, ?, ?)";
 			st = cn.prepareStatement(sql);
 			st.setString(1, group.getGroupName());
-			st.setBlob(2, group.getGroupIcon());
+			st.setBinaryStream(2, fip, (int)file.length());
 			st.executeUpdate();
 
 			sql = "SELECT group_seq.currval FROM dual";
@@ -141,6 +146,8 @@ public class OraGroupDao implements GroupDao{
 		catch(SQLException e)
 		{
 			OracleConnectionManager.getInstance().rollback();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
 		}
 		finally
 		{
@@ -160,7 +167,6 @@ public class OraGroupDao implements GroupDao{
 				e.printStackTrace();
 			}
 		}
-
 		return groupId;
 	}
 
@@ -213,14 +219,9 @@ public class OraGroupDao implements GroupDao{
 
 	public void groupUpdate(InputStream input,long inputsize,Group group){
 
-		System.out.println("groupUpdateメソッドの実行");
-
 		PreparedStatement st = null;
 		ResultSet rs = null;
 		Connection cn = null;
-
-		System.out.println("groupName:"+group.getGroupName());
-
 
 		try{
 			cn = OracleConnectionManager.getInstance().getConnection();
@@ -249,18 +250,13 @@ public class OraGroupDao implements GroupDao{
 				e.printStackTrace();
 			}
 		}
-
 	}
 
 	public void groupUpdate(Group group){
 
-		System.out.println("groupUpdateメソッドの実行");
-
 		PreparedStatement st = null;
 		ResultSet rs = null;
 		Connection cn = null;
-
-
 
 		try{
 			cn = OracleConnectionManager.getInstance().getConnection();
@@ -289,6 +285,50 @@ public class OraGroupDao implements GroupDao{
 				e.printStackTrace();
 			}
 		}
+	}
 
+	public Blob getGroupIcon(String groupId){
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		Blob blob = null;
+
+		try
+		{
+			Connection cn = null;
+			cn = OracleConnectionManager.getInstance().getConnection();
+
+			String sql = "SELECT group_icon FROM group_t WHERE group_id = ?";
+			st = cn.prepareStatement(sql);
+			st.setString(1, groupId);
+
+			rs = st.executeQuery();
+			rs.next();
+			blob = rs.getBlob(1);
+
+			cn.commit();
+		}
+		catch(SQLException e)
+		{
+			OracleConnectionManager.getInstance().rollback();
+		}
+		finally
+		{
+			try
+			{
+				if(rs != null)
+				{
+					rs.close();
+				}
+				if(st != null)
+				{
+					st.close();
+				}
+			}
+			catch(SQLException e)
+			{
+				e.printStackTrace();
+			}
+		}
+		return blob;
 	}
 }

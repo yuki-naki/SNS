@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bean.Group;
 import dao.OraGroupDao;
 
 @MultipartConfig(maxFileSize=1000000000)
@@ -27,11 +26,8 @@ public class GroupIconLoadServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		OraGroupDao dao = new OraGroupDao();
-		Group g = new Group();
 
-		g = dao.getGroup(request.getParameter("userId"));
-
-		Blob imageToReturn = g.getGroupIcon();
+		Blob imageToReturn = dao.getGroupIcon(request.getParameter("groupId"));
 		// query your DB (or other data source) to get a blob representation of your image
 		// Set content type
 		response.setContentType("image/png");

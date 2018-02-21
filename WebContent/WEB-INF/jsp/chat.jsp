@@ -109,7 +109,7 @@
 								<button type="submit" class="row sideBar-body group">
 									<div class="col-xs-1 sideBar-avatar">
 										<div class="avatar-icon">
-											<img src="https://bootdey.com/img/Content/avatar/avatar2.png">
+											<img src="loadGroupIcon?groupId=${chat.key}">
 										</div>
 									</div>
 									<div class="col-xs-11 sideBar-main">

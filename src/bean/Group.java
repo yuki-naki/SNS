@@ -1,12 +1,10 @@
 package bean;
 
 import java.io.Serializable;
-import java.sql.Blob;
 
 public class Group implements Serializable{
 	private String groupId;
 	private String groupName;
-	private Blob groupIcon;
 
 	public String getGroupId() {
 		return groupId;
@@ -19,12 +17,6 @@ public class Group implements Serializable{
 	}
 	public void setGroupName(String groupName) {
 		this.groupName = groupName;
-	}
-	public Blob getGroupIcon() {
-		return groupIcon;
-	}
-	public void setGroupIcon(Blob groupIcon) {
-		this.groupIcon = groupIcon;
 	}
 
 }

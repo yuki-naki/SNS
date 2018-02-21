@@ -45,7 +45,7 @@
 						</div>
 						<div class="col-sm-3 col-sm-offset-1 content-center" id="iconwrap">
 							<input type="hidden" name="groupId" value="${result.groupId}"></input>
-							<img name="icon" class="img-circle" src="loadGroupIcon?userId=${result.groupId}" id="icon">
+							<img name="icon" class="img-circle" src="loadGroupIcon?groupId=${result.groupId}" id="icon">
 						</div>
 						<div class="col-sm-5 col-sm-offset-2">
 							<h3>GroupName<br><input type="text" name="groupName" value="${result.groupName}"></input></h3>
