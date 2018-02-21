@@ -20,7 +20,7 @@
 			<div class="col-sm-8 col-sm-offset-2">
 				<div id="search-bar" style="margin: 30px 0px;">
 					<div class="col-xs-4">
-						<select class="form-control" name="grade" id="grade2">
+						<select class="form-control" name="grade" id="grade">
 					      	<option value="default" selected="selected">学年</option>
 					        <option value="1年生">1学年</option>
 					        <option value="2年生">2学年</option>
@@ -41,7 +41,7 @@
 					</div>
 					<div class="col-xs-4">
 						<div class="input-group">
-							<input type="text" class="form-control" placeholder="Search" name="search">
+							<input id="test" type="text" class="form-control" placeholder="Search" name="search">
 							<div class="input-group-btn">
 								<button class="btn btn-default" type="submit" style="height: 34px;">
 									<i class="glyphicon glyphicon-search"></i>
@@ -51,7 +51,7 @@
 					</div>
 				</div>
 				<div>
-					<table border="0" class="table table-condensed" id="test2">
+					<table border="0" class="table table-condensed" id="table">
 						<thead>
 							<tr>
 								<th></th>
