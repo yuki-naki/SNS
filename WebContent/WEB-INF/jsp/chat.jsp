@@ -25,7 +25,11 @@
 				<div class="row conversationHeading">
 					<div class="col-xs-12 heading-name">
 						<c:if test="${not empty result[0]}">
-							<a id="headingGroupname" class="heading-name-meta" data-groupId="${result[0]}">${result[1][result[0]].groupName}</a>
+							<form method="post" action="groupEdit" name="form1">
+							<input type="hidden" name="groupId" value="${result[0]}"></input>
+							<a id="headingGroupname"  href="javascript:form1.submit()" class="heading-name-meta" data-groupId="${result[0]}">${result[1][result[0]].groupName}</a>
+							</form>
+
 						</c:if>
 					</div>
 				</div>

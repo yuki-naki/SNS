@@ -64,7 +64,7 @@
 								<form method='post' action='removeFollow'>
 									<input type="hidden" name="removeTargetUserId" value="${user.userId}"	/>
 									<tr>
-										<td width="100" ><img src="img/image.jpg" id="icon" class="img-circle" alt="anoni"></td>
+										<td width="100" ><img src="loadIcon?userId=${user.userId}" id="icon" class="img-circle" alt="anoni"></td>
 										<td class="text-left">${user.username}</td><td width="100">
 										<input type='submit' class="btn btn-danger " value='解除'></td>
 									</tr>

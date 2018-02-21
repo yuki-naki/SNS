@@ -60,7 +60,7 @@
 							<form method='post' action='follow'>
 								<input type="hidden" name="userId" value="${user.userId}" />
 								<tr>
-									<td width="100"><img src="img/image.jpg" id="icon"
+									<td width="100"><img src="loadIcon?userId=${user.userId}" id="icon"
 										class="img-circle" alt="anoni"></td>
 									<td class="text-left">${user.username}</td>
 									<td><input type='submit' class="btn btn-info" value='follow'></td>

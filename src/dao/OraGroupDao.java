@@ -1,5 +1,6 @@
 package dao;
 
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -21,11 +22,13 @@ public class OraGroupDao implements GroupDao{
 			Connection cn = null;
 			cn = OracleConnectionManager.getInstance().getConnection();
 
-			String sql = "SELECT group_id, group_name, group_icon FROM group_t WHERE group_id = " + groupId + "'";
+			String sql = "SELECT group_id, group_name, group_icon FROM group_t WHERE group_id = '" + groupId + "'";
 
 			st = cn.prepareStatement(sql);
 
 			rs = st.executeQuery();
+
+			rs.next();
 
 			group.setGroupId(rs.getString(1));
 			group.setGroupName(rs.getString(2));
@@ -255,5 +258,86 @@ public class OraGroupDao implements GroupDao{
 			}
 		}
 		return groupIds;
+	}
+
+	public void groupUpdate(InputStream input,long inputsize,Group group){
+
+		System.out.println("groupUpdateメソッドの実行");
+
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		Connection cn = null;
+
+		System.out.println("groupName:"+group.getGroupName());
+
+
+		try{
+			cn = OracleConnectionManager.getInstance().getConnection();
+
+			String sql = "update group_t set group_icon = ?,group_name = ? where group_id = ?";
+			st = cn.prepareStatement(sql);
+			st.setBinaryStream(1,input,(int)inputsize);
+			st.setString(2, group.getGroupName());
+			st.setString(3,group.getGroupId());
+
+			st.executeUpdate();
+
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		finally{
+			try{
+				if(rs != null){
+					rs.close();
+				}
+				if(st != null){
+					st.close();
+				}
+			}
+			catch(SQLException e){
+				e.printStackTrace();
+			}
+		}
+
+	}
+
+	public void groupUpdate(Group group){
+
+		System.out.println("groupUpdateメソッドの実行");
+
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		Connection cn = null;
+
+
+
+		try{
+			cn = OracleConnectionManager.getInstance().getConnection();
+
+			String sql = "update group_t set group_name = ? where group_id = ?";
+			st = cn.prepareStatement(sql);
+
+			st.setString(1, group.getGroupName());
+			st.setString(2,group.getGroupId());
+
+			st.executeUpdate();
+
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		finally{
+			try{
+				if(rs != null){
+					rs.close();
+				}
+				if(st != null){
+					st.close();
+				}
+			}
+			catch(SQLException e){
+				e.printStackTrace();
+			}
+		}
+
 	}
 }
