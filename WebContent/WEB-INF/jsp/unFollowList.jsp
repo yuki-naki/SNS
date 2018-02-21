@@ -6,8 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"
-	type="text/css">
+<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" type="text/css">
 <link rel="stylesheet" href="css/followList.css">
 <script src="js/jquery.min.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
@@ -21,52 +20,60 @@
 			<div class="col-sm-8 col-sm-offset-2">
 				<div id="search-bar" style="margin: 30px 0px;">
 					<div class="col-xs-4">
-						<select class="form-control" name="grade">
-							<option value="default" selected="selected">学年</option>
-							<option value="1">1学年</option>
-							<option value="2">2学年</option>
-							<option value="3">3学年</option>
-							<option value="4">4学年</option>
-						</select>
+						<select class="form-control" name="grade" id="grade">
+					      	<option value="default" selected="selected">学年</option>
+					        <option value="1年生">1学年</option>
+					        <option value="2年生">2学年</option>
+					        <option value="3年生">3学年</option>
+					        <option value="4年生">4学年</option>
+				      </select>
 					</div>
 					<div class="col-xs-4">
-						<select class="form-control" name="department">
-							<option value="default" selected="selected">学科</option>
-							<option value="a">情報処理科</option>
-					        <option value="b">インテリア科</option>
-					        <option value="c">Web動画クリエーター科</option>
-					        <option value="d">環境テクノロジー科</option>
-					        <option value="e">建築監督科</option>
-					        <option value="f">職員</option>
-						</select>
+						<select class="form-control" name="department" id="departmentId" >
+					      	<option value="default" selected="selected">学科</option>
+					        <option value="情報処理科">情報処理科</option>
+					        <option value="インテリア科">インテリア科</option>
+					        <option value="Web動画クリエーター科">Web動画クリエーター科</option>
+					        <option value="環境テクノロジー科">環境テクノロジー科</option>
+					        <option value="建築監督科">建築監督科</option>
+					        <option value="職員">職員</option>
+				      </select>
 					</div>
 					<div class="col-xs-4">
-						<form action="/action_page.php">
-							<div class="input-group">
-								<input type="text" class="form-control" placeholder="Search" name="search">
-								<div class="input-group-btn">
-									<button class="btn btn-default" type="submit"
-										style="height: 34px;">
-										<i class="glyphicon glyphicon-search"></i>
-									</button>
-								</div>
+						<div class="input-group">
+							<input id="test" type="text" class="form-control" placeholder="Search" name="search">
+							<div class="input-group-btn">
+								<button class="btn btn-default" type="submit" style="height: 34px;">
+									<i class="glyphicon glyphicon-search"></i>
+								</button>
 							</div>
-						</form>
+						</div>
 					</div>
 				</div>
 				<div>
-					<table border="0" class="table table-condensed">
+					<table border="0" class="table table-condensed" id="table">
+						<thead>
+							<tr>
+								<th></th>
+								<th></th>
+								<th></th>
+								<th></th>
+							</tr>
+						 </thead>
+						 <tbody>
 						<c:forEach var="user" items="${result}">
 							<form method='post' action='follow'>
 								<input type="hidden" name="userId" value="${user.userId}" />
 								<tr>
-									<td width="100"><img src="img/image.jpg" id="icon"
-										class="img-circle" alt="anoni"></td>
-									<td class="text-left">${user.username}</td>
+									<td width="100"><img src="loadIcon?userId=${user.userId}" id="icon" class="img-circle" alt="icon"></td><!-- 0番目 -->
+									<td class="text-left">${user.username}</td><!-- １番目 -->
+									<td class="text-left"><c:if test="${user.departmentName != '職員'}">${user.admissionYear}年生</c:if></td><!-- ２番目 -->
+									<td class="text-left">${user.departmentName}</td><!-- ３番目 -->
 									<td><input type='submit' class="btn btn-info" value='follow'></td>
 								</tr>
 							</form>
 						</c:forEach>
+						</tbody>
 					</table>
 				</div>
 			</div>
@@ -76,5 +83,7 @@
 	<div align="center">
 		<a href="getFollowList" class="btn btn-success">お気に入り 一覧</a>
 	</div>
+
+	<script src="js/follow.js"></script>
 </body>
 </html>

@@ -7,4 +7,6 @@ public interface FollowDao {
 	public void removeFollow(String followerUserId, String removeTargetUserId);
 	public List<String> getFollowIdList(String followerUserId);
 	public List<String> getUnFollowIdList(String followerUserId);
+	public List<String> getFollowList(String followerUserId);
+	public List<String> getUnFollowList(String followerUserId);
 }

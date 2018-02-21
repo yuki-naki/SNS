@@ -78,12 +78,11 @@ Chat.connect = (function(host) {
 	}
 
 	Chat.socket.onopen = function() {
-		// Console.selfMessage('Info: WebSocket connection opened.');
 		document.getElementById('comment').onkeydown = function(event) {
-			 if (event.keyCode == 13 && !event.shiftKey){
-				 	event.preventDefault();
-				 	Chat.sendMessage();
-			    }
+			if(event.keyCode == 13 && !event.shiftKey){
+				event.preventDefault();
+				Chat.sendMessage();
+			}
 		};
 		$("#reply_btn").on("click", function(event) {
 			Chat.sendMessage();
@@ -120,11 +119,9 @@ Chat.initialize = function() {
 
 Chat.sendMessage = (function() {
 	var message = document.getElementById('comment').value;
-	console.log(message);
-	message = message.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
-	message = "<pre>" + message.replace(/\n/g,"<br>") + "</pre>";
-	console.log(message);
 	if (message.trim() != "" && message != null) {
+		message = message.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+		message = "<pre>" + message.replace(/\n/g,"<br>") + "</pre>";
 		var JsonUser = $("#reply").attr("data-user");
 		var user = JSON.parse(JsonUser);
 		const JsonMessage = {"content":message,"user":user};
@@ -184,7 +181,7 @@ Console.receiveMessage = (function(jsonMessage) {
 	var div_avatar = document.createElement('div');
 	div_avatar.className = 'avatar-icon';
 	var img = document.createElement('img');
-	img.setAttribute("src","https://bootdey.com/img/Content/avatar/avatar2.png");
+	img.setAttribute("src","loadIcon?userId="+jsonMessage.user.userId);
 	div_avatar.appendChild(img);
 	var div_body_avatar = document.createElement('div');
 	div_body_avatar.className = "col-xs-1 messageBody-avatar";

@@ -85,12 +85,12 @@ INSERT INTO department_t VALUES (department_seq.nextVal,'環境テクノロジ�
 INSERT INTO department_t VALUES (department_seq.nextVal,'建築監督科');
 INSERT INTO department_t VALUES (department_seq.nextVal,'職員');
 
-INSERT INTO user_t (user_id, login_id, password, is_admin, username, department_id) VALUES (user_seq.nextVal, 'Alex', 'Alex', 0, 'AL ABAYAJI ALEXANDRE', 1);
-INSERT INTO user_t (user_id, login_id, password, is_admin, username, department_id) VALUES (user_seq.nextVal, 'Idei', 'Idei', 0, '出井郁実',1);
-INSERT INTO user_t (user_id, login_id, password, is_admin, username, department_id) VALUES (user_seq.nextVal, 'Nagase', 'Nagase', 0, '長瀬史也',1);
-INSERT INTO user_t (user_id, login_id, password, is_admin, username, department_id) VALUES (user_seq.nextVal, 'Nakai', 'Nakai', 0, '中井祐喜',1);
-INSERT INTO user_t (user_id, login_id, password, is_admin, username, department_id) VALUES (user_seq.nextVal, 'Waka', 'Waka', 0, '若色巧',1);
-INSERT INTO user_t (user_id, login_id, password, is_admin, username, department_id) VALUES (user_seq.nextVal, 'Yokota', 'Yokota', 0, '横田涼馬',1);
+INSERT INTO user_t (user_id, login_id, password, is_admin, username, department_id,admission_year) VALUES (user_seq.nextVal, 'Alex', 'Alex', 0, 'AL ABAYAJI ALEXANDRE', 1,2016);
+INSERT INTO user_t (user_id, login_id, password, is_admin, username, department_id,admission_year) VALUES (user_seq.nextVal, 'Idei', 'Idei', 0, '出井郁実',1,2016);
+INSERT INTO user_t (user_id, login_id, password, is_admin, username, department_id,admission_year) VALUES (user_seq.nextVal, 'Nagase', 'Nagase', 0, '長瀬史也',1,2017);
+INSERT INTO user_t (user_id, login_id, password, is_admin, username, department_id,admission_year) VALUES (user_seq.nextVal, 'Nakai', 'Nakai', 0, '中井祐喜',1,2016);
+INSERT INTO user_t (user_id, login_id, password, is_admin, username, department_id,admission_year) VALUES (user_seq.nextVal, 'Waka', 'Waka', 0, '若色巧',1,2017);
+INSERT INTO user_t (user_id, login_id, password, is_admin, username, department_id,admission_year) VALUES (user_seq.nextVal, 'Yokota', 'Yokota', 0, '横田涼馬',1,2016);
 
 /*
 INSERT INTO group_t (group_id, group_name) VALUES (group_seq.nextval, 'group1');
@@ -106,12 +106,12 @@ INSERT INTO groupmember_t VALUES (2, 5);
 //ユーザー
 
 //インテリア科
-INSERT INTO user_t (user_id, login_id, password, is_admin, username, department_id) VALUES (user_seq.nextVal, 'Tanaka', 'Tanaka', 0, '田中 博貴 ',2);
-INSERT INTO user_t (user_id, login_id, password, is_admin, username, department_id) VALUES (user_seq.nextVal, 'Gouda', 'Gouda', 0, '剛田 仁志 ',2);
-INSERT INTO user_t (user_id, login_id, password, is_admin, username, department_id) VALUES (user_seq.nextVal, 'Kamiya', 'Kamiya', 0, '神谷 菜々美 ',2);
-INSERT INTO user_t (user_id, login_id, password, is_admin, username, department_id) VALUES (user_seq.nextVal, 'Kizima', 'Kizima', 0, '鬼嶋 宏樹',2);
-INSERT INTO user_t (user_id, login_id, password, is_admin, username, department_id) VALUES (user_seq.nextVal, 'Asagiri', 'Asagiri', 0, '朝桐 優那 ',2);
-INSERT INTO user_t (user_id, login_id, password, is_admin, username, department_id) VALUES (user_seq.nextVal, 'Yamada', 'Yamada', 0, '山田 将樹',2);
+INSERT INTO user_t (user_id, login_id, password, is_admin, username, department_id,admission_year) VALUES (user_seq.nextVal, 'Tanaka', 'Tanaka', 0, '田中 博貴 ',2,2015);
+INSERT INTO user_t (user_id, login_id, password, is_admin, username, department_id,admission_year) VALUES (user_seq.nextVal, 'Gouda', 'Gouda', 0, '剛田 仁志 ',2,2015);
+INSERT INTO user_t (user_id, login_id, password, is_admin, username, department_id,admission_year) VALUES (user_seq.nextVal, 'Kamiya', 'Kamiya', 0, '神谷 菜々美 ',2,2015);
+INSERT INTO user_t (user_id, login_id, password, is_admin, username, department_id,admission_year) VALUES (user_seq.nextVal, 'Kizima', 'Kizima', 0, '鬼嶋 宏樹',2,2014);
+INSERT INTO user_t (user_id, login_id, password, is_admin, username, department_id,admission_year) VALUES (user_seq.nextVal, 'Asagiri', 'Asagiri', 0, '朝桐 優那 ',2,2014);
+INSERT INTO user_t (user_id, login_id, password, is_admin, username, department_id,admission_year) VALUES (user_seq.nextVal, 'Yamada', 'Yamada', 0, '山田 将樹',2,2014);
 
 //Web動画クリエーター科
 INSERT INTO user_t (user_id, login_id, password, is_admin, username, department_id) VALUES (user_seq.nextVal, 'Kawazaki', 'Kawazaki', 0, '川崎 孝',3);

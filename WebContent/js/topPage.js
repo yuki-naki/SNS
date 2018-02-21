@@ -185,6 +185,8 @@ $(document).ready(function() {
 	});
 
 	$('#top').addClass("active");
+
+	loadImages();
 });
 
 function replaceSrc(content){
@@ -216,4 +218,12 @@ function createInput(){
 	form.appendChild(input);
 	file_id++;
 	return input;
+}
+
+function loadImages(){
+	$("img[name=image]").each(function(){
+		var src = $(this).attr("src");
+		console.log(src);
+		$(this).removeAttr("src").attr("src", src);
+	});
 }

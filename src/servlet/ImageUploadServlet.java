@@ -58,7 +58,8 @@ public class ImageUploadServlet extends HttpServlet {
 		                os.flush();
 		                os.close();
 
-		                filePath = "uploaded/"+updatedFileName;
+		                //filePath = "uploaded/"+updatedFileName;
+		                filePath = "readImage?filepath=C:/workspace/SNS/WebContent/uploaded/"+updatedFileName;
 		                String[] splitFieldname = fieldname.split("-");
 		                String id = splitFieldname[1];
 		                textarea = textarea.replaceFirst("<img id=\""+id+"\" src=\"\"", "<img id=\""+id+"\" src=\""+filePath+"\"");
@@ -68,12 +69,6 @@ public class ImageUploadServlet extends HttpServlet {
 		            }
 		        }
 		    }
-		}
-
-		try {
-			Thread.sleep(4000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
 		}
 
 	    request.setAttribute("textarea", textarea);
