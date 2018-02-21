@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" version="3.1">
   <display-name>SNS</display-name>
@@ -55,62 +54,4 @@
     <servlet-name>FrontServlet</servlet-name>
     <url-pattern>/</url-pattern>
   </servlet-mapping>
-=======
-<?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" version="3.1">
-  <display-name>SNS</display-name>
-  <welcome-file-list>
-    <welcome-file>/WEB-INF/jsp/index.jsp</welcome-file>
-  </welcome-file-list>
-  <servlet-mapping>
-    <servlet-name>default</servlet-name>
-    <url-pattern>/tinymce/*</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>default</servlet-name>
-    <url-pattern>/bootstrap/*</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>default</servlet-name>
-    <url-pattern>/css/*</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>default</servlet-name>
-    <url-pattern>/js/*</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>default</servlet-name>
-    <url-pattern>/uploaded/*</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>default</servlet-name>
-    <url-pattern>/img/*</url-pattern>
-  </servlet-mapping>
-  <filter>
-    <filter-name>loginCheckFilter</filter-name>
-    <filter-class>filter.LoginCheckFilter</filter-class>
-  </filter>
-  <filter-mapping>
-    <filter-name>loginCheckFilter</filter-name>
-    <url-pattern>/login</url-pattern>
-    <dispatcher>REQUEST</dispatcher>
-  </filter-mapping>
-  <filter>
-    <filter-name>authenticateFilter</filter-name>
-    <filter-class>filter.AuthenticateFilter</filter-class>
-  </filter>
-  <filter-mapping>
-    <filter-name>authenticateFilter</filter-name>
-    <url-pattern>/login</url-pattern>
-    <dispatcher>REQUEST</dispatcher>
-  </filter-mapping>
-  <servlet>
-    <servlet-name>FrontServlet</servlet-name>
-    <servlet-class>servlet.FrontServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>FrontServlet</servlet-name>
-    <url-pattern>/</url-pattern>
-  </servlet-mapping>
->>>>>>> refs/remotes/origin/alex
 </web-app>
