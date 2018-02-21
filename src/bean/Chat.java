@@ -9,7 +9,8 @@ public class Chat implements Serializable {
 	private String groupId;
 	private String groupName;
 	private Blob groupIcon;
-	private List<User> users;
+	private List<User> members;
+	private List<User> notMembers;
 	private List<Message> messages;
 
 	public String getGroupId() {
@@ -30,11 +31,17 @@ public class Chat implements Serializable {
 	public void setGroupIcon(Blob groupIcon) {
 		this.groupIcon = groupIcon;
 	}
-	public List<User> getUsers() {
-		return users;
+	public List<User> getMembers() {
+		return members;
 	}
-	public void setUsers(List<User> users) {
-		this.users = users;
+	public void setMembers(List<User> members) {
+		this.members = members;
+	}
+	public List<User> getNotMembers() {
+		return notMembers;
+	}
+	public void setNotMembers(List<User> notMembers) {
+		this.notMembers = notMembers;
 	}
 	public List<Message> getMessages() {
 		return messages;

@@ -22,14 +22,12 @@ public class OraGroupDao implements GroupDao{
 			Connection cn = null;
 			cn = OracleConnectionManager.getInstance().getConnection();
 
-			String sql = "SELECT group_id, group_name, group_icon FROM group_t WHERE group_id = '" + groupId + "'";
-
+			String sql = "SELECT group_id, group_name, group_icon FROM group_t WHERE group_id = ?";
 			st = cn.prepareStatement(sql);
+			st.setString(1, groupId);
 
 			rs = st.executeQuery();
-
 			rs.next();
-
 			group.setGroupId(rs.getString(1));
 			group.setGroupName(rs.getString(2));
 			group.setGroupIcon(rs.getBlob(3));
@@ -59,6 +57,59 @@ public class OraGroupDao implements GroupDao{
 			}
 		}
 		return group;
+	}
+
+
+	public ArrayList<Group> getGroupList(ArrayList<String> groupIdList){
+		PreparedStatement st = null;
+		ResultSet rs = null;
+
+		ArrayList<Group> groupList = new ArrayList<Group>();
+		Iterator<String> it = groupIdList.iterator();
+
+		try
+		{
+			Connection cn = null;
+			cn = OracleConnectionManager.getInstance().getConnection();
+
+			while(it.hasNext()){
+				String sql = "SELECT * FROM group_t WHERE group_id = ?";
+			st = cn.prepareStatement(sql);
+				st.setString(1, it.next());
+			rs = st.executeQuery();
+				while(rs.next()){
+					Group group = new Group();
+					group.setGroupId(rs.getString(1));
+					group.setGroupName(rs.getString(2));
+					group.setGroupIcon(rs.getBlob(3));
+					groupList.add(group);
+				}
+			}
+			cn.commit();
+		}
+		catch(SQLException e)
+		{
+			OracleConnectionManager.getInstance().rollback();
+		}
+		finally
+		{
+			try
+			{
+				if(rs != null)
+				{
+					rs.close();
+				}
+				if(st != null)
+				{
+					st.close();
+				}
+			}
+			catch(SQLException e)
+			{
+				e.printStackTrace();
+			}
+		}
+		return groupList;
 	}
 
 	public String createGroup(Group group){
@@ -158,106 +209,6 @@ public class OraGroupDao implements GroupDao{
 				e.printStackTrace();
 			}
 		}
-	}
-
-	public ArrayList<Group> getBelongGroupList(String userId){
-		PreparedStatement st = null;
-		ResultSet rs = null;
-
-		ArrayList<Group> groups = new ArrayList<Group>();
-		ArrayList<String> groupIds = getBelongGroupIdList(userId);
-		Iterator<String> it = groupIds.iterator();
-
-		try
-		{
-			Connection cn = null;
-			cn = OracleConnectionManager.getInstance().getConnection();
-
-			while(it.hasNext()){
-				String sql = "SELECT * FROM group_t WHERE group_id = ?";
-				st = cn.prepareStatement(sql);
-				st.setString(1, it.next());
-				rs = st.executeQuery();
-				while(rs.next()){
-					Group group = new Group();
-					group.setGroupId(rs.getString(1));
-					group.setGroupName(rs.getString(2));
-					group.setGroupIcon(rs.getBlob(3));
-					groups.add(group);
-				}
-			}
-			cn.commit();
-		}
-		catch(SQLException e)
-		{
-			OracleConnectionManager.getInstance().rollback();
-		}
-		finally
-		{
-			try
-			{
-				if(rs != null)
-				{
-					rs.close();
-				}
-				if(st != null)
-				{
-					st.close();
-				}
-			}
-			catch(SQLException e)
-			{
-				e.printStackTrace();
-			}
-		}
-		return groups;
-	}
-
-	public ArrayList<String> getBelongGroupIdList(String userId){
-		PreparedStatement st = null;
-		ResultSet rs = null;
-
-		ArrayList<String> groupIds = new ArrayList<String>();
-
-		try
-		{
-			Connection cn = null;
-			cn = OracleConnectionManager.getInstance().getConnection();
-
-			String sql = "SELECT group_id FROM groupmember_t WHERE user_id = ?";
-			st = cn.prepareStatement(sql);
-			st.setString(1, userId);
-
-			rs = st.executeQuery();
-			while(rs.next()){
-				groupIds.add(rs.getString(1));
-			}
-
-			cn.commit();
-		}
-		catch(SQLException e)
-		{
-			OracleConnectionManager.getInstance().rollback();
-		}
-		finally
-		{
-			try
-			{
-				if(rs != null)
-				{
-					rs.close();
-				}
-				if(st != null)
-				{
-					st.close();
-				}
-			}
-			catch(SQLException e)
-			{
-				e.printStackTrace();
-			}
-		}
-		return groupIds;
 	}
 
 	public void groupUpdate(InputStream input,long inputsize,Group group){

@@ -39,7 +39,7 @@
 					<c:if test="${not empty result[0]}">
 						<c:forEach var="message" items="${result[1][result[0]].messages}">
 							<c:choose>
-								<c:when test="${sessionScope.user.userId eq message.user.userId}">
+								<c:when test="${sessionScope.user.userId eq message.userId}">
 									<div class="row message-body">
 										<div class="col-xs-12 message-main-sender">
 											<div class="sender">
@@ -155,7 +155,7 @@
 
 					<div class="row compose-sideBar">
 						<c:if test="${not empty result[0]}">
-							<c:forEach var="user" items="${result[1][result[0]].users}">
+							<c:forEach var="member" items="${result[1][result[0]].members}">
 								<div class="row sideBar-body member">
 									<div class="col-xs-1 sideBar-avatar">
 										<div class="avatar-icon">
@@ -165,7 +165,7 @@
 									<div class="col-xs-11 sideBar-main">
 										<div class="row">
 											<div class="col-xs-8 sideBar-name">
-												<span class="name-meta">${user.username}</span>
+												<span class="name-meta">${member.username}</span>
 											</div>
 											<div class="col-xs-4 pull-right sideBar-time">
 												<span class="time-meta pull-right"></span>
@@ -179,12 +179,42 @@
 					</div>
 
 					<div class="row sideBottom">
-						<input class="iconImage" type="image" src="img/user.png" />
+						<input id="addMember"class="iconImage" type="image" src="img/user.png" />
 					</div>
 
 				</div>
 			</div>
 		</div>
+	</div>
+	<!--createGroupのポップアップ-->
+	<div id="createGroupLayer"></div>
+	<div id="createGroupPopup">
+		<div>
+			<div>グループ作成</div>
+			<form method='post' action='createGroup'>
+				<input type="text" name="groupName">
+				<div>フォロー中</div>
+				<c:forEach var="followUser" items="${result[3]}">
+					<div><input type="checkbox" name="selectedUser" value="${followUser.userId}"/>${followUser.username}</div>
+				</c:forEach>
+				<input type="submit" value="作成">
+   			</form>
+  		</div>
+	</div>
+
+	<!--addMemberのポップアップ-->
+	<div id="addMemberLayer"></div>
+	<div id="addMemberPopup">
+		<div>
+			<div>メンバー追加</div>
+			<form method='post' action='addGroupMember'>
+				<input type="hidden" name="addMemberGroupId" value="${result[0]}" />
+				<c:forEach var="notMember" items="${result[1][result[0]].notMembers}">
+					<div><input type="checkbox" name="selectedUser" value="${notMember.userId}"/>${notMember.username}</div>
+				</c:forEach>
+				<input type="submit" value="追加">
+   			</form>
+  		</div>
 	</div>
 	<script src="js/chat.js"></script>
 </body>

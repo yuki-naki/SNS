@@ -5,6 +5,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 import bean.User;
 
@@ -74,6 +77,69 @@ public class OraUserDao implements UserDao {
 		return user;
 	}
 
+	public  List<User> getUserList(List<String> userIdList){
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		Connection cn = null;
+
+		List<User> userList = new ArrayList<User>();
+
+		try{
+			cn = OracleConnectionManager.getInstance().getConnection();
+
+			Iterator<String> userIdListIterator = userIdList.iterator();
+
+			while(userIdListIterator.hasNext()){
+				String userId = userIdListIterator.next();
+
+				String sql = "SELECT user_id, is_admin, username, user_introduction, student_id, "
+						+ "TO_CHAR(sysdate,'YYYY') - admission_year  + case when (TO_CHAR(sysdate,'MMDD')<TO_CHAR(0331)) AND (TO_CHAR(sysdate,'MMDD')<TO_CHAR(0101)) then 0 else 1 end, d.department_name "
+						+ "FROM user_t u, department_t d WHERE user_id = ? AND u.department_id=d.department_id";
+				st = cn.prepareStatement(sql);
+				st.setString(1, userId);
+
+				rs = st.executeQuery();
+
+				while(rs.next()){
+					User user = new User();
+					user.setUserId(rs.getString(1));
+					int isAdmin = rs.getInt(2);
+					if(isAdmin == 1){
+						user.setAdmin(true);
+					}
+					else {
+						user.setAdmin(false);
+					}
+					user.setUsername(rs.getString(3));
+					user.setUserIntroduction(rs.getString(4));
+					user.setStudentId(rs.getString(5));
+					user.setAdmissionYear(rs.getString(6));
+					user.setDepartmentName(rs.getString(7));
+
+					userList.add(user);
+				}
+			}
+			return userList;
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		finally{
+			try{
+				if(rs != null){
+					rs.close();
+				}
+				if(st != null){
+					st.close();
+				}
+			}
+			catch(SQLException e){
+				e.printStackTrace();
+			}
+		}
+		return userList;
+	}
+
 	public User getUserByUserId(String userId){
 
 		PreparedStatement st = null;
@@ -84,14 +150,27 @@ public class OraUserDao implements UserDao {
 		try{
 			cn = OracleConnectionManager.getInstance().getConnection();
 
-			String sql = "SELECT user_id FROM user_t WHERE user_id = ?";
+			String sql = "SELECT * FROM user_t WHERE user_id = ?";
 			st = cn.prepareStatement(sql);
 			st.setString(1, userId);
 
 			rs = st.executeQuery();
 
-			user.setUserId(userId);
-			user.setUsername(rs.getString(1));
+			rs.next();
+			user.setUserId(rs.getString(1));
+			user.setLoginId(rs.getString(2));
+			user.setPassword(rs.getString(3));
+			int isAdmin = rs.getInt(4);
+			if(isAdmin == 1){
+				user.setAdmin(true);
+			}
+			else {
+				user.setAdmin(false);
+			}
+			user.setUsername(rs.getString(5));
+			user.setUserIntroduction(rs.getString(7));
+			user.setStudentId(rs.getString(8));
+			user.setAdmissionYear(rs.getString(9));
 		}
 		catch(SQLException e){
 			e.printStackTrace();

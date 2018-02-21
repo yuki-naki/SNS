@@ -8,17 +8,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OraGroupMemberDao implements GroupMemberDao{
-	public List<String> getGroupMember(String groupId) {
+	public List<String> getGroupMemberIdList(String groupId) {
 		PreparedStatement st = null;
 		ResultSet rs = null;
 
-		ArrayList<String> groupMembers = new ArrayList<String>();
+		ArrayList<String> groupMemberIdList = new ArrayList<String>();
 
 		try
 		{
 			Connection cn = null;
 			cn = OracleConnectionManager.getInstance().getConnection();
-			String sql = "SELECT user_id FROM groupmember_t WHERE group_id = ?";
+			String sql = "SELECT user_Id FROM groupmember_t WHERE group_id = ?";
 
 			st = cn.prepareStatement(sql);
 
@@ -28,7 +28,7 @@ public class OraGroupMemberDao implements GroupMemberDao{
 
 			while(rs.next())
 			{
-				groupMembers.add(rs.getString(1));
+				groupMemberIdList.add(rs.getString(1));
 			}
 
 			cn.commit();
@@ -55,20 +55,21 @@ public class OraGroupMemberDao implements GroupMemberDao{
 				e.printStackTrace();
 			}
 		}
-		return groupMembers;
+		return groupMemberIdList;
 	}
 
-	public List<String> getNotGroupMember(String groupId) {
+	public List<String> getNotGroupMemberIdList(String groupId) {
 		PreparedStatement st = null;
 		ResultSet rs = null;
 
-		ArrayList<String> notGroupMembers = new ArrayList<String>();
+		ArrayList<String> notGroupMemberIdList = new ArrayList<String>();
 
 		try
 		{
 			Connection cn = null;
 			cn = OracleConnectionManager.getInstance().getConnection();
-			String sql = "SELECT user_id FROM user_t WHERE user_id NOT IN (SELECT user_id FROM groupmember_t WHERE group_id = ?)";
+			String sql = "SELECT user_id FROM user_t WHERE user_id NOT IN "
+						+"(SELECT user_id FROM groupmember_t WHERE group_id = ?)";
 
 			st = cn.prepareStatement(sql);
 			st.setString(1, groupId);
@@ -76,7 +77,7 @@ public class OraGroupMemberDao implements GroupMemberDao{
 
 			while(rs.next())
 			{
-				notGroupMembers.add(rs.getString(1));
+				notGroupMemberIdList.add(rs.getString(1));
 			}
 
 			cn.commit();
@@ -103,7 +104,54 @@ public class OraGroupMemberDao implements GroupMemberDao{
 				e.printStackTrace();
 			}
 		}
-		return notGroupMembers;
+		return notGroupMemberIdList;
+	}
+
+	public List<String> getBelongGroupIdList(String userId){
+		PreparedStatement st = null;
+		ResultSet rs = null;
+
+		List<String> groupIdList = new ArrayList<String>();
+
+		try
+		{
+			Connection cn = null;
+			cn = OracleConnectionManager.getInstance().getConnection();
+
+			String sql = "SELECT group_id FROM groupmember_t WHERE user_id = ?";
+			st = cn.prepareStatement(sql);
+			st.setString(1, userId);
+
+			rs = st.executeQuery();
+			while(rs.next()){
+				groupIdList.add(rs.getString(1));
+			}
+
+			cn.commit();
+		}
+		catch(SQLException e)
+		{
+			OracleConnectionManager.getInstance().rollback();
+		}
+		finally
+		{
+			try
+			{
+				if(rs != null)
+				{
+					rs.close();
+				}
+				if(st != null)
+				{
+					st.close();
+				}
+			}
+			catch(SQLException e)
+			{
+				e.printStackTrace();
+			}
+		}
+		return groupIdList;
 	}
 
 	public void addGroupMember(String groupId, ArrayList<String> members){

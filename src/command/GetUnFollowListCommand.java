@@ -1,30 +1,32 @@
 package command;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
+import java.util.List;
 
 import bean.User;
 import context.RequestContext;
 import context.ResponseContext;
 import dao.AbstractDaoFactory;
 import dao.FollowDao;
+import dao.UserDao;
 
 public class GetUnFollowListCommand extends AbstractCommand{
 	public ResponseContext execute(ResponseContext responseContext){
+		RequestContext rc = getRequestContext();
+
+		//SessionからUser情報取得
+		User loginUser = (User)rc.getSessionObject("user");
+		String loginUserId = loginUser.getUserId();
+
 		//dao取得
 		AbstractDaoFactory factory = AbstractDaoFactory.getFactory();
 		FollowDao followDao = factory.getFollowDao();
+		UserDao userDao = factory.getUserDao();
 
-		//SessionからUser情報取得
-		RequestContext rc = getRequestContext();
-		HttpServletRequest request = (HttpServletRequest)rc.getRequest();
-		HttpSession session = request.getSession();
-		User user = (User)session.getAttribute("user");
-		String userId = user.getUserId();
-		//useridの取得は問題なし
+		List<String> unFollowIdList = followDao.getUnFollowIdList(loginUserId);
+		List<User> unFollowList = userDao.getUserList(unFollowIdList);
 
 		responseContext.setTarget("unFollowList");
-		responseContext.setResult((Object)followDao.getUnFollowList(userId));
+		responseContext.setResult(unFollowList);
 
 		return responseContext;
 	}
