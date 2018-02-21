@@ -92,7 +92,8 @@ public class OraUserDao implements UserDao {
 			while(userIdListIterator.hasNext()){
 				String userId = userIdListIterator.next();
 
-				String sql = "SELECT user_id, is_admin, username, user_introduction, student_id, admission_year, d.department_name "
+				String sql = "SELECT user_id, is_admin, username, user_introduction, student_id, "
+						+ "TO_CHAR(sysdate,'YYYY') - admission_year  + case when (TO_CHAR(sysdate,'MMDD')<TO_CHAR(0331)) AND (TO_CHAR(sysdate,'MMDD')<TO_CHAR(0101)) then 0 else 1 end, d.department_name "
 						+ "FROM user_t u, department_t d WHERE user_id = ? AND u.department_id=d.department_id";
 				st = cn.prepareStatement(sql);
 				st.setString(1, userId);
@@ -109,7 +110,7 @@ public class OraUserDao implements UserDao {
 					else {
 						user.setAdmin(false);
 					}
-					user.setUsername(rs.getString(5));
+					user.setUsername(rs.getString(3));
 					user.setUserIntroduction(rs.getString(4));
 					user.setStudentId(rs.getString(5));
 					user.setAdmissionYear(rs.getString(6));

@@ -51,8 +51,6 @@ public class MyProfileDao{
 
 	public void iconUpdate(InputStream input,long inputsize,String id){
 
-		System.out.println("iconUpdateメソッドの実行");
-
 		PreparedStatement st = null;
 		ResultSet rs = null;
 		Connection cn = null;
