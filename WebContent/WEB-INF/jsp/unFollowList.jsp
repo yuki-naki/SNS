@@ -21,33 +21,33 @@
 				<div id="search-bar" style="margin: 30px 0px;">
 					<div class="col-xs-4">
 						<select class="form-control" name="grade" id="grade">
-					      	<option value="default" selected="selected">学年</option>
+							<option value="default" selected="selected">学年</option>
 					        <option value="1年生">1学年</option>
 					        <option value="2年生">2学年</option>
 					        <option value="3年生">3学年</option>
 					        <option value="4年生">4学年</option>
-				      </select>
+						</select>
 					</div>
 					<div class="col-xs-4">
 						<select class="form-control" name="department" id="departmentId" >
-					      	<option value="default" selected="selected">学科</option>
+							<option value="default" selected="selected">学科</option>
 					        <option value="情報処理科">情報処理科</option>
 					        <option value="インテリア科">インテリア科</option>
 					        <option value="Web動画クリエーター科">Web動画クリエーター科</option>
 					        <option value="環境テクノロジー科">環境テクノロジー科</option>
 					        <option value="建築監督科">建築監督科</option>
 					        <option value="職員">職員</option>
-				      </select>
+						</select>
 					</div>
 					<div class="col-xs-4">
-						<div class="input-group">
+							<div class="input-group">
 							<input id="test" type="text" class="form-control" placeholder="Search" name="search">
-							<div class="input-group-btn">
+								<div class="input-group-btn">
 								<button class="btn btn-default" type="submit" style="height: 34px;">
-									<i class="glyphicon glyphicon-search"></i>
-								</button>
+										<i class="glyphicon glyphicon-search"></i>
+									</button>
+								</div>
 							</div>
-						</div>
 					</div>
 				</div>
 				<div>
@@ -65,16 +65,10 @@
 							<form method='post' action='follow'>
 								<input type="hidden" name="userId" value="${user.userId}" />
 								<tr>
-<<<<<<< HEAD
-									<td width="100"><img src="loadIcon?userId=${user.userId}" id="icon"
-										class="img-circle" alt="anoni"></td>
-									<td class="text-left">${user.username}</td>
-=======
 									<td width="100"><img src="loadIcon?userId=${user.userId}" id="icon" class="img-circle" alt="icon"></td><!-- 0番目 -->
 									<td class="text-left">${user.username}</td><!-- １番目 -->
 									<td class="text-left"><c:if test="${user.departmentName != '職員'}">${user.admissionYear}年生</c:if></td><!-- ２番目 -->
 									<td class="text-left">${user.departmentName}</td><!-- ３番目 -->
->>>>>>> refs/remotes/origin/alex
 									<td><input type='submit' class="btn btn-info" value='follow'></td>
 								</tr>
 							</form>
