@@ -27,7 +27,6 @@ public abstract class AbstractDaoFactory
 	public abstract UserDao getUserDao();
 	public abstract NotificationDao getNotificationDao();
 	public abstract FollowDao getFollowDao();
-	public abstract ChatDao getChatDao();
 	public abstract MessageDao getMessageDao();
 	public abstract GroupDao getGroupDao();
 	public abstract GroupMemberDao getGroupMemberDao();

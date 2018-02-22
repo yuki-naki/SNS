@@ -53,7 +53,6 @@
 		</c:forEach>
 	</div>
 	<br>
-
 	<script src="js/topPage.js"></script>
 </body>
 </html>

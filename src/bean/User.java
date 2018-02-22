@@ -1,7 +1,6 @@
 package bean;
 
 import java.io.Serializable;
-import java.sql.Blob;
 
 public class User implements Serializable {
 
@@ -10,13 +9,12 @@ public class User implements Serializable {
 	private String password;
 	private boolean isAdmin;
 	private String username;
-	private Blob icon;
 	private String userIntroduction;
 	private String studentId;
 	private String admissionYear;
 	//新しい追加 2018.2.15
 	private String departmentName;
-	
+
 	//新しい追加 2018.2.15
 	public String getDepartmentName(){
 		return departmentName;
@@ -55,12 +53,6 @@ public class User implements Serializable {
 	}
 	public void setUsername(String username) {
 		this.username = username;
-	}
-	public Blob getIcon() {
-		return icon;
-	}
-	public void setIcon(Blob icon) {
-		this.icon = icon;
 	}
 	public String getUserIntroduction() {
 		return userIntroduction;

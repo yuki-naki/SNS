@@ -49,21 +49,25 @@ public class IconTestServlet extends HttpServlet {
 		System.out.println("Partファイル生成");
 		Part part = request.getPart("iconimg");
 
-		System.out.println("inputstream生成完了");
+		System.out.println("part:"+part.getSize());
+
+		if(part.getSize() == 0){
+			RequestDispatcher dis = request.getRequestDispatcher("myPageSetup");
+
+			dis.forward(request, response);
+		}else{
+			HttpSession session = request.getSession();
+			User user = (User)session.getAttribute("user");
 
 
+			 MyProfileDao mp = new MyProfileDao();
+			 mp.iconUpdate(part.getInputStream(),part.getSize(),user.getUserId());
 
-		HttpSession session = request.getSession();
-		User user = (User)session.getAttribute("user");
 
+			 RequestDispatcher dis = request.getRequestDispatcher("myPageSetup");
 
-		 MyProfileDao mp = new MyProfileDao();
-		 mp.iconUpdate(part.getInputStream(),part.getSize(),user.getUserId());
-
-		 RequestDispatcher dis = request.getRequestDispatcher("myPageSetup");
-
-		 dis.forward(request, response);
-
+			 dis.forward(request, response);
+		}
 
 	}
 

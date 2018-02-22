@@ -11,8 +11,8 @@ html{
 	height:100%;
 }
 #icon{
-	width:120px;
-	height:120px;
+	width:178px;
+	height:178px;
 	border: 2px #555555 solid;
 }
 #comment{
@@ -24,6 +24,6 @@ html{
 	justify-content: center;
 }
 #upload{
-	/*display:none;
-	visibility:hidden;*/
+	/*display:none;*/
+	visibility:hidden;
 }

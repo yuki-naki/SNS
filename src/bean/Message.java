@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class Message implements Serializable {
 
 	private User user;
+	private String userId;
 	private String groupId;
 	private String content;
 	private String date;
@@ -14,6 +15,12 @@ public class Message implements Serializable {
 	}
 	public void setUser(User user) {
 		this.user = user;
+	}
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 	public String getGroupId() {
 		return groupId;

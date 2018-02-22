@@ -21,14 +21,11 @@ public class MyPageSetupCommand extends AbstractCommand{
 
 		MyProfileDao dao = new MyProfileDao();
 
+		user.setUserIntroduction(user_introduction);
 
-
-		dao.addMyProfile(user.getUserId(),user_introduction);
+		dao.addMyProfile(user);
 
 		list = (ArrayList)dao.getMyProfile(user.getUserId());
-
-		System.out.println(user.getUsername());
-		System.out.println(user_introduction);
 
 		resc.setResult(list);
 		resc.setTarget("myPage");
