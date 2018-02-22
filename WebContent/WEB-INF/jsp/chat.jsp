@@ -192,13 +192,31 @@
 		<div>
 			<div>グループ作成</div>
 			<form method='post' action='createGroup'>
-				<input type="text" name="groupName">
-				<div>フォロー中</div>
-				<c:forEach var="followUser" items="${result[3]}">
-					<div><input type="checkbox" name="selectedUser" value="${followUser.userId}"/>${followUser.username}</div>
-				</c:forEach>
-				<input type="submit" value="作成">
-   			</form>
+				<table border="0" class="table table-condensed" id="table">
+					<thead>
+						<tr>
+							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>
+						</tr>
+					 </thead>
+						 <tbody>
+						 		<input type="text" name="groupName">
+								<c:forEach var="followUser" items="${result[3]}">
+									<tr>
+										<td><input type="checkbox" name="selectedUser" value="${followUser.userId}"/></td>
+										<td width="100" ><img src="loadIcon?userId=${followUser.userId}" id="icon" class="img-circle" alt="icon"></td><!-- 0番目 -->
+										<td class="text-left">${followUser.username}</td><!-- １番目 -->
+										<td class="text-left"><c:if test="${followUser.departmentName != '職員'}">${followUser.admissionYear}年生</c:if><!-- ２番目 -->
+										<td class="text-left">${followUser.departmentName}</td><!-- ３番目 -->
+									</tr>
+								</c:forEach>
+						</tbody>
+				</table>
+			<input type="submit" class="btn btn-success" value="作成">
+			</form>
   		</div>
 	</div>
 
