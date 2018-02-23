@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 $(document).ready(function() {
 	$('#follow').addClass("active");
 	$('#top').removeClass("active");
@@ -43,7 +43,7 @@ $(function(){
 			}
 	     });
 	});
-=======
+
 $(document).ready(function() {
 	$('#follow').addClass("active");
 	$('#top').removeClass("active");
@@ -88,5 +88,4 @@ $(function(){
 			}
 	     });
 	});
->>>>>>> refs/remotes/origin/idei
 })

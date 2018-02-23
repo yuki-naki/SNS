@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 // ポップアップscript
 //createGroupポップアップ
 $(function() {
@@ -24,7 +23,7 @@ $(function() {
 	$('#closeAddMember, #layer').click(function(e) {
 	    $('#addMemberPopup, #addMemberLayer').hide();
 	});
-=======
+
 // ポップアップscript
 //createGroupポップアップ
 $(function() {
@@ -50,5 +49,4 @@ $(function() {
 	$('#closeAddMember, #layer').click(function(e) {
 	    $('#addMemberPopup, #addMemberLayer').hide();
 	});
->>>>>>> refs/remotes/origin/idei
 });
