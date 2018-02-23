@@ -40,12 +40,12 @@
 				      </select>
 				    </div>
 					<div class="col-xs-4">
-						   <div class="input-group">
-						     <input type="text" class="form-control" placeholder="Search" name="search" id="test" onclick="change()">
-						     <div class="input-group-btn">
-						       <button class="btn btn-default" type="submit" style="height:34px;" disabled><i class="glyphicon glyphicon-search"></i></button>
-						     </div>
-						   </div>
+					   <div class="input-group">
+					     <input type="text" class="form-control" placeholder="Search" name="search" id="test" onclick="change()">
+					     <div class="input-group-btn">
+					       <button class="btn btn-default" type="submit" style="height:34px;" disabled><i class="glyphicon glyphicon-search"></i></button>
+					     </div>
+					   </div>
 					</div>
 				</div>
 				<div>
