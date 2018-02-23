@@ -540,12 +540,10 @@ pre {
 #createGroupPopup {
     display: none;  /* 初期表示は非表示 */
     position: absolute;
-    left: 40%;
-    top: 17.5%;
-    width: 600px;
-    height: 700px;
-    margin-left: -150px;
-    margin-top: -100px;
+    left: 20%;
+    top: 92px;
+    width: 60%;
+    height: 80%;
     background-color: white;
     border-radius: 5px;
     text-align: center;
@@ -559,6 +557,45 @@ pre {
     height: 100%;
     background-color: black;
     opacity: 0.20;
+}
+
+#close:active {
+    -ms-transform: translateY(4px);
+    -webkit-transform: translateY(4px);
+    transform: translateY(4px);/*下に動く*/
+    border-bottom: none;/*線を消す*/
+}
+
+.popupRemoveButton{
+	position: absolute;
+	right: 0px;
+    top: 0px;
+	font-size: 24px;
+}
+
+.popupHeader{
+	height:10%;
+}
+
+.popupForm{
+	height: 90%;
+}
+
+.popupGroupName{
+	height: 10%;
+}
+
+.popupSearch{
+	height: 8%;
+}
+
+.popupMemberList {
+	height: 74%;
+    width: 100%;
+    overflow-y: auto;
+}
+.popupActionButton{
+	height: 8%;
 }
 
 #addMemberPopup {
@@ -583,4 +620,11 @@ pre {
     height: 100%;
     background-color: black;
     opacity: 0.20;
+}
+#icon{
+	width:65px;
+	height:65px;
+}
+td {
+	vertical-align: middle !important;
 }

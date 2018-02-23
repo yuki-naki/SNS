@@ -59,6 +59,45 @@ $(function() {
 
 	$('#chat').addClass("active");
 	$('#top').removeClass("active");
+
+	$('#grade, #departmentId, #test').change(function() {
+		var dept =  $('#departmentId').val();
+		var grade =  $('#grade').val();
+		var search = new RegExp($('#test').val().trim());
+
+		$('#table tbody tr').each(function(){
+		//td:eq(0) の０番目
+			var userDept = $(this).find("td:eq(4)").html();
+			var userGrade = $(this).find("td:eq(3)").html();
+			var username = $(this).find("td:eq(2)").html();
+
+			if(userDept.match(dept) && grade === "default" && search ===""){
+				$(this).show();
+			}
+			else if(userGrade.match(grade) && dept === "default" && search ===""){
+				$(this).show();
+			}
+			else if(username.match(search) && dept === "default" && grade === "default"){
+				$(this).show();
+			}
+			else if(userGrade.match(grade) && userDept.match(dept) && grade != "default" && dept != "default" && search ===""){
+				$(this).show();
+			}
+			else if(userGrade.match(grade) && username.match(search) && grade != "default" && search !="" && dept === "default"){
+				$(this).show();
+			}
+			else if(userDept.match(dept) && username.match(search) && dept != "default" && search !="" && grade === "default"){
+				$(this).show();
+			}
+			else if(userGrade.match(grade) && username.match(search) && userDept.match(dept) &&
+					grade != "default" && search !="" && dept != "default"){
+				$(this).show();
+			}
+			else{
+				$(this).hide();
+			}
+	     });
+	});
 });
 
 "use strict";
@@ -120,7 +159,7 @@ Chat.initialize = function() {
 Chat.sendMessage = (function() {
 	var message = document.getElementById('comment').value;
 	if (message.trim() != "" && message != null) {
-		message = message.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+		message = message.replace(/</g,'&lt;').replace(/>/g,'&gt;')
 		message = "<pre>" + message.replace(/\n/g,"<br>") + "</pre>";
 		var JsonUser = $("#reply").attr("data-user");
 		var user = JSON.parse(JsonUser);
