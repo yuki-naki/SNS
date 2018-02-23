@@ -93,16 +93,6 @@ INSERT INTO user_t (user_id, login_id, password, is_admin, username, department_
 INSERT INTO user_t (user_id, login_id, password, is_admin, username, department_id,admission_year) VALUES (user_seq.nextVal, 'Yokota', 'Yokota', 0, '横田涼馬',1,2016);
 
 /*
-INSERT INTO group_t (group_id, group_name) VALUES (group_seq.nextval, 'group1');
-INSERT INTO group_t (group_id, group_name) VALUES (group_seq.nextval, 'group2');
-
-INSERT INTO groupmember_t VALUES (1, 1);
-INSERT INTO groupmember_t VALUES (1, 4);
-INSERT INTO groupmember_t VALUES (2, 1);
-INSERT INTO groupmember_t VALUES (2, 2);
-INSERT INTO groupmember_t VALUES (2, 3);
-INSERT INTO groupmember_t VALUES (2, 5);
-
 //ユーザー
 
 //インテリア科
