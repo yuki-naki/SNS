@@ -20,13 +20,13 @@ import dao.MyProfileDao;
  */
 @MultipartConfig(maxFileSize=1000000000)
 @WebServlet("/IconTestServlet")
-public class IconTestServlet extends HttpServlet {
+public class IconUploadServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public IconTestServlet() {
+    public IconUploadServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
