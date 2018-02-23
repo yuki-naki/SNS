@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @CHARSET "UTF-8";
 
 html, body {
@@ -620,4 +621,628 @@ pre {
     height: 100%;
     background-color: black;
     opacity: 0.20;
+=======
+@CHARSET "UTF-8";
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.col-sm-9 {
+    width: 80%;
+}
+
+.fa-2x {
+  font-size: 1.5em;
+}
+
+.app {
+  position: relative;
+  overflow: hidden;
+  top: 3px;
+  height: calc(100% - 38px);
+  margin: auto;
+  padding: 0;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .06), 0 2px 5px 0 rgba(0, 0, 0, .2);
+}
+
+.app-one {
+  background-color: #f7f7f7;
+  height: 91%;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .06), 0 2px 5px 0 rgba(0, 0, 0, .2);
+}
+
+.side {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+}
+.side-one {
+  padding: 0;
+  margin: 0;
+  height: calc(100% - 53px);
+  width: 100%;
+}
+
+.side-two {
+  padding: 0;
+  margin: 0;
+  height: calc(100% - 53px);
+  width: 100%;
+  position: relative;
+  top: calc(-100% + 53px);
+  left: 100%;
+  -webkit-transition: left 0.3s ease;
+  transition: left 0.3s ease;
+}
+
+
+.heading {
+  padding: 5px 5px 5px 5px;
+  margin: 0;
+  width: 100%;
+  background-color: #5bc0de;
+}
+
+.conversationHeading {
+	margin:0;
+}
+
+.heading-avatar {
+  padding: 0;
+  cursor: pointer;
+
+}
+
+.heading-avatar-icon img {
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+}
+
+.heading-name {
+  padding: 0px;
+  text-align:center;
+  background-color: #f5f1ee;
+}
+
+.heading-name-meta {
+  font-weight: 700;
+  font-size: 180%;
+  cursor: pointer;
+}
+.heading-compose {
+  font-size: 110%;
+  padding:0;
+  padding-top:3px;
+}
+
+.heading-compose i {
+  color: white;
+  cursor: pointer;
+}
+
+.searchBox {
+  padding: 0 !important;
+  margin: 0 !important;
+  height: 60px;
+  width: 100%;
+}
+
+.searchBox-inner {
+  height: 100%;
+  width: 100%;
+  padding: 10px !important;
+  background-color: #fbfbfb;
+}
+
+.searchBox-inner input:focus {
+  outline: none;
+  border: none;
+  box-shadow: none;
+}
+
+.sideBar-body {
+  position: relative;
+  padding: 10px !important;
+  border-bottom: 1px solid #f7f7f7;
+  height: 72px;
+  margin: 0 !important;
+  cursor: pointer;
+  width:100%;
+  border:none;
+  background-color:white;
+}
+
+.sideBar-body:hover {
+  background-color: #f2f2f2;
+}
+
+.sideBar-avatar {
+  text-align: center;
+  padding: 0 !important;
+}
+
+.avatar-icon img {
+  border-radius: 50%;
+  height: 49px;
+  width: 49px;
+}
+
+.sideBar-main {
+  padding: 0;
+  padding-top:2px;
+}
+
+.sideBar-main .row {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.sideBar-name {
+  padding: 10px;
+  text-align: left;
+  padding-left: 30px;
+}
+
+.name-meta {
+  font-size: 100%;
+  padding: 1% !important;
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #000;
+}
+
+.sideBar-time {
+  padding: 10px !important;
+}
+
+.time-meta {
+  text-align: right;
+  font-size: 12px;
+  padding: 1% !important;
+  color: rgba(0, 0, 0, .4);
+  vertical-align: baseline;
+}
+
+.sideBottom {
+	height:53px;
+	text-align:right;
+	margin:0;
+	margin-top:13px;
+	margin-right:-10px;
+}
+
+.iconImage {
+	height: calc(100% - 2px);
+}
+
+.form-control-feedback{
+	pointer-events:auto !important;
+	cursor:pointer;
+}
+
+hr {
+	margin:0;
+}
+
+/*New Message*/
+
+.newMessage {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+}
+.newMessage-heading {
+  margin: 0;
+  width: 100%;
+  background-color: #5bc0de;
+  padding:5px 5px 5px 5px;
+}
+
+.newMessage-main {
+  margin: 0;
+  width: 100%;
+  color: #fff;
+}
+
+.newMessage-title {
+  font-size: 155%;
+  font-weight: 700;
+  padding:0;
+  text-align:center;
+}
+.newMessage-back {
+  padding: 0;
+  cursor: pointer;
+  padding-top:6px;
+}
+
+.composeBox {
+  padding: 0 !important;
+  margin: 0 !important;
+  height: 60px;
+  width: 100%;
+}
+
+.composeBox-inner {
+  height: 100%;
+  width: 100%;
+  padding: 10px !important;
+  background-color: #fbfbfb;
+}
+
+.composeBox-inner input:focus {
+  outline: none;
+  border: none;
+  box-shadow: none;
+}
+
+.compose-sideBar {
+  padding: 0 !important;
+  margin: 0 !important;
+  background-color: #fff;
+  overflow-y: auto;
+  border: 1px solid #f7f7f7;
+  height:calc(100% - 125px);
+}
+
+#backGroupBtn {
+	font-size:120%;
+}
+
+/*Conversation*/
+
+.conversation {
+  padding: 0 !important;
+  margin: 0 !important;
+  height: 100%;
+  /*width: 100%;*/
+  border-left: 1px solid rgba(0, 0, 0, .08);
+  /*overflow-y: auto;*/
+}
+
+.message {
+  padding: 0 !important;
+  margin: 0 !important;
+  overflow-y: auto;
+  height: calc(100% - 79px);
+}
+.message-group {
+  padding: 0 !important;
+  margin: 0 !important;
+  overflow-y: auto;
+  height: calc(100% - 120px);
+}
+
+.message-body {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: auto;
+  height: auto;
+}
+
+.message-main-receiver {
+  max-width: 60%;
+  padding: 10px;
+  padding-top:0px;
+}
+
+.message-main-sender {
+  padding: 12px 0px !important;
+  margin-left: 38% !important;
+  max-width: 60%;
+}
+
+.message-text {
+  margin: 0 !important;
+  padding: 5px !important;
+  word-wrap:break-word;
+  font-weight: 200;
+  font-size: 14px;
+  padding-bottom: 0 !important;
+}
+
+.messageBody-avatar{
+  text-align: center;
+  padding: 10px;
+  padding-top: 21px;
+}
+
+.receiver-name{
+    font-size: 12px;
+    padding: 0px 0px 3px 26px !important;
+    cursor:default;
+}
+
+.sender-name{
+   text-align: right;
+   font-size: 10px;
+   padding: 3px 0px !important;
+}
+
+.message-time {
+  margin: 0 !important;
+  margin-left: 50px !important;
+  font-size: 12px;
+  text-align: right;
+  color: #9a9a9a;
+
+}
+
+.receiver {
+  width: auto !important;
+  padding: 4px 10px 7px !important;
+  border-radius: 10px 10px 10px 0;
+  background: #ffffff;
+  font-size: 12px;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, .2);
+  word-wrap: break-word;
+  display: inline-block;
+}
+
+.sender {
+  float: right;
+  width: auto !important;
+  background: #dcf8c6;
+  border-radius: 10px 10px 0 10px;
+  padding: 4px 10px 7px !important;
+  font-size: 12px;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, .2);
+  display: inline-block;
+  word-wrap: break-word;
+}
+
+pre {
+	margin: 0;
+	padding: 1px;
+	border: none;
+	background-color: transparent;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-size: 14px;
+	line-height: 1.42857143;
+	white-space: pre-wrap;
+}
+/*Reply*/
+
+.reply {
+  width: 100%;
+  background-color: #f5f1ee;
+  margin: 0;
+  padding:10px 0px 10px 0px;
+}
+
+.reply-send {
+	padding-top:19px;
+	padding-left:14px;
+}
+
+.reply-send i {
+  text-align: center;
+  color: #93918f;
+  cursor: pointer;
+}
+
+.reply-main {
+	padding:0;
+}
+
+#comment {
+	height:auto;
+	resize: none;
+	box-sizing: border-box;
+	margin:0;
+	padding:0;
+}
+
+@media screen and (max-width: 700px) {
+  .app {
+    top: 0;
+    height: 100%;
+  }
+  .heading {
+    height: 70px;
+    background-color: #009688;
+  }
+  .fa-2x {
+    font-size: 2.3em !important;
+  }
+  .heading-avatar {
+    padding: 0 !important;
+  }
+  .heading-avatar-icon img {
+    height: 50px;
+    width: 50px;
+  }
+  .heading-compose {
+    padding: 5px !important;
+  }
+  .heading-compose i {
+    color: #fff;
+    cursor: pointer;
+  }
+  .heading-dot {
+    padding: 5px !important;
+    margin-left: 10px !important;
+  }
+  .heading-dot i {
+    color: #fff;
+    cursor: pointer;
+  }
+  .sideBar {
+    height: calc(100% - 130px);
+  }
+  .sideBar-body {
+    height: 80px;
+  }
+  .sideBar-avatar {
+    text-align: left;
+    padding: 0 8px !important;
+  }
+  .avatar-icon img {
+    height: 55px;
+    width: 55px;
+  }
+  .sideBar-main {
+    padding: 0 !important;
+  }
+  .sideBar-main .row {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  .sideBar-name {
+    padding: 10px 5px !important;
+  }
+  .name-meta {
+    font-size: 16px;
+    padding: 5% !important;
+  }
+  .sideBar-time {
+    padding: 10px !important;
+  }
+  .time-meta {
+    text-align: right;
+    font-size: 14px;
+    padding: 4% !important;
+    color: rgba(0, 0, 0, .4);
+    vertical-align: baseline;
+  }
+  /*Conversation*/
+  .conversation {
+    padding: 0 !important;
+    margin: 0 !important;
+    height: 100%;
+    border-left: 1px solid rgba(0, 0, 0, .08);
+  }
+  .message {
+    height: calc(100% - 140px);
+  }
+  .reply {
+    height: 70px;
+  }
+  .reply-main {
+    padding: 2px 8px !important;
+  }
+  .reply-main textarea {
+    padding: 8px !important;
+    font-size: 18px;
+  }
+  .reply-send {
+    padding: 5px 0 !important;
+  }
+  .reply-send i {
+    padding: 5px 2px 5px 0 !important;
+    font-size: 1.8em !important;
+  }
+}
+
+.reply-uploading{
+	padding-top:19px;
+	padding-left:14px;
+	text-align:center;
+	font-size:130%;
+}
+
+/*横田　追記*/
+.grouplist_header{
+	font-weight: 700;
+    font-size: 155%;
+    color: white;
+    padding:0;
+    text-align:center;
+    cursor:default;
+}
+/*出井ポップアップ用*/
+#createGroupPopup {
+    display: none;  /* 初期表示は非表示 */
+    position: absolute;
+    left: 20%;
+    top: 92px;
+    width: 60%;
+    height: 80%;
+    background-color: white;
+    border-radius: 5px;
+    text-align: center;
+}
+#createGroupLayer {
+    display: none;  /* 初期表示は非表示 */
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.20;
+}
+
+#close:active {
+    -ms-transform: translateY(4px);
+    -webkit-transform: translateY(4px);
+    transform: translateY(4px);/*下に動く*/
+    border-bottom: none;/*線を消す*/
+}
+
+.popupRemoveButton{
+	position: absolute;
+	right: 0px;
+    top: 0px;
+	font-size: 24px;
+}
+
+.popupHeader{
+	height:10%;
+}
+
+.popupForm{
+	height: 90%;
+}
+
+.popupGroupName{
+	height: 10%;
+}
+
+.popupSearch{
+	height: 8%;
+}
+
+.popupMemberList {
+	height: 74%;
+    width: 100%;
+    overflow-y: auto;
+}
+.popupActionButton{
+	height: 8%;
+}
+
+#addMemberPopup {
+    display: none;  /* 初期表示は非表示 */
+    position: absolute;
+    left: 40%;
+    top: 17.5%;
+    width: 600px;
+    height: 700px;
+    margin-left: -150px;
+    margin-top: -100px;
+    background-color: white;
+    border-radius: 5px;
+    text-align: center;
+}
+#addMemberLayer {
+    display: none;  /* 初期表示は非表示 */
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.20;
+>>>>>>> refs/remotes/origin/idei
 }
