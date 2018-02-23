@@ -10,8 +10,10 @@
 <link rel="stylesheet" href="tinymce/css/tinymce.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="css/chat.css">
+<link rel="stylesheet" href="css/followList.css">
 <script src="js/jquery.min.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
+<script src="js/popup.js"></script>
 
 <title>Chat</title>
 </head>
@@ -25,7 +27,11 @@
 				<div class="row conversationHeading">
 					<div class="col-xs-12 heading-name">
 						<c:if test="${not empty result[0]}">
-							<a id="headingGroupname" class="heading-name-meta" data-groupId="${result[0]}">${result[1][result[0]].groupName}</a>
+							<form method="post" action="groupEdit" name="form1">
+							<input type="hidden" name="groupId" value="${result[0]}"></input>
+							<a id="headingGroupname"  href="javascript:form1.submit()" class="heading-name-meta" data-groupId="${result[0]}">${result[1][result[0]].groupName}</a>
+							</form>
+
 						</c:if>
 					</div>
 				</div>
@@ -105,7 +111,7 @@
 								<button type="submit" class="row sideBar-body group">
 									<div class="col-xs-1 sideBar-avatar">
 										<div class="avatar-icon">
-											<img src="https://bootdey.com/img/Content/avatar/avatar2.png">
+											<img src="loadGroupIcon?groupId=${chat.key}">
 										</div>
 									</div>
 									<div class="col-xs-11 sideBar-main">
@@ -155,7 +161,7 @@
 								<div class="row sideBar-body member">
 									<div class="col-xs-1 sideBar-avatar">
 										<div class="avatar-icon">
-											<img src="loadIcon?userId=${user.userId}">
+											<img src="loadIcon?userId=${member.userId}">
 										</div>
 									</div>
 									<div class="col-xs-11 sideBar-main">
@@ -185,10 +191,49 @@
 	<!--createGroupのポップアップ-->
 	<div id="createGroupLayer"></div>
 	<div id="createGroupPopup">
-		<div>
-			<div>グループ作成</div>
-			<form method='post' action='createGroup'>
-				<table border="0" class="table table-condensed" id="table">
+		<div class="popupRemoveButton">
+			<button id="closeCreateGroup"><i class=" glyphicon glyphicon-remove"></i></button>
+		</div>
+		<div class="popupHeader">グループ作成</div>
+
+		<form class="popupForm" method='post' action='createGroup'>
+			<div class="popupGroupName">
+				<input type="text" placeholder="グループ名を入力してください。" class="form-control" name="groupName">
+			</div>
+			<div class="popupSearch">
+				<div id="search-bar"">
+					<div class="col-xs-4">
+				      <select class="form-control" name="grade" id="grade">
+				      	<option value="default" selected="selected">学年</option>
+				        <option value="1年生">1学年</option>
+				        <option value="2年生">2学年</option>
+				        <option value="3年生">3学年</option>
+				        <option value="4年生">4学年</option>
+				      </select>
+				    </div>
+				    <div class="col-xs-4">
+				      <select class="form-control" name="department" id="departmentId" >
+				      	<option value="default" selected="selected">学科</option>
+				        <option value="情報処理科">情報処理科</option>
+				        <option value="インテリア科">インテリア科</option>
+				        <option value="Web動画クリエーター科">Web動画クリエーター科</option>
+				        <option value="環境テクノロジー科">環境テクノロジー科</option>
+				        <option value="建築監督科">建築監督科</option>
+				        <option value="職員">職員</option>
+				      </select>
+				    </div>
+					<div class="col-xs-4">
+					   <div class="input-group">
+					     <input type="text" class="form-control" placeholder="Search" name="search" id="test" onclick="change()">
+					     <div class="input-group-btn">
+							<button class="btn btn-default" type="submit" style="height:34px;" disabled><i class="glyphicon glyphicon-search"></i></button>
+					     </div>
+					   </div>
+					</div>
+				</div>
+			</div>
+			<div class="popupMemberList">
+				<table border="0" class="table table-condensed memberList" id="table">
 					<thead>
 						<tr>
 							<th></th>
@@ -198,37 +243,97 @@
 							<th></th>
 						</tr>
 					 </thead>
-						 <tbody>
-						 		<input type="text" name="groupName">
-								<c:forEach var="followUser" items="${result[3]}">
-									<tr>
-										<td><input type="checkbox" name="selectedUser" value="${followUser.userId}"/></td>
-										<td width="100" ><img src="loadIcon?userId=${followUser.userId}" id="icon" class="img-circle" alt="icon"></td><!-- 0番目 -->
-										<td class="text-left">${followUser.username}</td><!-- １番目 -->
-										<td class="text-left"><c:if test="${followUser.departmentName != '職員'}">${followUser.admissionYear}年生</c:if><!-- ２番目 -->
-										<td class="text-left">${followUser.departmentName}</td><!-- ３番目 -->
-									</tr>
-								</c:forEach>
-						</tbody>
+					 <tbody>
+							<c:forEach var="followUser" items="${result[3]}">
+								<tr>
+									<td class="col-xs-1"><input type="checkbox" name="selectedUser" value="${followUser.userId}"/></td>
+									<td class="col-xs-1" width="100" ><img src="loadIcon?userId=${followUser.userId}" id="icon" class="img-circle" alt="icon"></td><!-- 1番目 -->
+									<td class="col-xs-5 text-left">${followUser.username}</td><!-- 2番目 -->
+									<td class="col-xs-2 text-left"><c:if test="${followUser.departmentName != '職員'}">${followUser.admissionYear}年生</c:if><!-- 3番目 -->
+									<td class="col-xs-3 text-left">${followUser.departmentName}</td><!-- 4番目 -->
+								</tr>
+							</c:forEach>
+					</tbody>
 				</table>
-			<input type="submit" class="btn btn-success" value="作成">
-			</form>
-  		</div>
+			</div>
+			<div class="popupActionButton">
+				<input type="submit" class="btn btn-success" value="作成">
+			</div>
+		</form>
 	</div>
 
 	<!--addMemberのポップアップ-->
 	<div id="addMemberLayer"></div>
 	<div id="addMemberPopup">
-		<div>
-			<div>メンバー追加</div>
-			<form method='post' action='addGroupMember'>
-				<input type="hidden" name="addMemberGroupId" value="${result[0]}" />
-				<c:forEach var="notMember" items="${result[1][result[0]].notMembers}">
-					<div><input type="checkbox" name="selectedUser" value="${notMember.userId}"/>${notMember.username}</div>
-				</c:forEach>
-				<input type="submit" value="追加">
-   			</form>
-  		</div>
+		<div class="popupRemoveButton">
+			<button id="closeAddMember"><i class=" glyphicon glyphicon-remove"></i></button>
+		</div>
+		<div class="popupHeader">メンバー追加</div>
+
+		<form class="popupForm" method='post' action='addGroupMember'>
+			<div class="popupGroupName">
+				${result[0].groupName}
+			</div>
+			<div class="popupSearch">
+				<div id="search-bar"">
+					<div class="col-xs-4">
+				      <select class="form-control" name="grade" id="grade">
+				      	<option value="default" selected="selected">学年</option>
+				        <option value="1年生">1学年</option>
+				        <option value="2年生">2学年</option>
+				        <option value="3年生">3学年</option>
+				        <option value="4年生">4学年</option>
+				      </select>
+				    </div>
+				    <div class="col-xs-4">
+				      <select class="form-control" name="department" id="departmentId" >
+				      	<option value="default" selected="selected">学科</option>
+				        <option value="情報処理科">情報処理科</option>
+				        <option value="インテリア科">インテリア科</option>
+				        <option value="Web動画クリエーター科">Web動画クリエーター科</option>
+				        <option value="環境テクノロジー科">環境テクノロジー科</option>
+				        <option value="建築監督科">建築監督科</option>
+				        <option value="職員">職員</option>
+				      </select>
+				    </div>
+					<div class="col-xs-4">
+					   <div class="input-group">
+					     <input type="text" class="form-control" placeholder="Search" name="search" id="test" onclick="change()">
+					     <div class="input-group-btn">
+							<button class="btn btn-default" type="submit" style="height:34px;" disabled><i class="glyphicon glyphicon-search"></i></button>
+					     </div>
+					   </div>
+					</div>
+				</div>
+			</div>
+			<div class="popupMemberList">
+				<table border="0" class="table table-condensed memberList" id="table">
+					<thead>
+						<tr>
+							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>
+						</tr>
+					 </thead>
+					 <tbody>
+							<c:forEach var="followUser" items="${result[3]}">
+								<tr>
+									<td class="col-xs-1"><input type="checkbox" name="selectedUser" value="${followUser.userId}"/></td>
+									<td class="col-xs-1" width="100" ><img src="loadIcon?userId=${followUser.userId}" id="icon" class="img-circle" alt="icon"></td><!-- 1番目 -->
+									<td class="col-xs-5 text-left">${followUser.username}</td><!-- 2番目 -->
+									<td class="col-xs-2 text-left"><c:if test="${followUser.departmentName != '職員'}">${followUser.admissionYear}年生</c:if><!-- 3番目 -->
+									<td class="col-xs-3 text-left">${followUser.departmentName}</td><!-- 4番目 -->
+								</tr>
+							</c:forEach>
+					</tbody>
+				</table>
+			</div>
+			<div class="popupActionButton">
+				<input type="submit" class="btn btn-success" value="追加">
+			</div>
+		</form>
 	</div>
 	<script src="js/chat.js"></script>
 </body>

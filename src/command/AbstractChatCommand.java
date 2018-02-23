@@ -76,11 +76,9 @@ public abstract class AbstractChatCommand extends AbstractCommand{
 			// 所属グループのmessage
 			List<Message> messageList = (ArrayList<Message>)messageDao.getMessageList(groupId);
 			messageList.forEach(m -> m.setUser(userDao.getUserByUserId(m.getUserId())));
-			messageList.forEach(m -> System.out.println(m.getContent()));
 
 			chat.setGroupId(group.getGroupId());
 			chat.setGroupName(group.getGroupName());
-			chat.setGroupIcon(group.getGroupIcon());
 			chat.setMembers(memberList);
 			chat.setNotMembers(notMemberList);
 			chat.setMessages(messageList);

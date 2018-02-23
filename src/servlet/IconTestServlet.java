@@ -63,6 +63,7 @@ public class IconTestServlet extends HttpServlet {
 			 MyProfileDao mp = new MyProfileDao();
 			 mp.iconUpdate(part.getInputStream(),part.getSize(),user.getUserId());
 
+
 			 RequestDispatcher dis = request.getRequestDispatcher("myPageSetup");
 
 			 dis.forward(request, response);

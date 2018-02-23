@@ -29,7 +29,7 @@
 		});
 	})
 </script>
-<title>MyProfile</title>
+<title>GroupEdit</title>
 </head>
 <body>
 	<%@include file="header.jsp" %>
@@ -37,24 +37,18 @@
 	<div class="container-fluid text-center">
 		<div class="row justify-content-center">
 			<div class="col-sm-8 col-sm-offset-2" id="profile">
-				<form method="post" action="IconTestServlet" enctype="multipart/form-data">
+				<form method="post" action="GroupIconUploadServlet" enctype="multipart/form-data">
 				<c:forEach var="result" items="${result}">
 						<div class="col">
 
-							<h1>MyProfile</h1>
+							<h1>GroupEdit</h1>
 						</div>
 						<div class="col-sm-3 col-sm-offset-1 content-center" id="iconwrap">
-							<img name="icon" class="img-circle" src="loadIcon?userId=${result.userId}" id="icon">
+							<input type="hidden" name="groupId" value="${result.groupId}"></input>
+							<img name="icon" class="img-circle" src="loadGroupIcon?groupId=${result.groupId}" id="icon">
 						</div>
 						<div class="col-sm-5 col-sm-offset-2">
-
-							<h3>名前:${result.username }</h3>
-							<h3>学年:${result.admissionYear}年</h3>
-							<h3>学科:${result.departmentName }</h3>
-						</div>
-						<div class="col-sm-12">
-							<h3>自己紹介文</h3>
-								<textarea name="comment" class="form-control" rows="8" id="comment" readonly>${result.userIntroduction}</textarea>
+							<h3>GroupName<br><input type="text" name="groupName" value="${result.groupName}"></input></h3>
 						</div>
 						<div class="col-sm-12 text-right">
 							<input type="file" id="upload" name="iconimg" disabled="true">

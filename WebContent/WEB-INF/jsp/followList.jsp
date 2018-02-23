@@ -62,7 +62,7 @@
 						 <tbody>
 							<c:forEach var="user" items="${result}">
 								<form method='post' action='removeFollow'>
-									<input type="hidden" name="removeTargetUserId" value="${user.userId}" />
+									<input type="hidden" name="removeTargetUserId" value="${user.userId}"	/>
 									<tr>
 										<td width="100" ><img src="loadIcon?userId=${user.userId}" id="icon" class="img-circle" alt="icon"></td><!-- 0番目 -->
 										<td class="text-left">${user.username}</td><!-- １番目 -->
