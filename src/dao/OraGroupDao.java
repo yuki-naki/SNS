@@ -213,8 +213,6 @@ public class OraGroupDao implements GroupDao{
 
 	public void groupUpdate(InputStream input,long inputsize,Group group){
 
-		System.out.println("groupUpdate繝｡繧ｽ繝�繝峨�ｮ螳溯｡�");
-
 		PreparedStatement st = null;
 		ResultSet rs = null;
 		Connection cn = null;
@@ -253,8 +251,6 @@ public class OraGroupDao implements GroupDao{
 	}
 
 	public void groupUpdate(Group group){
-
-		System.out.println("groupUpdate繝｡繧ｽ繝�繝峨�ｮ螳溯｡�");
 
 		PreparedStatement st = null;
 		ResultSet rs = null;
