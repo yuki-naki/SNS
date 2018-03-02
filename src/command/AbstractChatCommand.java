@@ -72,6 +72,7 @@ public abstract class AbstractChatCommand extends AbstractCommand{
 			ArrayList<String> notMemberIdList = (ArrayList<String>)groupMemberDao.getNotGroupMemberIdList(groupId);
 			notMemberIdList.retainAll(followIdList);
 			notMemberList = userDao.getUserList(notMemberIdList);
+			notMemberList.forEach(nm -> System.out.println(nm.getUsername()));
 
 			// 所属グループのmessage
 			List<Message> messageList = (ArrayList<Message>)messageDao.getMessageList(groupId);

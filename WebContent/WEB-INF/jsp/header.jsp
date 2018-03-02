@@ -15,7 +15,7 @@
 					<button type="submit" id="logoutBtn">Logout</button>
 				</form>
 			</div>
-			<div id="headerContent" class="col-xs-10">専門学校東京テクニカルカレッジ</div>
+			<div id="headerContent" class="col-xs-10">sample</div>
 			<div class="col-xs-1"></div>
 		</div>
 	</div>

@@ -1,5 +1,7 @@
 package dao;
 
+import java.io.InputStream;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -208,5 +210,120 @@ public class OraGroupDao implements GroupDao{
 				e.printStackTrace();
 			}
 		}
+	}
+
+	public void groupUpdate(InputStream input,long inputsize,Group group){
+
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		Connection cn = null;
+
+		try{
+			cn = OracleConnectionManager.getInstance().getConnection();
+
+			String sql = "update group_t set group_icon = ?,group_name = ? where group_id = ?";
+			st = cn.prepareStatement(sql);
+			st.setBinaryStream(1,input,(int)inputsize);
+			st.setString(2, group.getGroupName());
+			st.setString(3,group.getGroupId());
+
+			st.executeUpdate();
+
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		finally{
+			try{
+				if(rs != null){
+					rs.close();
+				}
+				if(st != null){
+					st.close();
+				}
+			}
+			catch(SQLException e){
+				e.printStackTrace();
+			}
+		}
+	}
+
+	public void groupUpdate(Group group){
+
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		Connection cn = null;
+
+		try{
+			cn = OracleConnectionManager.getInstance().getConnection();
+
+			String sql = "update group_t set group_name = ? where group_id = ?";
+			st = cn.prepareStatement(sql);
+
+			st.setString(1, group.getGroupName());
+			st.setString(2,group.getGroupId());
+
+			st.executeUpdate();
+
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		finally{
+			try{
+				if(rs != null){
+					rs.close();
+				}
+				if(st != null){
+					st.close();
+				}
+			}
+			catch(SQLException e){
+				e.printStackTrace();
+			}
+		}
+	}
+
+	public Blob getGroupIcon(String groupId){
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		Blob blob = null;
+
+		try
+		{
+			Connection cn = null;
+			cn = OracleConnectionManager.getInstance().getConnection();
+
+			String sql = "SELECT group_icon FROM group_t WHERE group_id = ?";
+			st = cn.prepareStatement(sql);
+			st.setString(1, groupId);
+
+			rs = st.executeQuery();
+			rs.next();
+			blob = rs.getBlob(1);
+
+			cn.commit();
+		}
+		catch(SQLException e)
+		{
+			OracleConnectionManager.getInstance().rollback();
+		}
+		finally
+		{
+			try
+			{
+				if(rs != null)
+				{
+					rs.close();
+				}
+				if(st != null)
+				{
+					st.close();
+				}
+			}
+			catch(SQLException e)
+			{
+				e.printStackTrace();
+			}
+		}
+		return blob;
 	}
 }
