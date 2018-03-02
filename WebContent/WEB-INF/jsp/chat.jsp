@@ -12,8 +12,6 @@
 <link rel="stylesheet" href="css/chat.css">
 <script src="js/jquery.min.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
-<script src="js/popup.js"></script>
-<script src="js/search.js"></script>
 
 <title>Chat</title>
 </head>
@@ -188,7 +186,7 @@
 			</div>
 		</div>
 	</div>
-	<!--createGroupのポップアップ-->
+	<%--createGroupのポップアップ--%>
 	<div id="createGroupLayer"></div>
 	<div id="createGroupPopup">
 		<div class="popupRemoveButton">
@@ -244,6 +242,7 @@
 						</tr>
 					 </thead>
 					 <tbody>
+		
 							<c:forEach var="followUser" items="${result[3]}">
 								<tr>
 									<td class="col-xs-1"><input type="checkbox" name="selectedUser" value="${followUser.userId}"/></td>
@@ -265,20 +264,19 @@
 	<!--addMemberのポップアップ-->
 	<div id="addMemberLayer"></div>
 	<div id="addMemberPopup">
-		<div class="popupRemoveButton">
+			<div class="popupRemoveButton">
 			<button id="closeAddMember"><i class=" glyphicon glyphicon-remove"></i></button>
 		</div>
 		<div class="popupHeader">メンバー追加</div>
 
 		<form class="popupForm" method='post' action='addGroupMember'>
-			<input type="hidden" name="addMemberGroupId" value="${result[0]}">
 			<div class="popupGroupName">
 				${result[1][result[0]].groupName}
 			</div>
 			<div class="popupSearch">
 				<div id="search-bar"">
 					<div class="col-xs-4">
-				      <select class="form-control" name="grade" id="grade2">
+				      <select class="form-control" name="grade" id="grade">
 				      	<option value="default" selected="selected">学年</option>
 				        <option value="1年生">1学年</option>
 				        <option value="2年生">2学年</option>
@@ -287,7 +285,7 @@
 				      </select>
 				    </div>
 				    <div class="col-xs-4">
-				      <select class="form-control" name="department" id="departmentId2" >
+				      <select class="form-control" name="department" id="departmentId" >
 				      	<option value="default" selected="selected">学科</option>
 				        <option value="情報処理科">情報処理科</option>
 				        <option value="インテリア科">インテリア科</option>
@@ -299,7 +297,7 @@
 				    </div>
 					<div class="col-xs-4">
 					   <div class="input-group">
-					     <input type="text" class="form-control" placeholder="Search" name="search" id="test2" onclick="change()">
+					     <input type="text" class="form-control" placeholder="Search" name="search" id="test" onclick="change()">
 					     <div class="input-group-btn">
 							<button class="btn btn-default" type="submit" style="height:34px;" disabled><i class="glyphicon glyphicon-search"></i></button>
 					     </div>
@@ -308,7 +306,7 @@
 				</div>
 			</div>
 			<div class="popupMemberList">
-				<table border="0" class="table table-condensed" id="table2">
+				<table border="0" class="table table-condensed memberList" id="table">
 					<thead>
 						<tr>
 							<th></th>
@@ -319,13 +317,13 @@
 						</tr>
 					 </thead>
 					 <tbody>
-							<c:forEach var="notMember" items="${result[1][result[0]].notMembers}">
+							<c:forEach var="followUser" items="${result[3]}">
 								<tr>
-									<td class="col-xs-1"><input type="checkbox" name="selectedUser" value="${notMember.userId}"/></td>
-									<td class="col-xs-1" width="100" ><img src="loadIcon?userId=${notMember.userId}" id="icon" class="img-circle" alt="icon"></td><!-- 1番目 -->
-									<td class="col-xs-5 text-left">${notMember.username}</td><!-- 2番目 -->
-									<td class="col-xs-2 text-left"><c:if test="${notMember.departmentName != '職員'}">${notMember.admissionYear}年生</c:if><!-- 3番目 -->
-									<td class="col-xs-3 text-left">${notMember.departmentName}</td><!-- 4番目 -->
+									<td class="col-xs-1"><input type="checkbox" name="selectedUser" value="${followUser.userId}"/></td>
+									<td class="col-xs-1" width="100" ><img src="loadIcon?userId=${followUser.userId}" id="icon" class="img-circle" alt="icon"></td><!-- 1番目 -->
+									<td class="col-xs-5 text-left">${followUser.username}</td><!-- 2番目 -->
+									<td class="col-xs-2 text-left"><c:if test="${followUser.departmentName != '職員'}">${followUser.admissionYear}年生</c:if><!-- 3番目 -->
+									<td class="col-xs-3 text-left">${followUser.departmentName}</td><!-- 4番目 -->
 								</tr>
 							</c:forEach>
 					</tbody>
@@ -337,5 +335,6 @@
 		</form>
 	</div>
 	<script src="js/chat.js"></script>
+	<script src="js/popup.js"></script>
 </body>
 </html>
