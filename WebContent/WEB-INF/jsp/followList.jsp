@@ -9,77 +9,75 @@
 <link rel="stylesheet" href="css/followList.css">
 <script src="js/jquery.min.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
+<script src="js/follow.js"></script>
 <title>Follow List</title>
 </head>
 <body>
-
 	<%@include file="header.jsp" %>
 
-	<div class="container-fluid text-center">
-		<div class="row justify-content-center">
-			<div class="col-sm-8 col-sm-offset-2">
-				<div id="search-bar" style="margin:30px 0px;">
-					<div class="col-xs-4">
-				      <select class="form-control" name="grade" id="grade">
-				      	<option value="default" selected="selected">学年</option>
-				        <option value="1年生">1学年</option>
-				        <option value="2年生">2学年</option>
-				        <option value="3年生">3学年</option>
-				        <option value="4年生">4学年</option>
-				      </select>
-				    </div>
-				    <div class="col-xs-4">
-				      <select class="form-control" name="department" id="departmentId" >
-				      	<option value="default" selected="selected">学科</option>
-				        <option value="情報処理科">情報処理科</option>
-				        <option value="インテリア科">インテリア科</option>
-				        <option value="Web動画クリエーター科">Web動画クリエーター科</option>
-				        <option value="環境テクノロジー科">環境テクノロジー科</option>
-				        <option value="建築監督科">建築監督科</option>
-				        <option value="職員">職員</option>
-				      </select>
-				    </div>
-					<div class="col-xs-4">
-					   <div class="input-group">
-					     <input type="text" class="form-control" placeholder="Search" name="search" id="test" onclick="change()">
-					     <div class="input-group-btn">
-					       <button class="btn btn-default" type="submit" style="height:34px;" disabled><i class="glyphicon glyphicon-search"></i></button>
-					     </div>
-					   </div>
-					</div>
-				</div>
-				<div>
-					<table border="0" class="table table-condensed" id="table">
-						<thead>
-							<tr>
-								<th></th>
-								<th></th>
-								<th></th>
-								<th></th>
-								<th></th>
-							</tr>
-						 </thead>
-						 <tbody>
-							<c:forEach var="user" items="${result}">
-								<form method='post' action='removeFollow'>
-									<input type="hidden" name="removeTargetUserId" value="${user.userId}"	/>
-									<tr>
-										<td width="100" ><img src="loadIcon?userId=${user.userId}" id="icon" class="img-circle" alt="icon"></td><!-- 0番目 -->
-										<td class="text-left">${user.username}</td><!-- １番目 -->
-										<td class="text-left"><c:if test="${user.departmentName != '職員'}">${user.admissionYear}年生</c:if><!-- ２番目 -->
-										<td class="text-left">${user.departmentName}</td><!-- ３番目 -->
-										<td><input type='submit' class="btn btn-danger " value='解除'></td><!-- ４番目 -->
-									</tr>
-								</form>
-							</c:forEach>
-						</tbody>
-					</table>
+	<div class="col-sm-8 col-sm-offset-2 testtest">
+		<div class="search">
+			<div id="search-bar" style="margin:30px 0px;">
+				<div class="col-xs-4">
+			      <select class="form-control" name="grade" id="grade">
+			      	<option value="default" selected="selected">学年</option>
+			        <option value="1年生">1学年</option>
+			        <option value="2年生">2学年</option>
+			        <option value="3年生">3学年</option>
+			        <option value="4年生">4学年</option>
+			      </select>
+			    </div>
+			    <div class="col-xs-4">
+			      <select class="form-control" name="department" id="departmentId" >
+			      	<option value="default" selected="selected">学科</option>
+			        <option value="情報処理科">情報処理科</option>
+			        <option value="インテリア科">インテリア科</option>
+			        <option value="Web動画クリエーター科">Web動画クリエーター科</option>
+			        <option value="環境テクノロジー科">環境テクノロジー科</option>
+			        <option value="建築監督科">建築監督科</option>
+			        <option value="職員">職員</option>
+			      </select>
+			    </div>
+				<div class="col-xs-4">
+				   <div class="input-group">
+				     <input type="text" class="form-control" placeholder="Search" name="search" id="test" onclick="change()">
+				     <div class="input-group-btn">
+				       <button class="btn btn-default" type="submit" style="height:34px;" disabled><i class="glyphicon glyphicon-search"></i></button>
+				     </div>
+				   </div>
 				</div>
 			</div>
 		</div>
-		<div align="center"><a href="getUnFollowList" class="btn btn-success">新しくお気に入りする</a></div>
-    </div>
-
-	<script src="js/follow.js"></script>
+		<div class="memberList">
+			<table border="0" class="table table-condensed" id="table">
+				<thead>
+					<tr>
+						<th></th>
+						<th></th>
+						<th></th>
+						<th></th>
+						<th></th>
+					</tr>
+				 </thead>
+				 <tbody>
+					<c:forEach var="user" items="${result}">
+						<form method='post' action='removeFollow'>
+							<input type="hidden" name="removeTargetUserId" value="${user.userId}"	/>
+							<tr>
+								<td class="col-xs-2 text-center" width="100" ><img src="loadIcon?userId=${user.userId}" class="img-circle icon" alt="icon"></td><!-- 0番目 -->
+								<td class="col-xs-4 text-left">${user.username}</td><!-- １番目 -->
+								<td class="col-xs-2 text-left"><c:if test="${user.departmentName != '職員'}">${user.admissionYear}年生</c:if><!-- ２番目 -->
+								<td class="col-xs-3 text-left">${user.departmentName}</td><!-- ３番目 -->
+								<td class="col-xs-1"><input type='submit' class="btn btn-danger " value='解除'></td><!-- ４番目 -->
+							</tr>
+						</form>
+					</c:forEach>
+				</tbody>
+			</table>
+		</div>
+		<div class="actionButton">
+			<a href="getUnFollowList"><img src="img/user.png" class="iconImage"></a>
+    	</div>
+	</div>
 </body>
 </html>

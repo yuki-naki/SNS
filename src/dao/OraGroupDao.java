@@ -1,6 +1,7 @@
 package dao;
 
 import java.io.InputStream;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -217,9 +218,6 @@ public class OraGroupDao implements GroupDao{
 		ResultSet rs = null;
 		Connection cn = null;
 
-		System.out.println("groupName:"+group.getGroupName());
-
-
 		try{
 			cn = OracleConnectionManager.getInstance().getConnection();
 
@@ -247,7 +245,6 @@ public class OraGroupDao implements GroupDao{
 				e.printStackTrace();
 			}
 		}
-
 	}
 
 	public void groupUpdate(Group group){
@@ -255,8 +252,6 @@ public class OraGroupDao implements GroupDao{
 		PreparedStatement st = null;
 		ResultSet rs = null;
 		Connection cn = null;
-
-
 
 		try{
 			cn = OracleConnectionManager.getInstance().getConnection();
@@ -285,6 +280,50 @@ public class OraGroupDao implements GroupDao{
 				e.printStackTrace();
 			}
 		}
+	}
 
+	public Blob getGroupIcon(String groupId){
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		Blob blob = null;
+
+		try
+		{
+			Connection cn = null;
+			cn = OracleConnectionManager.getInstance().getConnection();
+
+			String sql = "SELECT group_icon FROM group_t WHERE group_id = ?";
+			st = cn.prepareStatement(sql);
+			st.setString(1, groupId);
+
+			rs = st.executeQuery();
+			rs.next();
+			blob = rs.getBlob(1);
+
+			cn.commit();
+		}
+		catch(SQLException e)
+		{
+			OracleConnectionManager.getInstance().rollback();
+		}
+		finally
+		{
+			try
+			{
+				if(rs != null)
+				{
+					rs.close();
+				}
+				if(st != null)
+				{
+					st.close();
+				}
+			}
+			catch(SQLException e)
+			{
+				e.printStackTrace();
+			}
+		}
+		return blob;
 	}
 }
