@@ -7,6 +7,7 @@ import context.RequestContext;
 import context.ResponseContext;
 import dao.AbstractDaoFactory;
 import dao.FollowDao;
+import dao.OracleConnectionManager;
 import dao.UserDao;
 
 public class GetUnFollowListCommand extends AbstractCommand{
@@ -22,8 +23,12 @@ public class GetUnFollowListCommand extends AbstractCommand{
 		FollowDao followDao = factory.getFollowDao();
 		UserDao userDao = factory.getUserDao();
 
+		OracleConnectionManager.getInstance().beginTransaction();
+
 		List<String> unFollowIdList = followDao.getUnFollowIdList(loginUserId);
 		List<User> unFollowList = userDao.getUserList(unFollowIdList);
+
+		OracleConnectionManager.getInstance().closeConnection();
 
 		responseContext.setTarget("unFollowList");
 		responseContext.setResult(unFollowList);

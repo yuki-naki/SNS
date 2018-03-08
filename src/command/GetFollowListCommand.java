@@ -7,6 +7,7 @@ import context.RequestContext;
 import context.ResponseContext;
 import dao.AbstractDaoFactory;
 import dao.FollowDao;
+import dao.OracleConnectionManager;
 import dao.UserDao;
 
 public class GetFollowListCommand extends AbstractCommand{
@@ -22,8 +23,12 @@ public class GetFollowListCommand extends AbstractCommand{
 		FollowDao followDao = factory.getFollowDao();
 		UserDao userDao = factory.getUserDao();
 
+		OracleConnectionManager.getInstance().beginTransaction();
+
 		List<String> followIdList = followDao.getFollowIdList(loginUserId);
 		List<User> followList = userDao.getUserList(followIdList);
+
+		OracleConnectionManager.getInstance().closeConnection();
 
 		responseContext.setTarget("followList");
 		responseContext.setResult(followList);

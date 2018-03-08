@@ -1,5 +1,6 @@
 package dao;
 
+import java.io.FileInputStream;
 import java.io.InputStream;
 import java.sql.Blob;
 import java.sql.Connection;
@@ -113,7 +114,7 @@ public class OraGroupDao implements GroupDao{
 		return groupList;
 	}
 
-	public String createGroup(Group group){
+	public String createGroup(Group group, FileInputStream inputStream, int imageSize){
 		PreparedStatement st = null;
 		ResultSet rs = null;
 		String groupId = null;
@@ -126,7 +127,7 @@ public class OraGroupDao implements GroupDao{
 			String sql = "INSERT INTO group_t(group_id, group_name, group_icon) VALUES(group_seq.nextval, ?, ?)";
 			st = cn.prepareStatement(sql);
 			st.setString(1, group.getGroupName());
-			st.setBlob(2, group.getGroupIcon());
+			st.setBinaryStream(2, inputStream, imageSize);
 			st.executeUpdate();
 
 			sql = "SELECT group_seq.currval FROM dual";
@@ -325,5 +326,39 @@ public class OraGroupDao implements GroupDao{
 			}
 		}
 		return blob;
+	}
+
+	public void updateGroupDate(String groupId){
+
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		Connection cn = null;
+
+		try{
+			cn = OracleConnectionManager.getInstance().getConnection();
+
+			String sql = "UPDATE group_t set group_date = SYSDATE where group_id = ?";
+			st = cn.prepareStatement(sql);
+
+			st.setString(1, groupId);
+
+			st.executeUpdate();
+
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		finally{
+			try{
+				if(rs != null){
+					rs.close();
+				}
+				if(st != null){
+					st.close();
+				}
+			}
+			catch(SQLException e){
+				e.printStackTrace();
+			}
+		}
 	}
 }

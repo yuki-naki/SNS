@@ -390,14 +390,14 @@ pre {
 /*Reply*/
 
 .reply {
-  width: 100%;
-  background-color: #f5f1ee;
-  margin: 0;
-  padding:10px 0px 10px 0px;
+	height: 100%;
+	 width: 100%;
+	 background-color: #f5f1ee;
+  	margin: 0;
 }
 
 .reply-send {
-	padding-top:19px;
+	padding-top:30px;
 	padding-left:14px;
 }
 
@@ -408,11 +408,14 @@ pre {
 }
 
 .reply-main {
-	padding:0;
+	height: 75px;
+    padding: 0;
+    padding-top: 5px;
+
 }
 
 #comment {
-	height:auto;
+	height:100%;
 	resize: none;
 	box-sizing: border-box;
 	margin:0;
@@ -558,46 +561,6 @@ pre {
     background-color: black;
     opacity: 0.20;
 }
-
-#close:active {
-    -ms-transform: translateY(4px);
-    -webkit-transform: translateY(4px);
-    transform: translateY(4px);/*下に動く*/
-    border-bottom: none;/*線を消す*/
-}
-
-.popupRemoveButton{
-	position: absolute;
-	right: 0px;
-    top: 0px;
-	font-size: 24px;
-}
-
-.popupHeader{
-	height:10%;
-}
-
-.popupForm{
-	height: 90%;
-}
-
-.popupGroupName{
-	height: 10%;
-}
-
-.popupSearch{
-	height: 8%;
-}
-
-.popupMemberList {
-	height: 74%;
-    width: 100%;
-    overflow-y: auto;
-}
-.popupActionButton{
-	height: 8%;
-}
-
 #addMemberPopup {
     display: none;  /* 初期表示は非表示 */
     position: absolute;
@@ -619,6 +582,75 @@ pre {
     background-color: black;
     opacity: 0.20;
 }
+#groupEditPopup {
+    display: none;  /* 初期表示は非表示 */
+    position: absolute;
+    left: 25%;
+    top: 92px;
+    width: 50%;
+    height: 40%;
+    background-color: white;
+    border-radius: 5px;
+    text-align: center;
+}
+#groupEditLayer {
+    display: none;  /* 初期表示は非表示 */
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.20;
+}
+
+#close:active {
+    -ms-transform: translateY(4px);
+    -webkit-transform: translateY(4px);
+    transform: translateY(4px);/*下に動く*/
+    border-bottom: none;/*線を消す*/
+}
+
+.popupRemoveButton{
+	position: absolute;
+	right: 0px;
+    top: 0px;
+	font-size: 24px;
+}
+
+.popupHeader{
+	font-size: 36px;
+	height:10%;
+}
+
+.popupForm{
+	height: 90%;
+}
+
+.popupGroupName{
+	font-size:30px;
+	height: 10%;
+}
+
+.popupSearch{
+	height: 8%;
+}
+
+.popupMemberList {
+	height: 74%;
+    width: 100%;
+    overflow-y: auto;
+}
+.popupActionButton{
+	height: 8%;
+}
+.popupCheckbox{
+	font-size:30px;
+}
+.followCheck{
+	top: 5px;
+    position: absolute;
+}
 
 #icon{
 	width:65px;
@@ -626,4 +658,46 @@ pre {
 }
 td {
 	vertical-align: middle !important;
+}
+
+/*groupEdit用*/
+.groupEditPopupHeader{
+	font-size: 36px;
+	height: 20%;
+}
+.groupEditPopupForm{
+	height: 64%;
+}
+.groupEditPopupActionButton{
+	height: 16%;
+}
+
+#editIcon{
+	width:180px;
+	height:180px;
+	border: 2px #555555 solid;
+	cursor: pointer;
+}
+#comment{
+	resize: none;
+	display:note;'
+}
+#iconwrap{
+	align-items: center;
+	justify-content: center;
+}
+#upload{
+	/*display:none;*/
+	visibility:hidden;
+}
+.saveButton{
+	position: absolute;
+	bottom: 20px;
+	right: 20px;
+	width: 60px;
+}
+.exitGroupButton{
+	position: absolute;
+    bottom: 20px;
+    right: 85px;
 }

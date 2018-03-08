@@ -13,20 +13,20 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 import bean.User;
-import dao.MyProfileDao;
+import dao.OraUserDao;
 
 /**
  * Servlet implementation class IconTestServlet
  */
 @MultipartConfig(maxFileSize=1000000000)
-@WebServlet("/IconTestServlet")
-public class IconTestServlet extends HttpServlet {
+@WebServlet("/uploadIcon")
+public class IconUploadServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public IconTestServlet() {
+    public IconUploadServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -60,8 +60,8 @@ public class IconTestServlet extends HttpServlet {
 			User user = (User)session.getAttribute("user");
 
 
-			 MyProfileDao mp = new MyProfileDao();
-			 mp.iconUpdate(part.getInputStream(),part.getSize(),user.getUserId());
+			 OraUserDao dao = new OraUserDao();
+			 dao.iconUpdate(part.getInputStream(),part.getSize(),user.getUserId());
 
 
 			 RequestDispatcher dis = request.getRequestDispatcher("myPageSetup");
@@ -72,3 +72,4 @@ public class IconTestServlet extends HttpServlet {
 	}
 
 }
+

@@ -8,7 +8,14 @@ body {
 }
 
 #header {
-	background-color:#5bc0de;
+	background-color:#00c864;
+	color:#000000;
+	height:49px;
+}
+
+#headLogo{
+	position:absolute;
+	left:40px;
 }
 
 .alert-warning{
@@ -16,10 +23,6 @@ body {
 	margin:auto;
 }
 
-#headerContent {
-	text-align:center;
-	font-size:28px;
-}
 
 #loginBox{
 	margin-top:50px;
@@ -27,6 +30,9 @@ body {
 
 #panelBody{
 	padding-top:30px
+}
+#loginButton{
+	padding-left:85%;'
 }
 
 .input-group{
@@ -39,6 +45,14 @@ body {
 
 .column {
 	padding:0px;
+}
+
+.row {
+	margin: 0;
+}
+
+.container-fluid {
+	padding: 0;
 }
 /*
 @media only screen and (max-width: 550px) {

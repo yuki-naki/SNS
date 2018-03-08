@@ -44,6 +44,39 @@ public class OraNotificationDao implements NotificationDao {
 		}
 	}
 
+	public void deleteNotification(String notificationId) {
+
+		Connection conn = null;
+		PreparedStatement ps = null;
+
+		try {
+			conn = OracleConnectionManager.getInstance().getConnection();
+
+			String sql = "DELETE FROM notification_t WHERE notification_id = ?";
+
+			ps = conn.prepareStatement(sql);
+
+			ps.setString(1, notificationId);
+
+			ps.executeUpdate();
+
+			conn.commit();
+		}
+		catch(SQLException e){
+			OracleConnectionManager.getInstance().rollback();
+		}
+		finally {
+			try {
+				if(ps != null){
+					ps.close();
+				}
+			}
+			catch(SQLException e){
+				e.printStackTrace();
+			}
+		}
+	}
+
 	public List getAllNotifications() {
 
 		PreparedStatement st = null;

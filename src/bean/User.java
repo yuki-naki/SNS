@@ -14,6 +14,14 @@ public class User implements Serializable {
 	private String admissionYear;
 	//新しい追加 2018.2.15
 	private String departmentName;
+	private boolean followFlag;
+
+	public boolean getFollowFlag(){
+		return followFlag;
+	}
+	public void setFollowFlag(boolean followFlag){
+		this.followFlag = followFlag;
+	}
 
 	//新しい追加 2018.2.15
 	public String getDepartmentName(){

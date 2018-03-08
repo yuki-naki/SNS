@@ -19,6 +19,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import bean.Message;
 import dao.AbstractDaoFactory;
+import dao.GroupDao;
 import dao.MessageDao;
 import dao.OracleConnectionManager;
 
@@ -63,6 +64,8 @@ public class WsServer {
 			AbstractDaoFactory factory = AbstractDaoFactory.getFactory();
 			OracleConnectionManager.getInstance().beginTransaction();
 			MessageDao messageDao = factory.getMessageDao();
+			GroupDao groupDao = factory.getGroupDao();
+			groupDao.updateGroupDate(groupId);
 			messageDao.addMessage(message);
 			OracleConnectionManager.getInstance().closeConnection();
 
@@ -77,13 +80,15 @@ public class WsServer {
     	//broadcast(t.getMessage(), id);
     }
 
-    private static void broadcast(Message message) {
+    private void broadcast(Message message) {
         for(WsServer client : connections){
             try {
                 synchronized(client) {
-                	ObjectMapper objectMapper = new ObjectMapper();
-                	String json = objectMapper.writeValueAsString(message);
-                    client.session.getBasicRemote().sendText(json);
+                	if(client.groupId.equals(groupId)){
+                		ObjectMapper objectMapper = new ObjectMapper();
+                		String json = objectMapper.writeValueAsString(message);
+                		client.session.getBasicRemote().sendText(json);
+                	}
                 }
             } catch(IOException e) {
                 connections.remove(client);

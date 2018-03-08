@@ -5,6 +5,7 @@ html{
 	height:100%;
 }
 #profile{
+	margin-top:20px;
 	color:#666666;
 	background-color:#eeeeee;
 	/*height:88.4vh;*/
@@ -26,4 +27,7 @@ html{
 #upload{
 	/*display:none;*/
 	visibility:hidden;
+}
+#actionButton{
+	margin-bottom:10px;
 }

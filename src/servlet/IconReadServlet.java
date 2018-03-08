@@ -17,7 +17,7 @@ import dao.OraUserDao;
 
 @MultipartConfig(maxFileSize=1000000000)
 @WebServlet("/loadIcon")
-public class ImageServlet extends HttpServlet {
+public class IconReadServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doPost(request, response);
@@ -64,3 +64,5 @@ public class ImageServlet extends HttpServlet {
 		}
 	}
 }
+
+

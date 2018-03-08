@@ -9,14 +9,11 @@
 <body>
 	<div class="container-fluid">
 		<div id="header" class="row">
-			<div class="col-xs-1">
-				<form id="logout" method="post" action="login">
-					<input type="hidden" name="logout" value="logout" />
-					<button type="submit" id="logoutBtn">Logout</button>
-				</form>
-			</div>
-			<div id="headerContent" class="col-xs-10">sample</div>
-			<div class="col-xs-1"></div>
+			<img id="headLogo" src="img/logo.gif"></div>
+			<form id="logout" method="post" action="login">
+				<input type="hidden" name="logout" value="logout" />
+				<button type="submit" id="logoutBtn"><i class="glyphicon glyphicon-log-out">Logout</i></button>
+			</form>
 		</div>
 	</div>
 
@@ -24,10 +21,10 @@
 		<div class="container-fluid">
 	 		<div class="row">
 			    <ul class="nav navbar-nav">
-			      <li id="top" class="active col-xs-3 column"><a href="topPage">Top</a></li>
-			      <li id="myPage" class="col-xs-3 column"><a href="myPage">MyPage</a></li>
-			      <li id="chat" class="col-xs-3 column"><a href="chat">Chat</a></li>
-			      <li id="follow" class="col-xs-3 column"><a href="getFollowList">Follow</a></li>
+			      <li id="top" class="active col-xs-3 column"><a href="topPage"><i class="glyphicon glyphicon-home"><span class="span">Top</span></i></a></li>
+			      <li id="myPage" class="col-xs-3 column"><a href="myPage"><i class="glyphicon glyphicon-user"><span class="span">MyProfile</span></i></a></li>
+			      <li id="chat" class="col-xs-3 column"><a href="chat"><i class="glyphicon glyphicon-comment"><span class="span">Chat</span></i></a></li>
+			      <li id="follow" class="col-xs-3 column"><a href="getFollowList"><i class="glyphicon glyphicon-star"><span class="span">Follow</span></i></a></li>
 			    </ul>
 			 </div>
 		 </div>

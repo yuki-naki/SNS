@@ -187,6 +187,17 @@ $(document).ready(function() {
 	$('#top').addClass("active");
 
 	loadImages();
+
+	$("#go_top").click(function(){
+		$('html').animate({scrollTop:0}, 600);
+	});
+	$(window).scroll(function(){
+		scrtop = $(this).scrollTop();
+		if(scrtop >= 150){
+			$('#go_top').fadeIn();
+		}
+		else{ $('#go_top').fadeOut(); }
+	});
 });
 
 function replaceSrc(content){

@@ -28,6 +28,21 @@
 			document.getElementById("upload").click();
 		});
 	})
+
+	$(function(){
+		$("#upload" ).change(function() {
+			var fileList = this.files ;
+			for( var i=0,l=fileList.length; l>i; i++ ) {
+				var blobUrl = window.URL.createObjectURL( fileList[i] ) ;
+			}
+
+			$("#icon").attr("src",blobUrl);
+		});
+	})
+
+
+
+
 </script>
 <title>MyProfile</title>
 </head>
@@ -37,7 +52,7 @@
 	<div class="container-fluid text-center">
 		<div class="row justify-content-center">
 			<div class="col-sm-8 col-sm-offset-2" id="profile">
-				<form method="post" action="IconTestServlet" enctype="multipart/form-data">
+				<form method="post" action="uploadIcon" enctype="multipart/form-data">
 				<c:forEach var="result" items="${result}">
 						<div class="col">
 
@@ -57,10 +72,11 @@
 								<textarea name="comment" class="form-control" rows="8" id="comment" readonly>${result.userIntroduction}</textarea>
 						</div>
 						<div class="col-sm-12 text-right">
-							<input type="file" id="upload" name="iconimg" disabled="true">
-							<button type="button" class="btn btn-success btn-md" id="config" >編集</button>
-							<button type="submit" id="save" class="btn btn-success btn-md" disabled="true">保存</button>
-
+							<input type="file" id="upload" name="iconimg" disabled="true" accept='image/jpeg,image/png' multiple>
+							<div id="actionButton">
+								<button type="button" class="btn btn-success btn-md" id="config" >編集</button>
+								<button type="submit" id="save" class="btn btn-success btn-md" disabled="true">保存</button>
+							</div>
 						</div>
 					</c:forEach>
 				</form>

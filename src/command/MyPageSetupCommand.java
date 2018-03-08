@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import bean.User;
 import context.RequestContext;
 import context.ResponseContext;
-import dao.MyProfileDao;
+import dao.OraUserDao;
 
 public class MyPageSetupCommand extends AbstractCommand{
 
@@ -14,18 +14,20 @@ public class MyPageSetupCommand extends AbstractCommand{
 		RequestContext rc = getRequestContext();
 
 		ArrayList list = null;
+		ArrayList userIdList = new ArrayList();
 
 		String user_introduction = rc.getParameter("comment")[0];
 
 		User user = (User)rc.getSessionObject("user");
 
-		MyProfileDao dao = new MyProfileDao();
+		OraUserDao dao = new OraUserDao();
 
 		user.setUserIntroduction(user_introduction);
 
 		dao.addMyProfile(user);
+		userIdList.add(user.getUserId());
 
-		list = (ArrayList)dao.getMyProfile(user.getUserId());
+		list = (ArrayList)dao.getUserList(userIdList);
 
 		resc.setResult(list);
 		resc.setTarget("myPage");

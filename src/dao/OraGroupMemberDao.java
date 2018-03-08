@@ -118,7 +118,8 @@ public class OraGroupMemberDao implements GroupMemberDao{
 			Connection cn = null;
 			cn = OracleConnectionManager.getInstance().getConnection();
 
-			String sql = "SELECT group_id FROM groupmember_t WHERE user_id = ?";
+			String sql = "SELECT group_id FROM group_t WHERE group_id IN (SELECT group_id FROM groupmember_t WHERE user_id=?) ORDER BY group_date DESC";
+
 			st = cn.prepareStatement(sql);
 			st.setString(1, userId);
 
@@ -193,7 +194,7 @@ public class OraGroupMemberDao implements GroupMemberDao{
 		}
 	}
 
-	public void removeGroupMember(String groupId, ArrayList<String> members){
+	public void exitGroup(String groupId, String userId){
 		PreparedStatement st = null;
 		ResultSet rs = null;
 
@@ -202,15 +203,13 @@ public class OraGroupMemberDao implements GroupMemberDao{
 			Connection cn = null;
 			cn = OracleConnectionManager.getInstance().getConnection();
 
-			for(int i = 0; i < members.size(); i++){
-				String sql = "DELETE FROM groupmember_t WHERE group_id = ? AND user_id = ?";
-				st = cn.prepareStatement(sql);
+			String sql = "DELETE FROM groupmember_t WHERE group_id = ? AND user_id = ?";
+			st = cn.prepareStatement(sql);
 
-				st.setString(1, groupId);
-				st.setString(2, (String)members.get(i));
+			st.setString(1, groupId);
+			st.setString(2, userId);
 
-				st.executeUpdate();
-			}
+			st.executeUpdate();
 			cn.commit();
 		}
 		catch(SQLException e)

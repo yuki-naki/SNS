@@ -24,3 +24,19 @@ hr {
     width: 100%;
     border: 1px solid #F2F2F2;
 }
+#go_top{
+	cursor:pointer;
+	border-radius:50px;
+	opacity:0.5;
+	bottom:10px;
+	position:fixed;
+	right:10px;
+	display:none;
+}
+#go_top:hover{
+	opacity:1;
+}
+
+.btn-danger {
+	margin-top: 10px;
+}

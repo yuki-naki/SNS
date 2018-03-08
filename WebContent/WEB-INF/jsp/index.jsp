@@ -14,9 +14,7 @@
 <body>
    <div class="container-fluid">
 		<div id="header" class="row">
-			<div class="col-xs-1 column"></div>
-			<div id="headerContent" class="col-xs-10 column">専門学校東京テクニカルカレッジ</div>
-			<div class="col-xs-1 column"></div>
+			<img id="headLogo" src="img/logo.gif"></div>
 		</div>
 		<c:if test="${requestScope.sessionTimeout}">
 			<div class="alert alert-warning">
@@ -55,7 +53,7 @@
 							</div>
 
 							<div class="form-group">
-								<div class="col-xs-12">
+								<div class="col-xs-12" id="loginButton">
 								  <button class="btn btn-success">Login</button>
 								</div>
 							</div>

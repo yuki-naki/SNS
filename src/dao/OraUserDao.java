@@ -1,5 +1,6 @@
 package dao;
 
+import java.io.InputStream;
 import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -140,6 +141,63 @@ public class OraUserDao implements UserDao {
 		return userList;
 	}
 
+	public  List<User> getAllUserList(String userId){
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		Connection cn = null;
+
+		List<User> userList = new ArrayList<User>();
+
+		try{
+			cn = OracleConnectionManager.getInstance().getConnection();
+
+			String sql = "SELECT user_id, is_admin, username, user_introduction, student_id, "
+					+ "TO_CHAR(sysdate,'YYYY') - admission_year  + case when (TO_CHAR(sysdate,'MMDD')<TO_CHAR(0331)) AND (TO_CHAR(sysdate,'MMDD')<TO_CHAR(0101)) then 0 else 1 end, d.department_name "
+					+ "FROM user_t u, department_t d WHERE user_id != ? AND u.department_id=d.department_id";
+			st = cn.prepareStatement(sql);
+			st.setString(1, userId);
+
+			rs = st.executeQuery();
+
+			while(rs.next()){
+				User user = new User();
+				user.setUserId(rs.getString(1));
+				int isAdmin = rs.getInt(2);
+				if(isAdmin == 1){
+					user.setAdmin(true);
+				}
+				else {
+					user.setAdmin(false);
+				}
+				user.setUsername(rs.getString(3));
+				user.setUserIntroduction(rs.getString(4));
+				user.setStudentId(rs.getString(5));
+				user.setAdmissionYear(rs.getString(6));
+				user.setDepartmentName(rs.getString(7));
+
+				userList.add(user);
+			}
+			return userList;
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		finally{
+			try{
+				if(rs != null){
+					rs.close();
+				}
+				if(st != null){
+					st.close();
+				}
+			}
+			catch(SQLException e){
+				e.printStackTrace();
+			}
+		}
+		return userList;
+	}
+
 	public User getUserByUserId(String userId){
 
 		PreparedStatement st = null;
@@ -150,27 +208,29 @@ public class OraUserDao implements UserDao {
 		try{
 			cn = OracleConnectionManager.getInstance().getConnection();
 
-			String sql = "SELECT * FROM user_t WHERE user_id = ?";
+			String sql = "SELECT user_id, is_admin, username, user_introduction, student_id, "
+					+ "TO_CHAR(sysdate,'YYYY') - admission_year  + case when (TO_CHAR(sysdate,'MMDD')<TO_CHAR(0331)) AND (TO_CHAR(sysdate,'MMDD')<TO_CHAR(0101)) then 0 else 1 end, d.department_name "
+					+ "FROM user_t u, department_t d WHERE user_id = ? AND u.department_id=d.department_id";
 			st = cn.prepareStatement(sql);
 			st.setString(1, userId);
 
 			rs = st.executeQuery();
 
 			rs.next();
+
 			user.setUserId(rs.getString(1));
-			user.setLoginId(rs.getString(2));
-			user.setPassword(rs.getString(3));
-			int isAdmin = rs.getInt(4);
+			int isAdmin = rs.getInt(2);
 			if(isAdmin == 1){
 				user.setAdmin(true);
 			}
 			else {
 				user.setAdmin(false);
 			}
-			user.setUsername(rs.getString(5));
-			user.setUserIntroduction(rs.getString(7));
-			user.setStudentId(rs.getString(8));
-			user.setAdmissionYear(rs.getString(9));
+			user.setUsername(rs.getString(3));
+			user.setUserIntroduction(rs.getString(4));
+			user.setStudentId(rs.getString(5));
+			user.setAdmissionYear(rs.getString(6));
+			user.setDepartmentName(rs.getString(7));
 		}
 		catch(SQLException e){
 			e.printStackTrace();
@@ -225,5 +285,79 @@ public class OraUserDao implements UserDao {
 			}
 		}
 		return blob;
+	}
+
+	public void iconUpdate(InputStream input,long inputsize,String id){
+
+		System.out.println("iconUpdateメソッドの実行");
+
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		Connection cn = null;
+
+
+		try{
+			cn = OracleConnectionManager.getInstance().getConnection();
+
+			String sql = "update user_t set user_icon = ? where user_id = ?";
+			st = cn.prepareStatement(sql);
+			st.setBinaryStream(1,input,(int)inputsize);
+			st.setString(2,id);
+
+			st.executeUpdate();
+
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		finally{
+			try{
+				if(rs != null){
+					rs.close();
+				}
+				if(st != null){
+					st.close();
+				}
+			}
+			catch(SQLException e){
+				e.printStackTrace();
+			}
+		}
+	}
+
+	public void addMyProfile(User u){
+
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		Connection cn = null;
+		User user = u;
+
+		try{
+			cn = OracleConnectionManager.getInstance().getConnection();
+
+			String sql = "Update user_t Set user_introduction = ? where user_id = ?";
+
+			st = cn.prepareStatement(sql);
+
+			st.setString(1, user.getUserIntroduction());
+			st.setString(2, user.getUserId());
+
+			st.executeUpdate();
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		finally{
+			try{
+				if(rs != null){
+					rs.close();
+				}
+				if(st != null){
+					st.close();
+				}
+			}
+			catch(SQLException e){
+				e.printStackTrace();
+			}
+		}
 	}
 }

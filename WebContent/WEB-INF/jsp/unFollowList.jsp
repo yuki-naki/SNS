@@ -8,10 +8,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" type="text/css">
 <link rel="stylesheet" href="css/followList.css">
+<link rel="stylesheet" href="css/showUserProfile.css">
 <script src="js/jquery.min.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
 <script src="js/follow.js"></script>
-<title>unFollowList</title>
+<script src="js/showUserProfile.js"></script>
+<title>Follow</title>
 </head>
 <body>
 	<%@include file="header.jsp"%>
@@ -65,19 +67,37 @@
 						<form method='post' action='follow'>
 							<input type="hidden" name="userId" value="${user.userId}"	/>
 							<tr>
-								<td class="col-xs-2 text-center" width="100" ><img src="loadIcon?userId=${user.userId}" class="img-circle icon" alt="icon"></td><!-- 0番目 -->
+								<td class="col-xs-2 text-center" width="100" ><img src="loadIcon?userId=${user.userId}" id="${user.userId}" class="img-circle modal-open icon" alt="icon"></td><!-- 0番目 -->
 								<td class="col-xs-4 text-left">${user.username}</td><!-- １番目 -->
 								<td class="col-xs-2 text-left"><c:if test="${user.departmentName != '職員'}">${user.admissionYear}年生</c:if><!-- ２番目 -->
 								<td class="col-xs-3 text-left">${user.departmentName}</td><!-- ３番目 -->
 								<td class="col-xs-1"><input type='submit' class="btn btn-info " value='follow'></td><!-- ４番目 -->
 							</tr>
 						</form>
+						<div id="modal${user.userId}" class="modal-content" >
+							<div class="modal-content-innar">
+								<div class="col">
+									<h1>${user.username}</h1>
+								</div>
+								<div class="col-sm-3 col-sm-offset-1 content-center" id="iconwrap">
+									<img name="icon" class="img-circle profileIcon" src="loadIcon?userId=${user.userId}">
+								</div>
+								<div class="col-sm-5 col-sm-offset-2">
+									<h3><c:if test="${user.departmentName != '職員'}">${user.admissionYear}年生</c:if></h3>
+									<h3>学科:${user.departmentName}</h3>
+								</div>
+								<div class="col-sm-12">
+									<h3>自己紹介文</h3>
+									<textarea name="comment" class="form-control" rows="8" id="comment" readonly>${user.userIntroduction}</textarea>
+								</div>
+							</div>
+						</div>
 					</c:forEach>
 				</tbody>
 			</table>
 		</div>
 		<div class="actionButton">
-			<a href="getFollowList"><img src="img/group.png" class="iconImage"></a>
+			<a href="getFollowList"><button type="button" class="btn btn-success">FollowList</button></a>
     	</div>
 	</div>
 </body>

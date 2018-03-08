@@ -3,26 +3,6 @@ $(document).ready(function() {
 	$('#top').removeClass("active");
 });
 
-//自動検索
-/*
-$(function(){
-	$('#test').keyup(function() {
-		if(keyup == 13){
-		//検索文字をre
-			var re = new RegExp($('#test').val());
-				$('#table tbody tr').each(function(){
-				//td:eq(0) の０番目
-					var txt = $(this).find("td:eq(1)").html();
-					if(txt.match(re) != null){
-						$(this).show();
-					}else{
-						$(this).hide();
-					}
-			});
-		}
-	});
-});*/
-
 $(function(){
 	$('#grade, #departmentId, #test').change(function() {
 		var dept =  $('#departmentId').val();
@@ -62,4 +42,9 @@ $(function(){
 			}
 	     });
 	});
-})
+});
+
+function win_open(){
+    w = window.open("", "newwindow");
+    document.f.target = "newwindow";
+}

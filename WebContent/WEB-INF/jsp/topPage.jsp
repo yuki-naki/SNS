@@ -27,7 +27,7 @@
 		                    <form id="form" method="post" action="notify" enctype="multipart/form-data">
 		                        <textarea id="content" name="textarea" class="form-group"></textarea>
 		                        <textarea id="content2" name="textarea2" class="hidden"></textarea>
-		                        <button id="btn" class="btn btn-primary pull-right" type="submit">投稿</button>
+		                        <button id="btn" class="btn btn-primary pull-right" type="submit">Submit</button>
 	                    	</form>
 		                </div>
 		            </div>
@@ -47,12 +47,19 @@
 			        <p>${notification.notificationDate}</p>
 			        <%-- Content --%>
 			        ${notification.notificationContent}
+			        <c:if test="${sessionScope.user.isAdmin}">
+				        <form method="post" action="deleteNotification">
+				        	<input type="hidden" name="notificationId" value="${notification.notificationId}"></input>
+			            	<button class="btn btn-danger pull-right" type="submit">Delete</button>
+		                </form>
+		            </c:if>
 				</div>
 				<div class="col-xs-2"></div>
 			</div>
 		</c:forEach>
 	</div>
 	<br>
+	<img id="go_top" src="img/go_top.png" alt="トップへ戻る">
 	<script src="js/topPage.js"></script>
 </body>
 </html>

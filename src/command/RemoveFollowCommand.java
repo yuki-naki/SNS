@@ -7,6 +7,7 @@ import context.RequestContext;
 import context.ResponseContext;
 import dao.AbstractDaoFactory;
 import dao.FollowDao;
+import dao.OracleConnectionManager;
 import dao.UserDao;
 
 public class RemoveFollowCommand extends AbstractCommand{
@@ -18,14 +19,18 @@ public class RemoveFollowCommand extends AbstractCommand{
 		String loginUserId = loginUser.getUserId();
 
 		//フォロー解除対象のユーザーIDを取得
-		String removeTargetUserId = rc.getParameter("removeTargetUserId")[0];
+		String removeTargetUserId = rc.getParameter("userId")[0];
 
 		//dao取得
 		AbstractDaoFactory factory = AbstractDaoFactory.getFactory();
 		FollowDao followDao = factory.getFollowDao();
 		UserDao userDao = factory.getUserDao();
 
+		OracleConnectionManager.getInstance().beginTransaction();
+
 		followDao.removeFollow(loginUserId, removeTargetUserId);
+
+		OracleConnectionManager.getInstance().closeConnection();
 
 		List<String> followIdList = followDao.getFollowIdList(loginUserId);
 		List<User> followList = userDao.getUserList(followIdList);

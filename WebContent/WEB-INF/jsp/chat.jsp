@@ -27,11 +27,7 @@
 				<div class="row conversationHeading">
 					<div class="col-xs-12 heading-name">
 						<c:if test="${not empty result[0]}">
-							<form method="post" action="groupEdit" name="form1">
-							<input type="hidden" name="groupId" value="${result[0]}"></input>
-							<a id="headingGroupname"  href="javascript:form1.submit()" class="heading-name-meta" data-groupId="${result[0]}">${result[1][result[0]].groupName}</a>
-							</form>
-
+							<a id="headingGroupname"  class="heading-name-meta" data-groupId="${result[0]}">${result[1][result[0]].groupName}</a>
 						</c:if>
 					</div>
 				</div>
@@ -73,10 +69,7 @@
 				</div>
 
 				<div id="reply" class="row reply" data-user='${result[2]}'>
-					<div class="col-xs-1 reply-uploading">
-						<i class="glyphicon glyphicon-picture" aria-hidden="true"></i>
-					</div>
-					<div class="col-xs-10 reply-main">
+					<div class="col-xs-11 reply-main">
 						<textarea class="form-control" id="comment" ${empty result[0] ? "disabled" : ""}></textarea>
 					</div>
 					<div class="col-xs-1 reply-send">
@@ -194,15 +187,15 @@
 		<div class="popupRemoveButton">
 			<button id="closeCreateGroup"><i class=" glyphicon glyphicon-remove"></i></button>
 		</div>
-		<div class="popupHeader">グループ作成</div>
+		<div class="popupHeader">Create Group</div>
 
 		<form class="popupForm" method='post' action='createGroup'>
 			<div class="popupGroupName">
-				<input type="text" placeholder="グループ名を入力してください。" class="form-control" name="groupName">
+				<input type="text" id="newGroupName" placeholder="グループ名を入力してください。" class="form-control" name="groupName">
 			</div>
 			<div class="popupSearch">
 				<div id="search-bar"">
-					<div class="col-xs-4">
+					<div class="col-xs-3">
 				      <select class="form-control" name="grade" id="grade1">
 				      	<option value="default" selected="selected">学年</option>
 				        <option value="1年生">1学年</option>
@@ -230,6 +223,9 @@
 					     </div>
 					   </div>
 					</div>
+					<div class="col-xs-1 popupCheckbox">
+						<label><i class="glyphicon glyphicon-star"><input type="checkbox" class="followCheck" id="followCheck1" name="follow"></i></label>
+					</div>
 				</div>
 			</div>
 			<div class="popupMemberList">
@@ -241,23 +237,25 @@
 							<th></th>
 							<th></th>
 							<th></th>
+							<th></th>
 						</tr>
 					 </thead>
 					 <tbody>
-							<c:forEach var="followUser" items="${result[3]}">
+							<c:forEach var="user" items="${result[3]}">
 								<tr>
-									<td class="col-xs-1"><input type="checkbox" name="selectedUser" value="${followUser.userId}"/></td>
-									<td class="col-xs-1" width="100" ><img src="loadIcon?userId=${followUser.userId}" id="icon" class="img-circle" alt="icon"></td><!-- 1番目 -->
-									<td class="col-xs-5 text-left">${followUser.username}</td><!-- 2番目 -->
-									<td class="col-xs-2 text-left"><c:if test="${followUser.departmentName != '職員'}">${followUser.admissionYear}年生</c:if><!-- 3番目 -->
-									<td class="col-xs-3 text-left">${followUser.departmentName}</td><!-- 4番目 -->
+									<td class="col-xs-1"><input type="checkbox" name="selectedUser" group="selectedMemberGroup" value="${user.userId}"/></td>
+									<td class="col-xs-1" width="100" ><img src="loadIcon?userId=${user.userId}" id="icon" class="img-circle" alt="icon"></td><!-- 1番目 -->
+									<td class="col-xs-4 text-left">${user.username}</td><!-- 2番目 -->
+									<td class="col-xs-2 text-left"><c:if test="${user.departmentName != '職員'}">${user.admissionYear}年生</c:if><!-- 3番目 -->
+									<td class="col-xs-3 text-left">${user.departmentName}</td><!-- 4番目 -->
+									<td class="col-xs-1 text-center"><c:if test="${user.followFlag}">★</c:if></td><!-- 5番目 -->
 								</tr>
 							</c:forEach>
 					</tbody>
 				</table>
 			</div>
 			<div class="popupActionButton">
-				<input type="submit" class="btn btn-success" value="作成">
+				<input type="submit" id="createGroupButton" class="btn btn-success" value="作成" disabled="true">
 			</div>
 		</form>
 	</div>
@@ -268,7 +266,7 @@
 		<div class="popupRemoveButton">
 			<button id="closeAddMember"><i class=" glyphicon glyphicon-remove"></i></button>
 		</div>
-		<div class="popupHeader">メンバー追加</div>
+		<div class="popupHeader">Add Member</div>
 
 		<form class="popupForm" method='post' action='addGroupMember'>
 			<input type="hidden" name="addMemberGroupId" value="${result[0]}">
@@ -277,7 +275,7 @@
 			</div>
 			<div class="popupSearch">
 				<div id="search-bar"">
-					<div class="col-xs-4">
+					<div class="col-xs-3">
 				      <select class="form-control" name="grade" id="grade2">
 				      	<option value="default" selected="selected">学年</option>
 				        <option value="1年生">1学年</option>
@@ -305,6 +303,9 @@
 					     </div>
 					   </div>
 					</div>
+					<div class="col-xs-1 popupCheckbox">
+						<label><i class="glyphicon glyphicon-star"><input type="checkbox" class="followCheck" id="followCheck2" name="follow"></i></label>
+					</div>
 				</div>
 			</div>
 			<div class="popupMemberList">
@@ -316,25 +317,61 @@
 							<th></th>
 							<th></th>
 							<th></th>
+							<th></th>
 						</tr>
 					 </thead>
 					 <tbody>
 							<c:forEach var="notMember" items="${result[1][result[0]].notMembers}">
 								<tr>
-									<td class="col-xs-1"><input type="checkbox" name="selectedUser" value="${notMember.userId}"/></td>
+									<td class="col-xs-1"><input type="checkbox" name="selectedUser" group="addMemberGroup" value="${notMember.userId}"/></td>
 									<td class="col-xs-1" width="100" ><img src="loadIcon?userId=${notMember.userId}" id="icon" class="img-circle" alt="icon"></td><!-- 1番目 -->
-									<td class="col-xs-5 text-left">${notMember.username}</td><!-- 2番目 -->
+									<td class="col-xs-4 text-left">${notMember.username}</td><!-- 2番目 -->
 									<td class="col-xs-2 text-left"><c:if test="${notMember.departmentName != '職員'}">${notMember.admissionYear}年生</c:if><!-- 3番目 -->
 									<td class="col-xs-3 text-left">${notMember.departmentName}</td><!-- 4番目 -->
+									<td class="col-xs-1 text-center"><c:if test="${notMember.followFlag}">★</c:if></td><!-- 5番目 -->
 								</tr>
 							</c:forEach>
 					</tbody>
 				</table>
 			</div>
 			<div class="popupActionButton">
-				<input type="submit" class="btn btn-success" value="追加">
+				<input type="submit" id="addMemberButton" class="btn btn-success" value="追加" disabled="true">
 			</div>
 		</form>
+	</div>
+
+	<!--groupEditのポップアップ-->
+	<div id="groupEditLayer"></div>
+	<div id="groupEditPopup">
+		<div class="popupRemoveButton">
+			<button id="closeGroupEdit"><i class=" glyphicon glyphicon-remove"></i></button>
+		</div>
+		<div class="groupEditPopupHeader">Edit Group</div>
+		<div class="groupEditPopupForm">
+			<form method="post" action="GroupIconUploadServlet" enctype="multipart/form-data">
+				<div class="col-sm-3 col-sm-offset-1 content-center" id="iconwrap">
+					<input type="hidden" name="groupId" value="${result[0]}"></input>
+					<input type="hidden" name="chatId" value="${result[0]}"></input>
+					<img name="icon" class="img-circle" src="loadGroupIcon?groupId=${result[0]}" id="editIcon">
+				</div>
+				<div class="col-sm-5 col-sm-offset-2">
+					<h3>
+					GroupName<br>
+					<input type="text" value="${result[1][result[0]].groupName}" class="form-control" name="groupName"></input>
+					</h3>
+				</div>
+				<div class="groupEditPopupActionButton">
+					<input type="file" id="upload" name="iconimg"></input>
+					<button type="submit" id="save" class="btn btn-success btn-md saveButton">保存</button>
+				</div>
+			</form>
+		</div>
+		<div class="groupEditPopupActionButton">
+			<form method="post" action="exitGroup">
+				<input type="hidden" name="exitGroupId" value="${result[0]}"></input>
+				<button type="submit" class="btn btn-danger btn-md exitGroupButton" onclick="return confirm('このグループを抜けますか？')">抜ける</button>
+			</form>
+		</div>
 	</div>
 	<script src="js/chat.js"></script>
 </body>

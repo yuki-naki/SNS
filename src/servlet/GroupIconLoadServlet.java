@@ -27,38 +27,40 @@ public class GroupIconLoadServlet extends HttpServlet {
 
 		OraGroupDao dao = new OraGroupDao();
 
-		Blob imageToReturn = dao.getGroupIcon(request.getParameter("groupId"));
-		// query your DB (or other data source) to get a blob representation of your image
-		// Set content type
-		response.setContentType("image/png");
+		String groupId = request.getParameter("groupId");
 
-		InputStream in = null;
-		OutputStream out = null;
+		if(groupId != null && groupId.trim() != ""){
+			Blob imageToReturn = dao.getGroupIcon(groupId);
+			// query your DB (or other data source) to get a blob representation of your image
+			// Set content type
+			response.setContentType("image/png");
 
-		try{
-			response.setContentLength((int) imageToReturn.length());
+			InputStream in = null;
+			OutputStream out = null;
 
-			in = imageToReturn.getBinaryStream();
-			out = response.getOutputStream();
+			try{
+				response.setContentLength((int) imageToReturn.length());
 
-			byte[] buf = new byte[1024];
-			int count = 0;
-			while ((count = in.read(buf)) >= 0) {
-				out.write(buf, 0, count);
+				in = imageToReturn.getBinaryStream();
+				out = response.getOutputStream();
+
+				byte[] buf = new byte[1024];
+				int count = 0;
+				while ((count = in.read(buf)) >= 0) {
+					out.write(buf, 0, count);
+				}
 			}
-		} catch (SQLException e) {
-			// do something useful when reading image from DB fails
-		} finally {
-			if (in != null) {
-				try {
-					in.close();
-				} catch (Exception e) {
+			catch (SQLException e) {
+				// do something useful when reading image from DB fails
 			}
-		}
-			if (out != null) {
-				try {
-					out.close();
-				} catch (Exception e) {
+			finally {
+				if(in != null) {
+					try { in.close(); }
+					catch (Exception e) {}
+				}
+				if (out != null) {
+					try { out.close(); }
+					catch (Exception e) {}
 				}
 			}
 		}

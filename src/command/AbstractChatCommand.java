@@ -1,8 +1,8 @@
 package command;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -42,14 +42,25 @@ public abstract class AbstractChatCommand extends AbstractCommand{
 		FollowDao followDao = factory.getFollowDao();
 		UserDao userDao = factory.getUserDao();
 
-		Map<String, Chat> chats = new HashMap<String, Chat>();
+		Map<String, Chat> chats = new LinkedHashMap<String, Chat>();
+
+		OracleConnectionManager.getInstance().beginTransaction();
 
 		// 自分が所属しているグループのIDリスト取得
 		ArrayList<String> belongGroupIdList = (ArrayList<String>)groupMemberDao.getBelongGroupIdList(loginUserId);
 
+		// 自分を除くすべてのユーザーの情報取得
+		ArrayList<User> allUserList = (ArrayList<User>) userDao.getAllUserList(loginUserId);
+
 		// フォローしている人を取得
 		List<String> followIdList = (ArrayList<String>)followDao.getFollowIdList(loginUserId);
-		List<User> followList = userDao.getUserList(followIdList);
+
+		// フォローフラグセット
+		for(User user : allUserList){
+            if(followIdList.contains(user.getUserId())){
+            	user.setFollowFlag(true);
+            }
+        }
 
 		Iterator<String> belongGroupIdListIterator = belongGroupIdList.iterator();
 
@@ -70,9 +81,12 @@ public abstract class AbstractChatCommand extends AbstractCommand{
 			// 未所属member
 			List<User> notMemberList = new ArrayList<User>();
 			ArrayList<String> notMemberIdList = (ArrayList<String>)groupMemberDao.getNotGroupMemberIdList(groupId);
-			notMemberIdList.retainAll(followIdList);
 			notMemberList = userDao.getUserList(notMemberIdList);
-			notMemberList.forEach(nm -> System.out.println(nm.getUsername()));
+			for(User notMember : notMemberList){
+	            if(followIdList.contains(notMember.getUserId())){
+	            	notMember.setFollowFlag(true);
+	            }
+	        }
 
 			// 所属グループのmessage
 			List<Message> messageList = (ArrayList<Message>)messageDao.getMessageList(groupId);
@@ -93,7 +107,7 @@ public abstract class AbstractChatCommand extends AbstractCommand{
 		chatData[0] = chatId;
 		chatData[1] = chats;
 		chatData[2] = userString;
-		chatData[3] = followList;
+		chatData[3] = allUserList;
 
 		return chatData;
 	}

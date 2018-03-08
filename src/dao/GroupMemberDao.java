@@ -8,5 +8,5 @@ public interface GroupMemberDao {
 	public List<String> getNotGroupMemberIdList(String groupId);
 	public List<String> getBelongGroupIdList(String userId);
 	public void addGroupMember(String groupId, ArrayList<String> members);
-	public void removeGroupMember(String groupId, ArrayList<String> members);
+	public void exitGroup(String groupId, String userId);
 }
